@@ -1,0 +1,23 @@
+{
+  "name": "bootpicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bootTimePicker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikemajesty/BootTimePicker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikemajesty/BootTimePicker/issues"
+  },
+  "homepage": "https://github.com/mikemajesty/BootTimePicker#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
