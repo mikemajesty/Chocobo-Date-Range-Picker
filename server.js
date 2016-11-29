@@ -3,6 +3,7 @@ var app = express();
 
 app.use('/public',  express.static(__dirname + '/demo'));
 app.use('/bower',  express.static(__dirname + '/bower_components'));
+app.use('/',  express.static(__dirname + '/'));
 
 var PORT = process.env.PORT || 3000;
 

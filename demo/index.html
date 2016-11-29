@@ -1,4 +1,14 @@
-<script src="/bower/angular/angular.js"></script>
-<script type="text/javascript" src="public/app.js"></script>
-
-<div ng-controller='BotPickerIndexCtrl'>Teste</div>
+<!DOCTYPE html>
+<html ng-app='BotPicker'>
+  <head>
+    <meta charset="utf-8">
+    <title>BootPicker</title>
+    <script src="/bower/angular/angular.js"></script>
+    <script type="text/javascript" src="public/app.js"></script>
+    <script type="text/javascript" src="bootTimePicker.js"></script>
+    <script type="text/javascript" src="public/indexController.js"></script>
+</head>
+  <body ng-controller='BotPickerIndexCtrl'>
+      <bootpicker></bootpicker>
+  </body>
+</html>

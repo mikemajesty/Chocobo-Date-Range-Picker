@@ -1,4 +1,4 @@
-angular.module("bootpicker", ['ui.bootstrap'])
+angular.module("BotPicker", [])
   .directive("bootpicker", [function() {
     return {
           restrict: 'E',
@@ -6,8 +6,8 @@ angular.module("bootpicker", ['ui.bootstrap'])
       			options: '='
       		},
       		controller: function($scope) {
-            
+            console.log('teste');
       		},
-  		      templateUrl: 'public/home/DateTimePicker/timePicker.html'
+  		      templateUrl: '/timePicker.html'
           }
   }]);
