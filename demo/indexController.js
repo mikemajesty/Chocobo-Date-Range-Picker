@@ -5,8 +5,8 @@
     .controller('BotPickerIndexCtrl', ['$scope', ($scope) => {
 
 
-
-
+        console.log('dataIni:', $scope.dataIni);
+        console.log('dataFin:', $scope.dataFin)
 
 
     }]);

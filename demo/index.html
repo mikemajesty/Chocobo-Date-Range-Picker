@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>BootPicker</title>
-    <script src="/bower/angular/angular.js"></script>
+    <link href="bower/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="bower/jquery/dist/jquery.min.js"></script>
+    <script src="bower/jquery-ui/jquery-ui.min.js"></script>
+
+    <script src="bower/angular/angular.js"></script>
     <script type="text/javascript" src="public/app.js"></script>
     <script type="text/javascript" src="bootTimePicker.js"></script>
     <script type="text/javascript" src="public/indexController.js"></script>
 </head>
   <body ng-controller='BotPickerIndexCtrl'>
-      <bootpicker></bootpicker>
+        <bootpicker ng-model="data"></bootpicker>
   </body>
 </html>

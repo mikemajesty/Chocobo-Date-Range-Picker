@@ -8,9 +8,9 @@
                 refreshCallback: "&"
             },
             link: function (scope, elem, attrs) {
-                angular.element(elem).on('click', function (event) {
-                    event.preventDefault();
-
+                angular.element(elem).on('change', function (event) {
+                  console.log('dataIni:', scope.dataIni);
+                  console.log('dataFin:', scope.dataFin)
                 });
             },
 						templateUrl: '/timePicker.html'
