@@ -6,33 +6,25 @@
             require: 'ngModel',
             restrict: "AE",
             scope: {
-                options: '@',
-                format: '@',
-                dateRange: '='
+                locale: '@',
             },
-            link: function (scope, elem, attrs) {
+            link: function (scope, elem, attrs, ngModel) {
                 angular.element(elem).on('change', function (event) {
+
                   var start = scope.dataIni;
                   var end = scope.dataFin;
                   var currentDate = new Date(start.getTime());
                   var between = [];
-
                   while (currentDate <= end) {
-                      between.push(new Date(currentDate));
+                      between.push(new Date(currentDate).toLocaleDateString(attrs.locale));
                       currentDate.setDate(currentDate.getDate() + 1);
                   }
-                  var model = attrs['ngModel'];
-              
-
-                  console.log('model', model);
-                  console.log('options', scope.options);
-                  console.log('dataIni:', scope.dataIni);
-                  console.log('dataFin:', scope.dataFin);
-                  console.log('dateRange:', attrs)
+                  ngModel.$setViewValue(between);
+                  ngModel.$render();
                 });
             },
             controller: function ($scope) {
-              console.log('sera: ', $scope );
+
             },
 						templateUrl: '/timePicker.html'
         };
