@@ -15,6 +15,7 @@
                   var end = scope.dataFin;
                   var currentDate = new Date(start.getTime());
                   var between = [];
+
                   while (currentDate <= end) {
                       between.push(new Date(currentDate).toLocaleDateString(attrs.locale));
                       currentDate.setDate(currentDate.getDate() + 1);
