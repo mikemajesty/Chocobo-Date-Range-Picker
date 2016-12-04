@@ -48,6 +48,15 @@
                   SetRangeDate();
                 }
 
+                scope.selectMes = function () {
+                  var today = new Date();
+                  today.setMonth(today.getMonth() - 1)
+                  scope.dataIni = today;
+                  scope.dataFin = new Date();
+                  between = [];
+                  SetRangeDate();
+                }
+
                 scope.DiaAnterior = function () {
                   var today = new Date();
                   today.setDate(today.getDate() - 1)

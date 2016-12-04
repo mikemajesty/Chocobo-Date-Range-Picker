@@ -4,7 +4,7 @@
   angular.module('BotPicker')
     .controller('BotPickerIndexCtrl', ['$scope', ($scope) => {
 
-        $scope.demo = {demoRangeDate: new Date()};
+        $scope.demo = { searchDate: null };
 
     }]);
 })(window.angular);
