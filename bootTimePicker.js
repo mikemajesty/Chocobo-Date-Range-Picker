@@ -39,6 +39,15 @@
                   SetRangeDate();
                 }
 
+                scope.selectAno = function () {
+                  var today = new Date();
+                  today.setMonth(today.getMonth() - 12)
+                  scope.dataIni = today;
+                  scope.dataFin = new Date();
+                  between = [];
+                  SetRangeDate();
+                }
+
                 function SetRangeDate() {
                   var start = scope.dataIni;
                   var end = scope.dataFin;
