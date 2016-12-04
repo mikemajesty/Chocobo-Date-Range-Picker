@@ -71,9 +71,6 @@
                   console.log('quantity ', between.length);
                 }
             },
-            controller: function ($scope) {
-
-            },
 						templateUrl: '/timePicker.html'
         };
     }]);
