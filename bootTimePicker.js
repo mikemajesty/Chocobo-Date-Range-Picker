@@ -48,6 +48,15 @@
                   SetRangeDate();
                 }
 
+                scope.DiaAnterior = function () {
+                  var today = new Date();
+                  today.setDate(today.getDate() - 1)
+                  scope.dataIni = today;
+                  scope.dataFin = today;
+                  between = [];
+                  SetRangeDate();
+                }
+
                 function SetRangeDate() {
                   var start = scope.dataIni;
                   var end = scope.dataFin;
@@ -59,7 +68,7 @@
                   }
                   ngModel.$setViewValue(between);
                   ngModel.$render();
-                  console.log('quantity ', between);
+                  console.log('quantity ', between.length);
                 }
             },
             controller: function ($scope) {
