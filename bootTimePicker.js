@@ -30,6 +30,15 @@
                   SetRangeDate();
                 }
 
+                scope.selectSemestre = function () {
+                  var today = new Date();
+                  today.setMonth(today.getMonth() - 6)
+                  scope.dataIni = today;
+                  scope.dataFin = new Date();
+                  between = [];
+                  SetRangeDate();
+                }
+
                 function SetRangeDate() {
                   var start = scope.dataIni;
                   var end = scope.dataFin;
@@ -41,6 +50,7 @@
                   }
                   ngModel.$setViewValue(between);
                   ngModel.$render();
+                  console.log('quantity ', between);
                 }
             },
             controller: function ($scope) {
