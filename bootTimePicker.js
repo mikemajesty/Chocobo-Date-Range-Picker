@@ -9,6 +9,8 @@
                 locale: '@',
             },
             link: function (scope, elem, attrs, ngModel) {
+                scope.dataIni = new Date();
+                scope.dataFin = new Date();
                 angular.element(elem).on('change', function (event) {
 
                   var start = scope.dataIni;
@@ -25,7 +27,9 @@
                 });
             },
             controller: function ($scope) {
-
+                $scope.selectTrimestre = function () {
+                    console.log('scope', $scope);
+                }
             },
 						templateUrl: '/timePicker.html'
         };
