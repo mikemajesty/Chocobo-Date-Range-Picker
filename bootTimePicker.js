@@ -7,6 +7,7 @@
             restrict: "AE",
             scope: {
                 locale: '@',
+	              options: '='
             },
             link: function (scope, elem, attrs, ngModel) {
                 scope.dataIni = new Date();
@@ -30,7 +31,7 @@
                   SetRangeDate();
                 }
 
-                scope.selectSemestre = function () {
+                scope.selectSemester = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 6)
                   scope.dataIni = today;
@@ -39,7 +40,7 @@
                   SetRangeDate();
                 }
 
-                scope.selectAno = function () {
+                scope.selectYear = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 12)
                   scope.dataIni = today;
@@ -48,7 +49,7 @@
                   SetRangeDate();
                 }
 
-                scope.selectMes = function () {
+                scope.selectMonth = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 1)
                   scope.dataIni = today;
@@ -57,7 +58,7 @@
                   SetRangeDate();
                 }
 
-                scope.DiaAnterior = function () {
+                scope.selectLastDay = function () {
                   var today = new Date();
                   today.setDate(today.getDate() - 1)
                   scope.dataIni = today;
