@@ -14,7 +14,8 @@
             btnMonth: { txt: 'Demo: Month' },
             btnYear: {txt: 'Demo: Year'},
             btnSemester: {txt: 'Demo: Semester'},
-            btnLastDay: {txt: 'Demo: Last Day'}
+            btnLastDay: {txt: 'Demo: Last Day'},
+            Trimester: {txt: 'Demo: Trimester'},
           }
         };
 

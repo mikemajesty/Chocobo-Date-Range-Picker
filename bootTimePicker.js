@@ -10,8 +10,8 @@
 	              options: '='
             },
             link: function (scope, elem, attrs, ngModel) {
-                scope.dataIni = new Date();
-                scope.dataFin = new Date();
+                scope.startDate = new Date();
+                scope.endDate = new Date();
 
                 var between = [];
                 between.push(new Date().toLocaleDateString(attrs.locale));
@@ -22,11 +22,11 @@
                     SetRangeDate();
                 });
 
-                scope.selectTrimestre = function () {
+                scope.selectTrimester = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 3)
-                  scope.dataIni = today;
-                  scope.dataFin = new Date();
+                  scope.startDate = today;
+                  scope.endDate = new Date();
                   between = [];
                   SetRangeDate();
                 }
@@ -34,8 +34,8 @@
                 scope.selectSemester = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 6)
-                  scope.dataIni = today;
-                  scope.dataFin = new Date();
+                  scope.startDate = today;
+                  scope.endDate = new Date();
                   between = [];
                   SetRangeDate();
                 }
@@ -43,8 +43,8 @@
                 scope.selectYear = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 12)
-                  scope.dataIni = today;
-                  scope.dataFin = new Date();
+                  scope.startDate = today;
+                  scope.endDate = new Date();
                   between = [];
                   SetRangeDate();
                 }
@@ -52,8 +52,8 @@
                 scope.selectMonth = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 1)
-                  scope.dataIni = today;
-                  scope.dataFin = new Date();
+                  scope.startDate = today;
+                  scope.endDate = new Date();
                   between = [];
                   SetRangeDate();
                 }
@@ -61,15 +61,15 @@
                 scope.selectLastDay = function () {
                   var today = new Date();
                   today.setDate(today.getDate() - 1)
-                  scope.dataIni = today;
-                  scope.dataFin = today;
+                  scope.startDate = today;
+                  scope.endDate = today;
                   between = [];
                   SetRangeDate();
                 }
 
                 function SetRangeDate() {
-                  var start = scope.dataIni;
-                  var end = scope.dataFin;
+                  var start = scope.startDate;
+                  var end = scope.endDate;
                   var currentDate = new Date(start.getTime());
 
                   while (currentDate <= end) {

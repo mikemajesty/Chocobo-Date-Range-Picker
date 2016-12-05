@@ -1,7 +1,7 @@
-{{options.txtDateInit}}: <input type="date" ng-model="dataIni" name="dataIni">
-{{options.txtDateEnd}}: <input type="date" ng-model="dataFin" name="dataFin">
+{{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate">
+{{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
 <input type="button" ng-show='options.button.btnYear.txt' value="{{options.button.btnYear.txt}}" ng-click='selectYear();'>
 <input type="button" ng-show='options.button.btnSemester.txt' value="{{options.button.btnSemester.txt}}" ng-click='selectSemester();'>
-<input type="button" name="btnTri" value="Trimestre" ng-click='selectTrimestre();'>
+<input type="button" ng-show='options.button.Trimester.txt' value="{{options.button.Trimester.txt}}" ng-click='selectTrimester();'>
 <input type="button" ng-show='options.button.btnMonth.txt' name="btnMes" value="{{ options.button.btnMonth.txt }}" ng-click='selectMonth();'>
 <input type="button" ng-show='options.button.btnLastDay.txt' value="{{options.button.btnLastDay.txt}}" ng-click='selectLastDay();'>
