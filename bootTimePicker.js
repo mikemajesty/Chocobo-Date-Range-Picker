@@ -1,6 +1,6 @@
 (function (angular) {
   'use strict';
-  angular.module('BotPicker')
+  angular.module('BotPicker', [])
     .directive("bootpicker", [function () {
       return {
         require: 'ngModel',
