@@ -14,10 +14,10 @@
             btnMonth: { txt: 'Demo: Month' },
             btnYear: {txt: 'Demo: Year'},
             btnSemester: {txt: 'Demo: Semester'},
+            btnTrimester: {txt: 'Demo: Trimester'},
             btnLastDay: {txt: 'Demo: Last Day'},
-            btnTtrimester: {txt: 'Demo: Trimester'},
             btnToday: {txt: 'Demo: Today'},
-
+            btnWeek: {txt: 'Demo: Week'},
           }
         };
 

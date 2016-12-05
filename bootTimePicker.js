@@ -74,6 +74,15 @@
                   SetRangeDate();
                 }
 
+                scope.selectWeek = function () {
+                  var today = new Date();
+                  today.setDate(today.getDate() - 7)
+                  scope.startDate = today;
+                  scope.endDate = new Date();;
+                  between = [];
+                  SetRangeDate();
+                }
+
                 function SetRangeDate() {
                   var start = scope.startDate;
                   var end = scope.endDate;
