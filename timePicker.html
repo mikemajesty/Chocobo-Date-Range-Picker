@@ -1,5 +1,5 @@
-{{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate">
-{{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
+{{options.txtDateInit}}: <input type="text" ng-model="startDate" name="startDate" datepicker>
+{{options.txtDateEnd}}: <input type="text" ng-model="endDate" name="endDate" datepicker>
 <br>
 <input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
 <input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
