@@ -9,13 +9,15 @@
         $scope.options = {
           txtDateInit: 'Demo: Start Date',
           txtDateEnd: 'Demo: End Date',
-          button:
+          buttons:
           {
             btnMonth: { txt: 'Demo: Month' },
             btnYear: {txt: 'Demo: Year'},
             btnSemester: {txt: 'Demo: Semester'},
             btnLastDay: {txt: 'Demo: Last Day'},
-            Trimester: {txt: 'Demo: Trimester'},
+            btnTtrimester: {txt: 'Demo: Trimester'},
+            btnToday: {txt: 'Demo: Today'},
+
           }
         };
 

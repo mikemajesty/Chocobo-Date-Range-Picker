@@ -67,6 +67,13 @@
                   SetRangeDate();
                 }
 
+                scope.selectToday = function () {
+                  scope.startDate = new Date();
+                  scope.endDate = new Date();
+                  between = [];
+                  SetRangeDate();
+                }
+
                 function SetRangeDate() {
                   var start = scope.startDate;
                   var end = scope.endDate;
