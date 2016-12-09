@@ -1,0 +1,22 @@
+{
+  "name": "bootpicker",
+  "description": "",
+  "main": "bootTimePicker.js",
+  "authors": [
+    "mike.lima <mike.lima@tegra.me>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mikemajesty/BootTimePicker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.9",
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap": "^2.3.0"
+  }
+}
