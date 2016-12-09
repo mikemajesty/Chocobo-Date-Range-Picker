@@ -48,7 +48,7 @@
                   between = [];
                   SetRangeDate();
                 }
-
+   
                 scope.selectMonth = function () {
                   var today = new Date();
                   today.setMonth(today.getMonth() - 1)
