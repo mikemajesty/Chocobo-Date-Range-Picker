@@ -18,7 +18,7 @@
           ngModel.$setViewValue(between);
 
           angular.element(elem).on('change', function (event) {
-            between = [];
+            between = []; 
             SetRangeDate();
           });
 
