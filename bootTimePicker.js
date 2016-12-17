@@ -21,7 +21,7 @@
             between = []; 
             SetRangeDate();
           });
-
+ 
           scope.selectTrimester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 3)
