@@ -18,10 +18,10 @@
           ngModel.$setViewValue(between);
 
           angular.element(elem).on('change', function (event) {
-            between = []; 
+            between = [];
             SetRangeDate();
           });
- 
+
           scope.selectTrimester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 3)
@@ -29,7 +29,7 @@
             scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
+          };
 
           scope.selectSemester = function () {
             var today = new Date();
@@ -38,27 +38,8 @@
             scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
+          };
 
-<<<<<<< HEAD
-                scope.selectYear = function () {
-                  var today = new Date();
-                  today.setMonth(today.getMonth() - 12)
-                  scope.startDate = today;
-                  scope.endDate = new Date();
-                  between = [];
-                  SetRangeDate();
-                }
-   
-                scope.selectMonth = function () {
-                  var today = new Date();
-                  today.setMonth(today.getMonth() - 1)
-                  scope.startDate = today;
-                  scope.endDate = new Date();
-                  between = [];
-                  SetRangeDate();
-                }
-=======
           scope.selectYear = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 12)
@@ -66,7 +47,7 @@
             scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
+          };
 
           scope.selectMonth = function () {
             var today = new Date();
@@ -75,24 +56,32 @@
             scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
->>>>>>> 2e586a06968a08ba2dae1b3830e8b82f113dd007
+          };
 
-          scope.selectLastDay = function () {
+          scope.selectYear = function () {
             var today = new Date();
-            today.setDate(today.getDate() - 1)
+            today.setMonth(today.getMonth() - 12)
             scope.startDate = today;
-            scope.endDate = today;
+            scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
+          };
+
+          scope.selectMonth = function () {
+            var today = new Date();
+            today.setMonth(today.getMonth() - 1);
+            scope.startDate = today;
+            scope.endDate = new Date();
+            between = [];
+            SetRangeDate();
+          };
 
           scope.selectToday = function () {
             scope.startDate = new Date();
             scope.endDate = new Date();
             between = [];
             SetRangeDate();
-          }
+          };
 
           scope.selectWeek = function () {
             var today = new Date();
@@ -101,7 +90,16 @@
             scope.endDate = new Date();;
             between = [];
             SetRangeDate();
-          }
+          };
+
+          scope.selectLastDay = function () {
+            var today = new Date();
+            today.setDate(today.getDate() - 1)
+            scope.startDate = today;
+            scope.endDate = today;
+            between = [];
+            SetRangeDate();
+          };
 
           function SetRangeDate() {
             var start = scope.startDate;
