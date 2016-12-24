@@ -6,37 +6,24 @@
 
       $scope.demo = { searchDate: null };
 
-      // var date = new Date();
-      //date.setFullYear(2016, 11);
-      //var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-      //var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
-      //var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      //var allDays = [];
-      //for (var index = 0; index < 11; index++) {
-      // date.setFullYear(2016, index);
-
-      // allDays = [{ month: months[index], days: }];
-
-      //}
-      //var monthsWithDate = [{ month: "Jan", days: }];
-
-      //SetRangeDate(new Date());
-      SetRangeDate();
-
-      function SetRangeDate() {
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var dateMap = [];
+      
+      for (var index = 0; index < months.length; index++) {
         var date = new Date();
+        date.setMonth(index);
+        dateMap.push([{ month: months[index], days: setRangeDay(date)}]);
+      }
+
+      function setRangeDay(date) {
         var days = [];
         var start = new Date(date.getFullYear(), date.getMonth(), 1);
         var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-        console.log('INIT ', t.getDay());
-        console.log('END ', end);
-        for (var index = start.getDay(); index <= end.getDay(); index++) {
+        for (var index = start.getDate(); index <= end.getDate(); index++) {
           days.push(index);
         }
 
-        console.log('days ', days);
         return days;
       }
 
