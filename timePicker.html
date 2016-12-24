@@ -1,4 +1,4 @@
-{{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate"> {{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
+<div ng-show="false"> {{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate"> {{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
 <br>
 <input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
 <input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
@@ -7,13 +7,13 @@
 <input type="button" ng-show='options.buttons.btnWeek.txt' value="{{options.buttons.btnWeek.txt}}" ng-click='selectWeek();'>
 <input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
-
+</div>
 <div class="month">
     <ul>
         <li class="prev">&#10094;</li>
         <li class="next">&#10095;</li>
         <li>
-            August<br>
+            {{dateMap[0].month}}<br>
             <span style="font-size:18px">2016</span>
         </li>
     </ul>
@@ -30,16 +30,5 @@
 </ul>
 
 <ul class="days">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
-    <li>7</li>
-    <li>8</li>
-    <li>9</li>
-    <li><span class="active">10</span></li>
-    <li>11</li>
-    ...etc
+    <li ng-repeat="n in dateMap[0].days track by $index">{{n.day}}</li>
 </ul>

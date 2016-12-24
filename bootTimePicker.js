@@ -13,6 +13,32 @@
           scope.startDate = new Date();
           scope.endDate = new Date();
 
+          var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          scope.dateMap = [];
+
+          for (var index = 0; index < months.length; index++) {
+            var date = new Date();
+            date.setMonth(index);
+            scope.dateMap.push({ month: months[index], days: setRangeDay(date) });
+          }
+
+          console.log(scope.dateMap);
+
+          function setRangeDay(date) {
+            var days = [];
+            var start = new Date(date.getFullYear(), date.getMonth(), 1);
+            var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+            for (var index = start.getDate(); index <= end.getDate(); index++) {
+              start.setDate(index);
+              days.push({ day: index, week: weekdays[start.getDay()] });
+            }
+
+            return days;
+          }
+
+
           var between = [];
           between.push(new Date().toLocaleDateString(attrs.locale));
           ngModel.$setViewValue(between);
