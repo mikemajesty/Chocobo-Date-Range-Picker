@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
   angular.module('BotPicker', [])
-    .directive("bootpicker", [function () {
+    .directive("bootpicker", ['$filter',function ($filter) {
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -23,15 +23,12 @@
           scope.startDate = new Date();
           scope.endDate = new Date();
 
-          var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-          var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
           scope.dateMap = [];
-
-          for (var index = 0; index < months.length; index++) {
-            var date = new Date();
-            date.setMonth(index);
-            scope.dateMap.push({ month: months[index], result: setRangeDay(date) });
-          }
+          //attr format that it was arrived form directive
+          var date =  new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+          console.log(date);
+          var month = $filter('date')(date, 'MMMM');
+          Array.prototype.push.apply(scope.dateMap, [{ month: month, result: setRangeDay(date)}, ])
 
           console.log('iza ', scope.dateMap);
 
@@ -42,11 +39,15 @@
 
             for (var index = start.getDate(); index <= end.getDate(); index++) {
               start.setDate(index);
-              days.push({ day: index, week: weekdays[start.getDay()] });
+              days.push({ day: index, week: getWeek(start)});
             }
 
             days = days.groupBy('week');
             return days;
+          }
+
+          function getWeek(date) {
+            return $filter('date')(date, 'EEEE');
           }
 
           var between = [];
