@@ -33,7 +33,7 @@
             scope.dateMap.push({ month: months[index], result: setRangeDay(date) });
           }
 
-          console.log('r: ', scope.dateMap.groupBy('month'));
+          console.log('iza ', scope.dateMap);
 
           function setRangeDay(date) {
             var days = [];
@@ -48,8 +48,6 @@
             days = days.groupBy('week');
             return days;
           }
-
-          console.log('tye: ', setRangeDay(new Date()));
 
           var between = [];
           between.push(new Date().toLocaleDateString(attrs.locale));

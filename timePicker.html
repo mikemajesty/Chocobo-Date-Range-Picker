@@ -8,9 +8,7 @@
     <input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
     <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 </ts>
-<br>
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-{{dateMap}}
+<br> ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- {{dateMap[0].result}}
 <br>
 <br>
 <br>
@@ -22,18 +20,24 @@
     </header>
     <table>
         <tr>
-            <th>S</th>
-            <th>M</th>
-            <th>T</th>
-            <th>W</th>
-            <th>Th</th>
-            <th>F</th>
-            <th>S</th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
         </tr>
-        <tr ng-repeat="day in dateMap[0].days" >
-            <td>{{day.day}}</td>
+        <tr>
+            <td ng-repeat="days in dateMap[0].result.Sunday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Monday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Tuesday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Wednesday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Thursday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Friday">{{days.day}}</td>
+            <td ng-repeat="days in dateMap[0].result.Saturday">{{days.day}}</td>
         </tr>
     </table>
 </div>
 
- <td class="selected">17</td>
+<td class="selected">17</td>
