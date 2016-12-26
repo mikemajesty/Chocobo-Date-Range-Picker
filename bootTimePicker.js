@@ -23,13 +23,13 @@
           scope.startDate = new Date();
           scope.endDate = new Date();
 
-          scope.dateMap = [];
+          scope.dateMap = {};
           //attr format that it was arrived form directive
           var date =  new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
-          console.log(date);
-          var month = $filter('date')(date, 'MMMM');
-          Array.prototype.push.apply(scope.dateMap, [{ month: month, result: setRangeDay(date)}, ])
+          var month = getFormatDate(date, 'MMMM');
+          var year = getFormatDate(date, 'yyyy');
 
+          scope.dateMap = { month: month, year: year, result: setRangeDay(date)};
           console.log('iza ', scope.dateMap);
 
           function setRangeDay(date) {
@@ -39,15 +39,15 @@
 
             for (var index = start.getDate(); index <= end.getDate(); index++) {
               start.setDate(index);
-              days.push({ day: index, week: getWeek(start)});
+              days.push({ day: index, week: getFormatDate(start, 'EEEE')});
             }
 
             days = days.groupBy('week');
             return days;
           }
 
-          function getWeek(date) {
-            return $filter('date')(date, 'EEEE');
+          function getFormatDate(date, format) {
+            return $filter('date')(date, format);
           }
 
           var between = [];
