@@ -10,6 +10,16 @@
           options: '='
         },
         link: function (scope, elem, attrs, ngModel) {
+
+          Array.prototype.groupBy = function (prop) {
+            return this.reduce(function (groups, item) {
+              var val = item[prop];
+              groups[val] = groups[val] || [];
+              groups[val].push(item);
+              return groups;
+            }, {});
+          };
+
           scope.startDate = new Date();
           scope.endDate = new Date();
 
@@ -20,10 +30,10 @@
           for (var index = 0; index < months.length; index++) {
             var date = new Date();
             date.setMonth(index);
-            scope.dateMap.push({ month: months[index], days: setRangeDay(date) });
+            scope.dateMap.push({ month: months[index], result: setRangeDay(date) });
           }
 
-          console.log(scope.dateMap);
+          console.log('r: ', scope.dateMap.groupBy('month'));
 
           function setRangeDay(date) {
             var days = [];
@@ -35,8 +45,11 @@
               days.push({ day: index, week: weekdays[start.getDay()] });
             }
 
+            days = days.groupBy('week');
             return days;
           }
+
+          console.log('tye: ', setRangeDay(new Date()));
 
           var between = [];
           between.push(new Date().toLocaleDateString(attrs.locale));
