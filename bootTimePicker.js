@@ -38,7 +38,6 @@
             return days;
           }
 
-
           var between = [];
           between.push(new Date().toLocaleDateString(attrs.locale));
           ngModel.$setViewValue(between);
