@@ -12,8 +12,10 @@
 <br>
 <br>
 <br>
-<input type="button" value="<">
-<input type="button" value=">">
+{{ dateMap.month }} - {{ dateMap.year }}
+<br>
+<input type="button" value="<" ng-click="lastMonth()">
+<input type="button" value=">" ng-click="nextMonth()">
 <table border="1">
     <tr ng-repeat="allDyas in dateMap.result | limitTo:1"> 
         <td ng-repeat="days in allDyas">{{days.week}}</td>

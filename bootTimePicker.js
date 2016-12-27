@@ -27,35 +27,56 @@
           scope.dateMap = {};
           //attr format that it was arrived form directive
           var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
-          var month = getFormatDate(date, 'MMMM');
-          var year = getFormatDate(date, 'yyyy');
 
-          scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
+          var changeDate = function (date) {
+            var month = getFormatDate(date, 'MMMM');
+            var year = getFormatDate(date, 'yyyy');
 
-          var createGroupedArray = function (arr, chunkSize) {
-            var groups = [], i;
-            for (i = 0; i < arr.length; i += chunkSize) {
-              groups.push(arr.slice(i, i + chunkSize));
+            scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
+
+            var createGroupedArray = function (arr, chunkSize) {
+              var groups = [], i;
+              for (i = 0; i < arr.length; i += chunkSize) {
+                groups.push(arr.slice(i, i + chunkSize));
+              }
+              return groups;
+            };
+
+            scope.dateMap.result = createGroupedArray(scope.dateMap.result, 7);
+
+            function setRangeDay(date) {
+              var days = [];
+              var start = new Date(date.getFullYear(), date.getMonth(), 1);
+              var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+              for (var index = start.getDate(); index <= end.getDate(); index++) {
+                start.setDate(index);
+                days.push({ day: index, week: getFormatDate(start, 'EEEE') });
+              }
+
+              return days;
             }
-            return groups;
-          }
+          };
 
-          console.log('date: ', createGroupedArray(scope.dateMap.result, 7));
-          scope.dateMap.result = createGroupedArray(scope.dateMap.result, 7);
+          changeDate(date);
 
-          function setRangeDay(date) {
-            var days = [];
-            var start = new Date(date.getFullYear(), date.getMonth(), 1);
-            var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
-            for (var index = start.getDate(); index <= end.getDate(); index++) {
-              start.setDate(index);
-              days.push({ day: index, week: getFormatDate(start, 'EEEE') });
+          scope.nextMonth = function () {
+            if (date.getMonth() == 11) {
+              date = new Date(date.getFullYear() + 1, 0, 1);
+            } else {
+              date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
             }
+            changeDate(date);
+          };
 
-            // days = days.groupBy('week');
-            return days;
-          }
+          scope.lastMonth = function () {
+            if (date.getMonth() === 0) {
+              date = new Date(date.getFullYear() - 1, 11, 1);
+            } else {
+              date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+            }
+            changeDate(date);
+          };
 
           function getFormatDate(date, format) {
             return $filter('date')(date, format);
