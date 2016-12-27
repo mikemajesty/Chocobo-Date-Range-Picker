@@ -32,7 +32,16 @@
 
           scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
-          console.log('date: ', scope.dateMap);
+          var createGroupedArray = function (arr, chunkSize) {
+            var groups = [], i;
+            for (i = 0; i < arr.length; i += chunkSize) {
+              groups.push(arr.slice(i, i + chunkSize));
+            }
+            return groups;
+          }
+
+          console.log('date: ', createGroupedArray(scope.dateMap.result, 7));
+          scope.dateMap.result = createGroupedArray(scope.dateMap.result, 7);
 
           function setRangeDay(date) {
             var days = [];
@@ -44,7 +53,7 @@
               days.push({ day: index, week: getFormatDate(start, 'EEEE') });
             }
 
-            days = days.groupBy('week');
+            // days = days.groupBy('week');
             return days;
           }
 

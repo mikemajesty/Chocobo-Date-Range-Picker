@@ -12,17 +12,13 @@
 <br>
 <br>
 <br>
+<input type="button" value="<">
+<input type="button" value=">">
 <table border="1">
-    <tr>
-        <th>{{dateMap.result.Monday[0].week}}</th>
-        <th>{{dateMap.result.Tuesday[0].week}}</th>
-        <th>{{dateMap.result.Wednesday[0].week}}</th>
-        <th>{{dateMap.result.Thursday[0].week}}</th>
-        <th>{{dateMap.result.Friday[0].week}}</th>
-        <th>{{dateMap.result.Saturday[0].week}}</th>
-        <th>{{dateMap.result.Sunday[0].week}}</th>
+    <tr ng-repeat="allDyas in dateMap.result | limitTo:1"> 
+        <td ng-repeat="days in allDyas">{{days.week}}</td>
     </tr>
-    <tr>
-        <td ng-repeat="days in dateMap.result.Monday">{{days.day}}</td>
+    <tr ng-repeat="allDyas in dateMap.result"> 
+        <td ng-repeat="days in allDyas">{{days.day}}</td>
     </tr>
 </table>
