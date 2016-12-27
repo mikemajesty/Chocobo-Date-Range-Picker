@@ -2,6 +2,16 @@
   'use strict';
   angular.module('BotPicker', [])
     .directive("bootpicker", ['$filter', function ($filter) {
+
+      Array.prototype.groupBy = function (prop) {
+        return this.reduce(function (groups, item) {
+          var val = item[prop];
+          groups[val] = groups[val] || [];
+          groups[val].push(item);
+          return groups;
+        }, {});
+      };
+      
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -11,14 +21,7 @@
         },
         link: function (scope, elem, attrs, ngModel) {
 
-          Array.prototype.groupBy = function (prop) {
-            return this.reduce(function (groups, item) {
-              var val = item[prop];
-              groups[val] = groups[val] || [];
-              groups[val].push(item);
-              return groups;
-            }, {});
-          };
+
 
           scope.startDate = new Date();
           scope.endDate = new Date();
