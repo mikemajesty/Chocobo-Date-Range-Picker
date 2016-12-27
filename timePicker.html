@@ -14,15 +14,15 @@
 <br>
 <table border="1">
     <tr>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
+        <th>{{dateMap.result.Monday[0].week}}</th>
+        <th>{{dateMap.result.Tuesday[0].week}}</th>
+        <th>{{dateMap.result.Wednesday[0].week}}</th>
+        <th>{{dateMap.result.Thursday[0].week}}</th>
+        <th>{{dateMap.result.Friday[0].week}}</th>
+        <th>{{dateMap.result.Saturday[0].week}}</th>
+        <th>{{dateMap.result.Sunday[0].week}}</th>
     </tr>
-    <tr ng-repeat="days in dateMap.result.Sunday">
-        <td>{{days.day}}</td>
+    <tr>
+        <td ng-repeat="days in dateMap.result.Monday">{{days.day}}</td>
     </tr>
 </table>
