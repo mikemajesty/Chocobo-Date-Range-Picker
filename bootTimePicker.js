@@ -11,7 +11,7 @@
           return groups;
         }, {});
       };
-      
+
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -20,8 +20,6 @@
           options: '='
         },
         link: function (scope, elem, attrs, ngModel) {
-
-
 
           scope.startDate = new Date();
           scope.endDate = new Date();
