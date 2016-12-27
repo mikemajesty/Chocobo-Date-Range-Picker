@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
   angular.module('BotPicker', [])
-    .directive("bootpicker", ['$filter',function ($filter) {
+    .directive("bootpicker", ['$filter', function ($filter) {
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -25,12 +25,13 @@
 
           scope.dateMap = {};
           //attr format that it was arrived form directive
-          var date =  new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+          var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
           var month = getFormatDate(date, 'MMMM');
           var year = getFormatDate(date, 'yyyy');
 
-          scope.dateMap = { month: month, year: year, result: setRangeDay(date)};
-          console.log('iza ', scope.dateMap);
+          scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
+
+          console.log('date: ', scope.dateMap);
 
           function setRangeDay(date) {
             var days = [];
@@ -39,7 +40,7 @@
 
             for (var index = start.getDate(); index <= end.getDate(); index++) {
               start.setDate(index);
-              days.push({ day: index, week: getFormatDate(start, 'EEEE')});
+              days.push({ day: index, week: getFormatDate(start, 'EEEE') });
             }
 
             days = days.groupBy('week');

@@ -28,16 +28,22 @@
             <th>Friday</th>
             <th>Saturday</th>
         </tr>
-        <tr>
-            <td ng-repeat="days in dateMap[0].result.Sunday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Monday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Tuesday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Wednesday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Thursday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Friday">{{days.day}}</td>
-            <td ng-repeat="days in dateMap[0].result.Saturday">{{days.day}}</td>
+        <tr ng-repeat="days in dateMap.result.Sunday">
+            <td>{{days.day}}</td>
         </tr>
+
+        <!--<tr ng-repeat="days in dateMap.result.Wednesday">
+            <td>{{days.day}}</td>
+        </tr>
+        <tr ng-repeat="days in dateMap.result.Thursday">
+            <td>{{days.day}}</td>
+        </tr>
+        <tr ng-repeat="days in dateMap.result.Friday">
+            <td>{{days.day}}</td>
+        </tr>
+        <tr ng-repeat="days in dateMap.result.Saturday">
+            <td>{{days.day}}</td>
+        </tr>-->
     </table>
 </div>
-
-<td class="selected">17</td>
+</tr>
