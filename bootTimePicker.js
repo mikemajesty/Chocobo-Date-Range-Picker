@@ -24,28 +24,32 @@
 
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
-            var createGroupedArray = function (arr, chunkSize) {
-              var groups = [];
-              for (var index = 0; index < arr.length; index += chunkSize) {
-                groups.push(arr.slice(index, index + chunkSize));
-              }
-              return groups;
-            };
-
-            scope.dateMap.result = createGroupedArray(scope.dateMap.result, 7);
-
             function setRangeDay(date) {
-              var days = [];
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
               var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
+              var weeks = [];
+
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                days.push({ day: index, week: getFormatDate(start, 'EEEE') });
-              }
+                if (getFormatDate(start, 'EEEE') == 'Sunday' || weeks.length == 0) {
+                  weeks.push({
+                    'Sunday': false,
+                    'Monday': false,
+                    'Tuesday': false,
+                    'Wednesday': false,
+                    'Thursday': false,
+                    'Friday': false,
+                    'Saturday': false
+                  });
+                }
 
-              return days;
+                weeks[weeks.length - 1][getFormatDate(start, 'EEEE')] = index;
+
+              }
+              return weeks;
             }
+            console.log(scope.dateMap);
           };
 
           changeDate(date);

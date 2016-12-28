@@ -18,11 +18,11 @@
     <input type="button" value="<" ng-click="lastMonth()">
     <input type="button" value=">" ng-click="nextMonth()">
     <table border="1">
-        <tr ng-repeat="allDyas in dateMap.result | limitTo:1">
-            <td ng-repeat="days in allDyas">{{days.week}}</td>
+        <tr >
+            <td ng-repeat="dayOfWeek in ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']">{{dayOfWeek}}</td>
         </tr>
-        <tr ng-repeat="allDyas in dateMap.result">
-            <td ng-repeat="days in allDyas" ng-click="chooseDay(days, dateMap.month, dateMap.year)">{{days.day}}</td>
+        <tr ng-repeat="week in dateMap.result">
+            <td ng-repeat="dayOfWeek in ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']" ng-click="chooseDay(week[dayOfWeek], dateMap.month, dateMap.year)">{{week[dayOfWeek] ? week[dayOfWeek] : ''}}</td>
         </tr>
     </table>
 </div>
