@@ -2,11 +2,15 @@
   'use strict';
   angular.module('BotPicker', [])
     .directive("bootpicker", ['$filter', function ($filter) {
+      String.prototype.capitalizeFirstLetter = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+      };
       return {
         require: 'ngModel',
         restrict: "AE",
         scope: {
           locale: '@',
+          format: '@',
           options: '='
         },
         link: function (scope, elem, attrs, ngModel) {
@@ -24,6 +28,13 @@
 
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
+            function getFirstDayOfWeek() {
+              var dt = new Date();
+              var day = dt.getDay();
+              dt.setDate((dt.getDate() - day + (day === 0 ? -6 : 0)));
+              return dt.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter();
+            }
+
             function setRangeDay(date) {
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
               var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -32,7 +43,7 @@
 
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                if (getFormatDate(start, 'EEEE') == 'Sunday' || weeks.length === 0) {
+                if (start.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
                   weeks.push({
                     'Sunday': false,
                     'Monday': false,
@@ -43,7 +54,7 @@
                     'Saturday': false
                   });
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, options)] = index;
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter()] = index;
               }
               return weeks;
             }
@@ -51,14 +62,15 @@
 
           changeDate(date);
 
-          function getWeekDays(dt) {
+          function getWeekDays() {
+            var dt = new Date();
             var diff = {};
             var weekList = [];
             for (var index = 0; index < 7; index++) {
               var day = dt.getDay();
               diff = dt.getDate() - day + (day === 0 ? -6 : index);
               dt.setDate(diff);
-              weekList.push(dt.toLocaleDateString(attrs.locale, options));
+              weekList.push(dt.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter());
             }
             return weekList;
           }
@@ -87,7 +99,7 @@
             console.log('data: ', data);
             console.log('month: ', month);
             console.log('year: ', year);
-          }
+          };
 
           function getFormatDate(date, format) {
             return $filter('date')(date, format);
