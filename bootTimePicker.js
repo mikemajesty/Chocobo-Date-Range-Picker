@@ -35,9 +35,9 @@
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
             var createGroupedArray = function (arr, chunkSize) {
-              var groups = [], i;
-              for (i = 0; i < arr.length; i += chunkSize) {
-                groups.push(arr.slice(i, i + chunkSize));
+              var groups = [];
+              for (var index = 0; index < arr.length; index += chunkSize) {
+                groups.push(arr.slice(index, index + chunkSize));
               }
               return groups;
             };

@@ -1,5 +1,4 @@
-<ts ng-show="true"> {{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate"> {{options.txtDateEnd}}: <input type="date"
-        ng-model="endDate" name="endDate">
+<ts ng-show="true"> {{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate"> {{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
     <br>
     <input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
     <input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
@@ -9,19 +8,17 @@
     <input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
     <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 </ts>
-<br> ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br>
 <br>
-<br>
-{{ dateMap.month }} - {{ dateMap.year }}
+<br> {{ dateMap.month }} - {{ dateMap.year }}
 <br>
 <input type="button" value="<" ng-click="lastMonth()">
 <input type="button" value=">" ng-click="nextMonth()">
 <table border="1">
-    <tr ng-repeat="allDyas in dateMap.result | limitTo:1"> 
+    <tr ng-repeat="allDyas in dateMap.result | limitTo:1">
         <td ng-repeat="days in allDyas">{{days.week}}</td>
     </tr>
-    <tr ng-repeat="allDyas in dateMap.result"> 
+    <tr ng-repeat="allDyas in dateMap.result">
         <td ng-repeat="days in allDyas">{{days.day}}</td>
     </tr>
 </table>
