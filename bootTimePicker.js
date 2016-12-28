@@ -7,6 +7,7 @@
       };
       Date.prototype.reverseFormat = function (date) {
         var formatDate = date.split("/");
+        //year//month//day
         return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
       };
       return {
@@ -205,10 +206,11 @@
 
           function SetRangeDate() {
             var start = scope.startDate;
-            var end = scope.endDate.split("/");
-            end = new Date(end[2], end[1] - 1, end[0]);
-            var from = start.split("/");
-            var currentDate = new Date(from[2], from[1] - 1, from[0]);
+            start = new Date().reverseFormat(start);
+            var end = scope.endDate;
+            end = new Date().reverseFormat(end);
+            var currentDate = new Date(start.getTime());
+      
             while (currentDate <= end) {
               var dt = getFormatDate(currentDate, attrs.format);
               between.push(dt);
