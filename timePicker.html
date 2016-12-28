@@ -1,24 +1,28 @@
-<ts ng-show="true"> {{options.txtDateInit}}: <input type="date" ng-model="startDate" name="startDate"> {{options.txtDateEnd}}: <input type="date" ng-model="endDate" name="endDate">
+<input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
+<input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
+<input type="button" ng-show='options.buttons.btnTrimester.txt' value="{{options.buttons.btnTrimester.txt}}" ng-click='selectTrimester();'>
+<input type="button" ng-show='options.buttons.btnMonth.txt' name="btnMes" value="{{ options.buttons.btnMonth.txt }}" ng-click='selectMonth();'>
+<input type="button" ng-show='options.buttons.btnWeek.txt' value="{{options.buttons.btnWeek.txt}}" ng-click='selectWeek();'>
+<input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
+<input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
+<br> {{options.txtDateInit}}:
+<br>
+<input type="text" ng-model="startDate" class="form-control" name="startDate" style="display:inline-block;margin-right:10px; width:100px "><div style="display:inline-block;">dmkfkdsfjksdjfsjsfj</div>
+<br> {{options.txtDateEnd}}:<br>
+<input type="text" class="form-control" ng-model="endDate" name="endDate" style="display:inline-block;margin-right:10px; width:100px ">
+<br>
+<div>
     <br>
-    <input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
-    <input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
-    <input type="button" ng-show='options.buttons.btnTrimester.txt' value="{{options.buttons.btnTrimester.txt}}" ng-click='selectTrimester();'>
-    <input type="button" ng-show='options.buttons.btnMonth.txt' name="btnMes" value="{{ options.buttons.btnMonth.txt }}" ng-click='selectMonth();'>
-    <input type="button" ng-show='options.buttons.btnWeek.txt' value="{{options.buttons.btnWeek.txt}}" ng-click='selectWeek();'>
-    <input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
-    <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
-</ts>
-<br>
-<br>
-<br> {{ dateMap.month }} - {{ dateMap.year }}
-<br>
-<input type="button" value="<" ng-click="lastMonth()">
-<input type="button" value=">" ng-click="nextMonth()">
-<table border="1">
-    <tr ng-repeat="allDyas in dateMap.result | limitTo:1">
-        <td ng-repeat="days in allDyas">{{days.week}}</td>
-    </tr>
-    <tr ng-repeat="allDyas in dateMap.result">
-        <td ng-repeat="days in allDyas">{{days.day}}</td>
-    </tr>
-</table>
+    <br> {{ dateMap.month }} - {{ dateMap.year }}
+    <br>
+    <input type="button" value="<" ng-click="lastMonth()">
+    <input type="button" value=">" ng-click="nextMonth()">
+    <table border="1">
+        <tr ng-repeat="allDyas in dateMap.result | limitTo:1">
+            <td ng-repeat="days in allDyas">{{days.week}}</td>
+        </tr>
+        <tr ng-repeat="allDyas in dateMap.result">
+            <td ng-repeat="days in allDyas">{{days.day}}</td>
+        </tr>
+    </table>
+</div>

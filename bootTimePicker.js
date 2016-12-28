@@ -21,8 +21,8 @@
         },
         link: function (scope, elem, attrs, ngModel) {
 
-          scope.startDate = new Date();
-          scope.endDate = new Date();
+          scope.startDate = getFormatDate(new Date(), attrs.format);
+          scope.endDate = getFormatDate(new Date(), attrs.format);
 
           scope.dateMap = {};
           //attr format that it was arrived form directive
@@ -83,7 +83,7 @@
           }
 
           var between = [];
-          between.push(new Date().toLocaleDateString(attrs.locale));
+          between.push(getFormatDate(new Date(), attrs.format));
           ngModel.$setViewValue(between);
 
           angular.element(elem).on('change', function (event) {
@@ -93,45 +93,27 @@
 
           scope.selectTrimester = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 3)
-            scope.startDate = today;
-            scope.endDate = new Date();
+            today.setMonth(today.getMonth() - 3);
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
 
           scope.selectSemester = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 6)
-            scope.startDate = today;
-            scope.endDate = new Date();
+            today.setMonth(today.getMonth() - 6);
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
 
           scope.selectYear = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 12)
-            scope.startDate = today;
-            scope.endDate = new Date();
-            between = [];
-            SetRangeDate();
-          };
-
-          scope.selectMonth = function () {
-            var today = new Date();
-            today.setMonth(today.getMonth() - 1)
-            scope.startDate = today;
-            scope.endDate = new Date();
-            between = [];
-            SetRangeDate();
-          };
-
-          scope.selectYear = function () {
-            var today = new Date();
-            today.setMonth(today.getMonth() - 12)
-            scope.startDate = today;
-            scope.endDate = new Date();
+            today.setMonth(today.getMonth() - 12);
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
@@ -139,15 +121,33 @@
           scope.selectMonth = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 1);
-            scope.startDate = today;
-            scope.endDate = new Date();
+            scope.startDate = getFormatDate(today, attrs.format);;
+            scope.endDate = getFormatDate(new Date(), attrs.format);
+            between = [];
+            SetRangeDate();
+          };
+
+          scope.selectYear = function () {
+            var today = new Date();
+            today.setMonth(today.getMonth() - 12)
+            scope.startDate = getFormatDate(today, attrs.format);;
+            scope.endDate = getFormatDate(new Date(), attrs.format);
+            between = [];
+            SetRangeDate();
+          };
+
+          scope.selectMonth = function () {
+            var today = new Date();
+            today.setMonth(today.getMonth() - 1);
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
 
           scope.selectToday = function () {
-            scope.startDate = new Date();
-            scope.endDate = new Date();
+            scope.startDate = getFormatDate(new Date(), attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
@@ -155,28 +155,30 @@
           scope.selectWeek = function () {
             var today = new Date();
             today.setDate(today.getDate() - 7)
-            scope.startDate = today;
-            scope.endDate = new Date();;
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
           };
 
           scope.selectLastDay = function () {
             var today = new Date();
-            today.setDate(today.getDate() - 1)
-            scope.startDate = today;
-            scope.endDate = today;
+            today.setDate(today.getDate() - 1);
+            scope.startDate = getFormatDate(today, attrs.format);
+            scope.endDate = getFormatDate(today, attrs.format);
             between = [];
             SetRangeDate();
           };
 
-          function SetRangeDate() {
+          function SetRangeDate() {           
             var start = scope.startDate;
-            var end = scope.endDate;
-            var currentDate = new Date(start.getTime());
-
+            var end = scope.endDate.split("/");
+            end = new Date(end[2], end[1] - 1, end[0]);
+            var from = start.split("/");
+            var currentDate = new Date(from[2], from[1] - 1, from[0]);
             while (currentDate <= end) {
-              between.push(new Date(currentDate).toLocaleDateString(attrs.locale));
+              var dt = getFormatDate(currentDate, attrs.format);
+              between.push(dt);
               currentDate.setDate(currentDate.getDate() + 1);
             }
             ngModel.$setViewValue(between);
