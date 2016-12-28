@@ -5,6 +5,10 @@
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
+      Date.prototype.reverseFormat = function (date) {
+        var formatDate = date.split("/");
+        return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
+      };
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -15,15 +19,19 @@
         },
         link: function (scope, elem, attrs, ngModel) {
 
-          scope.startDate = getFormatDate(new Date(), attrs.format);
-          scope.endDate = getFormatDate(new Date(), attrs.format);
-
-          scope.dateMap = {};
-          //attr format that it was arrived form directive
           var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
           var optionsWeek = { weekday: "long" };
-          var optionsMonth = { month: 'long'  };
-          var optionsYear = {year: 'numeric'};
+          var optionsMonth = { month: 'long' };
+          var optionsYear = { year: 'numeric' };
+          var optionsDay = { day: 'numeric' };
+          var optionsAlmostComplete = { day: 'numeric', month: 'numeric', year: 'numeric' };
+
+          //attr format that it was arrived form directive
+          scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+          scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+
+          scope.dateMap = {};
+
           var changeDate = function (date) {
             var month = date.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = date.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
@@ -56,7 +64,7 @@
                     'Saturday': false
                   });
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = index;
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
               }
               return weeks;
             }
@@ -146,7 +154,7 @@
           scope.selectMonth = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 1);
-            scope.startDate = getFormatDate(today, attrs.format);;
+            scope.startDate = getFormatDate(today, attrs.format);
             scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
@@ -154,8 +162,8 @@
 
           scope.selectYear = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 12)
-            scope.startDate = getFormatDate(today, attrs.format);;
+            today.setMonth(today.getMonth() - 12);
+            scope.startDate = getFormatDate(today, attrs.format);
             scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
             SetRangeDate();
@@ -179,7 +187,7 @@
 
           scope.selectWeek = function () {
             var today = new Date();
-            today.setDate(today.getDate() - 7)
+            today.setDate(today.getDate() - 7);
             scope.startDate = getFormatDate(today, attrs.format);
             scope.endDate = getFormatDate(new Date(), attrs.format);
             between = [];
