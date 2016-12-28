@@ -32,7 +32,7 @@
 
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                if (getFormatDate(start, 'EEEE') == 'Sunday' || weeks.length == 0) {
+                if (getFormatDate(start, 'EEEE') == 'Sunday' || weeks.length === 0) {
                   weeks.push({
                     'Sunday': false,
                     'Monday': false,
@@ -53,6 +53,19 @@
           };
 
           changeDate(date);
+
+          function getWeekDays(dt) {
+            var diff = {};
+            var weekList = [];
+            for (var index = 0; index < 7; index++) {
+              var day = dt.getDay();
+              diff = dt.getDate() - day + (day === 0 ? -6 : index);
+              weekList.push(getFormatDate(dt.setDate(diff), 'EEEE'));
+            }
+            return weekList;
+          }
+
+          scope.allWeeks = getWeekDays(new Date());
 
           scope.nextMonth = function () {
             if (date.getMonth() == 11) {
