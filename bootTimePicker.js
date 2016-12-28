@@ -68,6 +68,12 @@
             changeDate(date);
           };
 
+          scope.chooseDay = function (data, month, year) {
+            console.log('data: ', data);
+            console.log('month: ', month);
+            console.log('year: ', year);
+          }
+
           function getFormatDate(date, format) {
             return $filter('date')(date, format);
           }

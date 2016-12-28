@@ -7,7 +7,7 @@
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 <br> {{options.txtDateInit}}:
 <br>
-<input type="text" ng-model="startDate" class="form-control" name="startDate" style="display:inline-block;margin-right:10px; width:100px "><div style="display:inline-block;">dmkfkdsfjksdjfsjsfj</div>
+<input type="text" ng-model="startDate" class="form-control" name="startDate" style="display:inline-block;margin-right:10px; width:100px "><sd style="display:inline-block;"></sd>
 <br> {{options.txtDateEnd}}:<br>
 <input type="text" class="form-control" ng-model="endDate" name="endDate" style="display:inline-block;margin-right:10px; width:100px ">
 <br>
@@ -22,7 +22,7 @@
             <td ng-repeat="days in allDyas">{{days.week}}</td>
         </tr>
         <tr ng-repeat="allDyas in dateMap.result">
-            <td ng-repeat="days in allDyas">{{days.day}}</td>
+            <td ng-repeat="days in allDyas" ng-click="chooseDay(days, dateMap.month, dateMap.year)">{{days.day}}</td>
         </tr>
     </table>
 </div>
