@@ -17,7 +17,7 @@
           scope.dateMap = {};
           //attr format that it was arrived form directive
           var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
-
+          var options = { weekday: "long" };
           var changeDate = function (date) {
             var month = getFormatDate(date, 'MMMM');
             var year = getFormatDate(date, 'yyyy');
@@ -43,13 +43,10 @@
                     'Saturday': false
                   });
                 }
-
-                weeks[weeks.length - 1][getFormatDate(start, 'EEEE')] = index;
-
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, options)] = index;
               }
               return weeks;
             }
-            console.log(scope.dateMap);
           };
 
           changeDate(date);
@@ -60,7 +57,8 @@
             for (var index = 0; index < 7; index++) {
               var day = dt.getDay();
               diff = dt.getDate() - day + (day === 0 ? -6 : index);
-              weekList.push(getFormatDate(dt.setDate(diff), 'EEEE'));
+              dt.setDate(diff);
+              weekList.push(dt.toLocaleDateString(attrs.locale, options));
             }
             return weekList;
           }
