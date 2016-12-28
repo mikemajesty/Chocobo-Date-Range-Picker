@@ -2,16 +2,6 @@
   'use strict';
   angular.module('BotPicker', [])
     .directive("bootpicker", ['$filter', function ($filter) {
-
-      Array.prototype.groupBy = function (prop) {
-        return this.reduce(function (groups, item) {
-          var val = item[prop];
-          groups[val] = groups[val] || [];
-          groups[val].push(item);
-          return groups;
-        }, {});
-      };
-
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -170,7 +160,7 @@
             SetRangeDate();
           };
 
-          function SetRangeDate() {           
+          function SetRangeDate() {
             var start = scope.startDate;
             var end = scope.endDate.split("/");
             end = new Date(end[2], end[1] - 1, end[0]);
