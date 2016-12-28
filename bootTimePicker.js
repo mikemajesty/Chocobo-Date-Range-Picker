@@ -21,10 +21,12 @@
           scope.dateMap = {};
           //attr format that it was arrived form directive
           var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
-          var options = { weekday: "long" };
+          var optionsWeek = { weekday: "long" };
+          var optionsMonth = { month: 'long'  };
+          var optionsYear = {year: 'numeric'};
           var changeDate = function (date) {
-            var month = getFormatDate(date, 'MMMM');
-            var year = getFormatDate(date, 'yyyy');
+            var month = date.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
+            var year = date.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
@@ -32,7 +34,7 @@
               var dt = new Date();
               var day = dt.getDay();
               dt.setDate((dt.getDate() - day + (day === 0 ? -6 : 0)));
-              return dt.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter();
+              return dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
             }
 
             function setRangeDay(date) {
@@ -43,7 +45,7 @@
 
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                if (start.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
+                if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
                   weeks.push({
                     'Sunday': false,
                     'Monday': false,
@@ -54,7 +56,7 @@
                     'Saturday': false
                   });
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter()] = index;
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = index;
               }
               return weeks;
             }
@@ -70,7 +72,7 @@
               var day = dt.getDay();
               diff = dt.getDate() - day + (day === 0 ? -6 : index);
               dt.setDate(diff);
-              weekList.push(dt.toLocaleDateString(attrs.locale, options).capitalizeFirstLetter());
+              weekList.push(dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter());
             }
             return weekList;
           }
