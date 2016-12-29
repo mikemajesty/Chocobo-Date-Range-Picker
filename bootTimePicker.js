@@ -93,7 +93,11 @@
                 }
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
                 if (index === 1) {
-                  weeks.find(finding);
+                  weeks.find(findLast);
+                }
+
+                if (index == getLastDayOfMonth(date)) {
+                  weeks.find(findNext);
                 }
               }
               console.log('weeks: ', weeks);
@@ -101,18 +105,32 @@
             }
           };
 
-          function finding(element, index, array) {
-            console.log(date);
-            if (index === 0) {
+          function findNext(element, index, array) {
+            var LAST_WEEK_DAY = 6;
+             if (array.length === index + 1) {    
+              if (element.getKeyByValue(getLastDayOfMonth(date)) !== getLastdayOfWeek(LAST_WEEK_DAY)) {
+                console.log('não termina com sabado');
+                // var td = date;
+                // setLastDaysOfLastMonth(element, td);
+              }
+            }
+          }
+
+          function findLast(element, index, array) {
+            var FIRST_WEEK = 0;
+            if (index === FIRST_WEEK) {
               var FIRST_MONTH_DAY = "1";
               if (element.getKeyByValue(FIRST_MONTH_DAY) != getFirstDayOfWeek()) {
                 var td = date;
                 setLastDaysOfLastMonth(element, td);
               }
-              if (false) {
-
-              }
             }
+          }
+
+          function getLastdayOfWeek(day) {
+            var now = new Date();
+            now.setDate(now.getDate() + (day + (7 - now.getDay())) % 7);
+            return now.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
           }
 
           function setLastDaysOfLastMonth(element, dt) {
