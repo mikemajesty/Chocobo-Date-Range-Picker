@@ -6,7 +6,7 @@
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
 
-      Date.prototype.reverseFormat = function (date) {
+      Date.prototype.reverseFormat = function (date, format) {
         var formatDate = date.split("/");
         //year//month//day -> this is used when the format was dd/MM/yyyy
         return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
@@ -102,6 +102,7 @@
           };
 
           function finding(element, index, array) {
+            console.log(array);
             if (index === 0) {
               if (element.getKeyByValue("1") != getFirstDayOfWeek()) {
                 var td = date;
@@ -109,9 +110,17 @@
                 var lastSunday = getLastSunday(td);
                 console.log('lastSunday: ', lastSunday);
                 var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
-                var arrays = [];
-                getRangeDate(lastSunday, lastDayOfMonth, arrays);
-                console.log('last day of last month: ', arrays);
+
+                lastSunday.setHours(0, 0, 0, 0);
+                lastDayOfMonth.setHours(0, 0, 0, 0);
+                while (lastSunday <= lastDayOfMonth) {
+                  var dt = getFormatDate(lastSunday, attrs.format);
+                  console.log('dt: ', dt);
+                  element[new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
+                  lastSunday.setDate(lastSunday.getDate() + 1);
+                }
+               
+                console.log('element:? ', element);
               }
 
             }
@@ -251,9 +260,9 @@
 
           function SetRangeDate() {
             var start = scope.startDate;
-            start = new Date().reverseFormat(start);
+            start = new Date().reverseFormat(start, attrs.format);
             var end = scope.endDate;
-            end = new Date().reverseFormat(end);
+            end = new Date().reverseFormat(end, attrs.format);
             var currentDate = new Date(start.getTime());
 
             getRangeDate(currentDate, end, between);
