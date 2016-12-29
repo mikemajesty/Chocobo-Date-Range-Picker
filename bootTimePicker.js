@@ -119,12 +119,10 @@
                   element[new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
                   lastSunday.setDate(lastSunday.getDate() + 1);
                 }
-               
-                console.log('element:? ', element);
               }
-
             }
           }
+          
           changeDate(date);
 
           function getWeekDays() {
