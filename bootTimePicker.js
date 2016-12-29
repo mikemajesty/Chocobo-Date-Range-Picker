@@ -106,18 +106,22 @@
             if (index === 0) {
               if (element.getKeyByValue("1") != getFirstDayOfWeek()) {
                 var td = date;
-                td.setDate(1);
-                var lastSunday = getLastSunday(td);
-                var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
-
-                lastSunday.setHours(0, 0, 0, 0);
-                lastDayOfMonth.setHours(0, 0, 0, 0);
-                while (lastSunday <= lastDayOfMonth) {
-                  var dt = getFormatDate(lastSunday, attrs.format);
-                  element[new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
-                  lastSunday.setDate(lastSunday.getDate() + 1);
-                }
+                setLastDaysOfLastMonth(element, td);
               }
+            }
+          }
+
+
+          function setLastDaysOfLastMonth(element, dt) {
+            dt.setDate(1);
+            var lastSunday = getLastSunday(dt);
+            var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
+            lastSunday.setHours(0, 0, 0, 0);
+            lastDayOfMonth.setHours(0, 0, 0, 0);
+            while (lastSunday <= lastDayOfMonth) {
+              var tempDate = getFormatDate(lastSunday, attrs.format);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
+              lastSunday.setDate(lastSunday.getDate() + 1);
             }
           }
 
