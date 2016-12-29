@@ -110,7 +110,7 @@
                 setLastDaysOfLastMonth(element, td);
               }
               if (false) {
-                
+
               }
             }
           }
@@ -190,6 +190,11 @@
             between = [];
             SetRangeDate();
           };
+
+          function getLastDayOfMonth(date) {
+            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
+            return dt.toLocaleDateString(attrs.locale, optionsDay);
+          }
 
           scope.selectSemester = function () {
             var today = new Date();
