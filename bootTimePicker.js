@@ -57,13 +57,21 @@
             return t;
           };
 
+          var getRangeDate = function (currentDate, endDate, array) {
+            currentDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+            while (currentDate <= endDate) {
+              var dt = getFormatDate(currentDate, attrs.format);
+              array.push(dt);
+              currentDate.setDate(currentDate.getDate() + 1);
+            }
+          };
+
           var changeDate = function (date) {
             var month = date.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = date.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
-
-            console.log('last Sunday: ', getLastSunday(new Date()));
 
             function setRangeDay(date) {
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -86,16 +94,9 @@
                 }
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
                 if (index === 1) {
-
                   weeks.find(finding);
-
-                }
-                if (weeks.lastIndexOf("1") >= 0) {
-                  console.log('E');
-                  console.log(weeks[weeks.lastIndexOf(false)]);
                 }
               }
-              console.log(weeks);
               return weeks;
             }
           };
@@ -105,11 +106,12 @@
               if (element.getKeyByValue("1") != getFirstDayOfWeek()) {
                 var td = date;
                 td.setDate(1);
-                var d = getLastSunday(td);
-                console.log('pútz: ', d);
-                console.log('element: ', element.getKeyByValue("1"));
-                console.log('index', index);
-                console.log('array', array);
+                var lastSunday = getLastSunday(td);
+                console.log('lastSunday: ', lastSunday);
+                var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
+                var arrays = [];
+                getRangeDate(lastSunday, lastDayOfMonth, arrays);
+                console.log('last day of last month: ', arrays);
               }
 
             }
@@ -254,11 +256,8 @@
             end = new Date().reverseFormat(end);
             var currentDate = new Date(start.getTime());
 
-            while (currentDate <= end) {
-              var dt = getFormatDate(currentDate, attrs.format);
-              between.push(dt);
-              currentDate.setDate(currentDate.getDate() + 1);
-            }
+            getRangeDate(currentDate, end, between);
+
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
