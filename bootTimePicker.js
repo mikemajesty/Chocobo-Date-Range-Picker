@@ -109,9 +109,8 @@
             var LAST_WEEK_DAY = 6;
              if (array.length === index + 1) {    
               if (element.getKeyByValue(getLastDayOfMonth(date)) !== getLastdayOfWeek(LAST_WEEK_DAY)) {
-                console.log('não termina com sabado');
-                // var td = date;
-                // setLastDaysOfLastMonth(element, td);
+                 var td = date;
+                 setNextDaysOfNextMonth(element, td);
               }
             }
           }
@@ -131,6 +130,10 @@
             var now = new Date();
             now.setDate(now.getDate() + (day + (7 - now.getDay())) % 7);
             return now.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
+          }
+
+          function setNextDaysOfNextMonth(element, dt) {
+            
           }
 
           function setLastDaysOfLastMonth(element, dt) {
