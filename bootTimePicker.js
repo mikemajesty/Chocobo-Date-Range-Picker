@@ -5,11 +5,22 @@
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
+
       Date.prototype.reverseFormat = function (date) {
         var formatDate = date.split("/");
-        //year//month//day
+        //year//month//day -> this is used when the format was dd/MM/yyyy
         return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
       };
+
+      Object.prototype.getKeyByValue = function (value) {
+        for (var prop in this) {
+          if (this.hasOwnProperty(prop)) {
+            if (this[prop] === value)
+              return prop;
+          }
+        }
+      };
+
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -28,10 +39,23 @@
           var optionsAlmostComplete = { day: 'numeric', month: 'numeric', year: 'numeric' };
 
           //attr format that it was arrived form directive
-          scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-          scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+          scope.startDate = getFormatDate(date.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+          scope.endDate = getFormatDate(date.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
 
           scope.dateMap = {};
+
+          function getFirstDayOfWeek() {
+            var dt = new Date();
+            var day = dt.getDay();
+            dt.setDate((dt.getDate() - day + (day === 0 ? -6 : 0)));
+            return dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
+          }
+
+          var getLastSunday = function (d) {
+            var t = new Date(d);
+            t.setDate(t.getDate() - t.getDay());
+            return t;
+          };
 
           var changeDate = function (date) {
             var month = date.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
@@ -39,12 +63,7 @@
 
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
-            function getFirstDayOfWeek() {
-              var dt = new Date();
-              var day = dt.getDay();
-              dt.setDate((dt.getDate() - day + (day === 0 ? -6 : 0)));
-              return dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
-            }
+            console.log('last Sunday: ', getLastSunday(new Date()));
 
             function setRangeDay(date) {
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -66,11 +85,35 @@
                   });
                 }
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
+                if (index === 1) {
+
+                  weeks.find(finding);
+
+                }
+                if (weeks.lastIndexOf("1") >= 0) {
+                  console.log('E');
+                  console.log(weeks[weeks.lastIndexOf(false)]);
+                }
               }
+              console.log(weeks);
               return weeks;
             }
           };
 
+          function finding(element, index, array) {
+            if (index === 0) {
+              if (element.getKeyByValue("1") != getFirstDayOfWeek()) {
+                var td = date;
+                td.setDate(1);
+                var d = getLastSunday(td);
+                console.log('pútz: ', d);
+                console.log('element: ', element.getKeyByValue("1"));
+                console.log('index', index);
+                console.log('array', array);
+              }
+
+            }
+          }
           changeDate(date);
 
           function getWeekDays() {
@@ -210,7 +253,7 @@
             var end = scope.endDate;
             end = new Date().reverseFormat(end);
             var currentDate = new Date(start.getTime());
-      
+
             while (currentDate <= end) {
               var dt = getFormatDate(currentDate, attrs.format);
               between.push(dt);
