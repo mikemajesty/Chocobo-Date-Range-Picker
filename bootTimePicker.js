@@ -2,6 +2,7 @@
   'use strict';
   angular.module('BotPicker', [])
     .directive("bootpicker", ['$filter', function ($filter) {
+      
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
@@ -76,9 +77,7 @@
             function setRangeDay(date) {
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
               var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
               var weeks = [];
-
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
@@ -110,7 +109,6 @@
               }
             }
           }
-
 
           function setLastDaysOfLastMonth(element, dt) {
             dt.setDate(1);
