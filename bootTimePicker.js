@@ -2,7 +2,7 @@
   'use strict';
   angular.module('BotPicker', [])
     .directive("bootpicker", ['$filter', function ($filter) {
-      
+
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
@@ -96,16 +96,21 @@
                   weeks.find(finding);
                 }
               }
+              console.log('weeks: ', weeks);
               return weeks;
             }
           };
 
           function finding(element, index, array) {
-            console.log(array);
+            console.log(date);
             if (index === 0) {
-              if (element.getKeyByValue("1") != getFirstDayOfWeek()) {
+              var FIRST_MONTH_DAY = "1";
+              if (element.getKeyByValue(FIRST_MONTH_DAY) != getFirstDayOfWeek()) {
                 var td = date;
                 setLastDaysOfLastMonth(element, td);
+              }
+              if (false) {
+                
               }
             }
           }
