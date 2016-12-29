@@ -108,21 +108,19 @@
                 var td = date;
                 td.setDate(1);
                 var lastSunday = getLastSunday(td);
-                console.log('lastSunday: ', lastSunday);
                 var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
 
                 lastSunday.setHours(0, 0, 0, 0);
                 lastDayOfMonth.setHours(0, 0, 0, 0);
                 while (lastSunday <= lastDayOfMonth) {
                   var dt = getFormatDate(lastSunday, attrs.format);
-                  console.log('dt: ', dt);
                   element[new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(dt, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
                   lastSunday.setDate(lastSunday.getDate() + 1);
                 }
               }
             }
           }
-          
+
           changeDate(date);
 
           function getWeekDays() {
