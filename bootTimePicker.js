@@ -81,15 +81,17 @@
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
-                  weeks.push({
-                    'Sunday': false,
-                    'Monday': false,
-                    'Tuesday': false,
-                    'Wednesday': false,
-                    'Thursday': false,
-                    'Friday': false,
-                    'Saturday': false
-                  });
+                  var week = {};
+
+                  if (index === 1) {
+                    for (var cont = 0; cont < 7; cont++) {
+                      var dt = getLastSunday(new Date());
+                      week[getWeekDays(dt)[cont]] = false;
+                      dt.setDate(dt.getDate() + cont);
+                    }
+                  }
+
+                  weeks.push(week);
                 }
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
                 if (index === 1) {
