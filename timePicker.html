@@ -7,18 +7,19 @@
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 <br> {{options.txtDateInit}}:
 <br>
-<input type="text" ng-model="startDate" class="form-control" name="startDate" style="display:inline-block;margin-right:10px; width:100px "><sd style="display:inline-block;"></sd>
+<input type="text" ng-model="startDate" class="form-control" name="startDate" style="display:inline-block;margin-right:10px; width:100px ">
+<sd style="display:inline-block;"></sd>
 <br> {{options.txtDateEnd}}:<br>
 <input type="text" class="form-control" ng-model="endDate" name="endDate" style="display:inline-block;margin-right:10px; width:100px ">
 <br>
 <div>
     <br>
-    <br> {{ dateMap.month }} - {{ dateMap.year }}
+    <br> <center style="font-size: 20px;"> {{ dateMap.month }} - {{ dateMap.year }}</center>
     <br>
-    <input type="button" value="<" ng-click="lastMonth()">
-    <input type="button" value=">" ng-click="nextMonth()">
+    <input type="button" value="<" ng-click="lastMonth()" style="width: 100px; margin-bottom: 10px;">
+    <input type="button" value=">" ng-click="nextMonth()" style="float: right; width: 100px; margin-bottom: 10px;">
     <table border="1">
-        <tr >
+        <tr>
             <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek}}</td>
         </tr>
         <tr ng-repeat="week in dateMap.result">
