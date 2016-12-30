@@ -13,15 +13,6 @@
         return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
       };
 
-      Object.prototype.getKeyByValue = function (value) {
-        for (var prop in this) {
-          if (this.hasOwnProperty(prop)) {
-            if (this[prop] === value)
-              return prop;
-          }
-        }
-      };
-
       return {
         require: 'ngModel',
         restrict: "AE",
@@ -108,24 +99,18 @@
           };
 
           function findNext(element, index, array) {
-            var LAST_WEEK_DAY = 6;
             if (array.length === index + 1) {
               var dt = new Date(date);
               dt.setDate(getLastDayOfMonth(dt));
-              if (element.getKeyByValue(getLastDayOfMonth(dt)) !== getLastDayOfWeek(LAST_WEEK_DAY)) {
-                setNextDaysOfNextMonth(element, dt);
-              }
+              setNextDaysOfNextMonth(element, dt);
             }
           }
 
           function findLast(element, index, array) {
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
-              var FIRST_MONTH_DAY = "1";
-              if (element.getKeyByValue(FIRST_MONTH_DAY) != getFirstDayOfWeek()) {
-                var td = date;
-                setLastDaysOfLastMonth(element, td);
-              }
+              var td = date;
+              setLastDaysOfLastMonth(element, td);
             }
           }
 
@@ -204,7 +189,7 @@
             changeDate(date);
           };
 
-          scope.chooseDay = function (data, month, year) {
+          scope.chooseDay = function (data) {
             console.log('data: ', data);
           };
 
