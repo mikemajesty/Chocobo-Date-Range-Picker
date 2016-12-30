@@ -23,7 +23,7 @@
             <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek}}</td>
         </tr>
         <tr ng-repeat="week in dateMap.result">
-            <td ng-repeat="dayOfWeek in allWeeks" ng-click="chooseDay(week[dayOfWeek], dateMap.month, dateMap.year)">{{week[dayOfWeek] ? week[dayOfWeek] : ''}}</td>
+            <td ng-repeat="dayOfWeek in allWeeks" ng-click="chooseDay(week[dayOfWeek])">{{week[dayOfWeek].getDate()}}</td>
         </tr>
     </table>
 </div>

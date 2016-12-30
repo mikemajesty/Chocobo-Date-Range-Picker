@@ -93,7 +93,7 @@
 
                   weeks.push(week);
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = start.toLocaleDateString(attrs.locale, optionsDay);
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date(start);
                 if (index === 1) {
                   weeks.find(findLast);
                 }
@@ -149,7 +149,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = getFormatDate(lastDay, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =  new Date(lastDay);
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -162,7 +162,7 @@
             lastDayOfMonth.setHours(0, 0, 0, 0);
             while (lastSunday <= lastDayOfMonth) {
               var tempDate = getFormatDate(lastSunday, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date(lastSunday);
               lastSunday.setDate(lastSunday.getDate() + 1);
             }
           }
@@ -204,8 +204,6 @@
 
           scope.chooseDay = function (data, month, year) {
             console.log('data: ', data);
-            console.log('month: ', month);
-            console.log('year: ', year);
           };
 
           function getFormatDate(date, format) {
