@@ -111,7 +111,6 @@
               var dt = new Date(date);
               dt.setDate(getLastDayOfMonth(dt));
               if (element.getKeyByValue(getLastDayOfMonth(dt)) !== getLastDayOfWeek(LAST_WEEK_DAY)) {
-                console.log('promixo sabadpo: ', getNextWeekLastDay(dt));
                 setNextDaysOfNextMonth(element, dt);
               }
             }
@@ -135,18 +134,22 @@
           }
 
           function getNextWeekLastDay(now) {
-            now.setDate(now.getDate() + (7 + 6 - now.getDay()) % 7)
-            return now;
+            var dt = new Date(now);
+            dt.setDate(dt.getDate() + (7 + 6 - dt.getDay()) % 7);
+            return dt;
           }
 
           function setNextDaysOfNextMonth(element, dt) {
-            // var now = new Date();
-            // var current = null;
-            // if (now.getMonth() == 11) {
-            //   current = new Date(now.getFullYear() + 1, 0, 1);
-            // } else {
-            //   current = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-            // }
+            var nextSadurday = getNextWeekLastDay(dt);
+            var lastDay = dt;
+            lastDay.setHours(0, 0, 0, 0);
+            nextSadurday.setHours(0, 0, 0, 0);
+            lastDay.setDate(lastDay.getDate() + 1);
+            while (lastDay <= nextSadurday) {
+              var tempDate = getFormatDate(lastDay, attrs.format);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsDay);
+              lastDay.setDate(lastDay.getDate() + 1);
+            }
           }
 
           function setLastDaysOfLastMonth(element, dt) {
