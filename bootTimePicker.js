@@ -93,7 +93,7 @@
 
                   weeks.push(week);
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date:new Date(start), class: 'padrao'};
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
                 if (index === 1) {
                   weeks.find(findLast);
                 }
@@ -149,21 +149,23 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = getFormatDate(lastDay, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =  { date:new Date(lastDay), class: 'proximo'};
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo' };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
 
           function setLastDaysOfLastMonth(element, dt) {
             dt.setDate(1);
-            var lastSunday = getLastSunday(dt);
-            var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
-            lastSunday.setHours(0, 0, 0, 0);
-            lastDayOfMonth.setHours(0, 0, 0, 0);
-            while (lastSunday <= lastDayOfMonth) {
-              var tempDate = getFormatDate(lastSunday, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date:new Date(lastSunday), class: 'ultimo'};
-              lastSunday.setDate(lastSunday.getDate() + 1);
+            if (getLastDayOfWeek(7) != dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
+              var lastSunday = getLastSunday(dt);
+              var lastDayOfMonth = new Date(lastSunday.getUTCFullYear(), lastSunday.getUTCMonth() + 1, 0);
+              lastSunday.setHours(0, 0, 0, 0);
+              lastDayOfMonth.setHours(0, 0, 0, 0);
+              while (lastSunday <= lastDayOfMonth) {
+                var tempDate = getFormatDate(lastSunday, attrs.format);
+                element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'proximo' };
+                lastSunday.setDate(lastSunday.getDate() + 1);
+              }
             }
           }
 
