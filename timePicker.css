@@ -69,3 +69,15 @@ tr > th {
     border: 1px solid;
     padding: 10px;
 }
+
+.ultimo {
+    background-color: gray;
+}
+
+.padrao {
+    background-color: palevioletred;
+}
+
+.proximo {
+    background-color:yellow;
+}

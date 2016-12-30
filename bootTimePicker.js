@@ -93,7 +93,7 @@
 
                   weeks.push(week);
                 }
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date(start);
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date:new Date(start), class: 'padrao'};
                 if (index === 1) {
                   weeks.find(findLast);
                 }
@@ -149,7 +149,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = getFormatDate(lastDay, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =  new Date(lastDay);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =  { date:new Date(lastDay), class: 'proximo'};
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -162,7 +162,7 @@
             lastDayOfMonth.setHours(0, 0, 0, 0);
             while (lastSunday <= lastDayOfMonth) {
               var tempDate = getFormatDate(lastSunday, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = new Date(lastSunday);
+              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date:new Date(lastSunday), class: 'ultimo'};
               lastSunday.setDate(lastSunday.getDate() + 1);
             }
           }
