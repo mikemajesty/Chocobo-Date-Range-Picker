@@ -190,7 +190,8 @@
           };
 
           scope.chooseDay = function (data) {
-            console.log('data: ', data);
+            date = data.date;
+            changeDate(date);
           };
 
           function getFormatDate(date, format) {
