@@ -207,19 +207,19 @@
             SetRangeDate();
           });
 
-          scope.selectTrimester = function () {
+          function getLastDayOfMonth(date) {
+            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
+            return dt.toLocaleDateString(attrs.locale, optionsDay);
+          }
+
+          scope.selectYear = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 3);
+            today.setMonth(today.getMonth() - 12);
             scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             between = [];
             SetRangeDate();
           };
-
-          function getLastDayOfMonth(date) {
-            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
-            return dt.toLocaleDateString(attrs.locale, optionsDay);
-          }
 
           scope.selectSemester = function () {
             var today = new Date();
@@ -230,9 +230,9 @@
             SetRangeDate();
           };
 
-          scope.selectYear = function () {
+          scope.selectTrimester = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 12);
+            today.setMonth(today.getMonth() - 3);
             scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             between = [];
@@ -243,31 +243,6 @@
             var today = new Date();
             today.setMonth(today.getMonth() - 1);
             scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            between = [];
-            SetRangeDate();
-          };
-
-          scope.selectYear = function () {
-            var today = new Date();
-            today.setMonth(today.getMonth() - 12);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            between = [];
-            SetRangeDate();
-          };
-
-          scope.selectMonth = function () {
-            var today = new Date();
-            today.setMonth(today.getMonth() - 1);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            between = [];
-            SetRangeDate();
-          };
-
-          scope.selectToday = function () {
-            scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             between = [];
             SetRangeDate();
@@ -287,6 +262,13 @@
             today.setDate(today.getDate() - 1);
             scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             scope.endDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            between = [];
+            SetRangeDate();
+          };
+
+          scope.selectToday = function () {
+            scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
             between = [];
             SetRangeDate();
           };
