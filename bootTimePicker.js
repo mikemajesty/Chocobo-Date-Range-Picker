@@ -169,6 +169,34 @@
             return weekList;
           }
 
+          function getFormatDate(date, format) {
+            return $filter('date')(date, format);
+          }
+
+          function getLastDayOfMonth(date) {
+            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
+            return dt.toLocaleDateString(attrs.locale, optionsDay);
+          }
+
+          function SetRangeDate() {
+            var start = scope.startDate;
+            start = new Date().reverseFormat(start, attrs.format);
+            var end = scope.endDate;
+            end = new Date().reverseFormat(end, attrs.format);
+            var currentDate = new Date(start.getTime());
+
+            getRangeDate(currentDate, end, between);
+
+            ngModel.$setViewValue(between);
+            ngModel.$render();
+            console.log('quantity ', between.length);
+          }
+
+          scope.chooseDay = function (data) {
+            date = data.date;
+            changeDate(date);
+          };
+
           scope.allWeeks = getWeekDays(new Date());
 
           scope.nextMonth = function () {
@@ -189,15 +217,6 @@
             changeDate(date);
           };
 
-          scope.chooseDay = function (data) {
-            date = data.date;
-            changeDate(date);
-          };
-
-          function getFormatDate(date, format) {
-            return $filter('date')(date, format);
-          }
-
           var between = [];
           between.push(getFormatDate(new Date(), attrs.format));
           ngModel.$setViewValue(between);
@@ -206,11 +225,6 @@
             between = [];
             SetRangeDate();
           });
-
-          function getLastDayOfMonth(date) {
-            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
-            return dt.toLocaleDateString(attrs.locale, optionsDay);
-          }
 
           scope.selectYear = function () {
             var today = new Date();
@@ -273,19 +287,6 @@
             SetRangeDate();
           };
 
-          function SetRangeDate() {
-            var start = scope.startDate;
-            start = new Date().reverseFormat(start, attrs.format);
-            var end = scope.endDate;
-            end = new Date().reverseFormat(end, attrs.format);
-            var currentDate = new Date(start.getTime());
-
-            getRangeDate(currentDate, end, between);
-
-            ngModel.$setViewValue(between);
-            ngModel.$render();
-            console.log('quantity ', between.length);
-          }
         },
         templateUrl: '/timePicker.html'
       };
