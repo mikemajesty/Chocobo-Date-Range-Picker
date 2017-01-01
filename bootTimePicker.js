@@ -77,7 +77,7 @@
                   if (index === 1) {
                     for (var cont = 0; cont < 7; cont++) {
                       var dt = getLastSunday(new Date());
-                      week[getWeekDays(dt)[cont]] = false;
+                      week[getWeekDays(dt)[cont]] = {};
                       dt.setDate(dt.getDate() + cont);
                     }
                   }
