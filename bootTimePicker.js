@@ -123,6 +123,7 @@
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
               var td = date;
+              console.log('data 1: ', td);
               setLastDaysOfLastMonth(element, td);
             }
           }
@@ -205,7 +206,7 @@
           }
 
           scope.chooseDay = function (dt) {
-            console.log('chosen: ', dt);
+            date = dt.date;       
             changeDate(dt.date);
           };
 
