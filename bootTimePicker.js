@@ -204,8 +204,8 @@
             console.log('quantity ', between.length);
           }
 
-          scope.chooseDay = function (dt) {
-            date = dt.date;       
+          scope.chooseInitalDay = function (dt) {
+            date = dt.date;
             changeDate(dt.date);
           };
 
