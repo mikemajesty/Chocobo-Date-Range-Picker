@@ -71,26 +71,20 @@
               var weeks = [];
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getFirstDayOfWeek() || weeks.length === 0) {
+                if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() ==  getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
                   var week = {};
 
                   if (index === 1) {
-                    for (var cont = 1; cont <= 7; cont++) {
+                    for (var cont = 0; cont < 7; cont++) {
                       var dt = getLastSunday(new Date());
                       week[getWeekDays(dt)[cont]] = {};
                       dt.setDate(dt.getDate() + cont);
-                      console.log('cont: ', cont + ' - ' + dt + '-week: ', week);
                     }
                   }
 
                   weeks.push(week);
                 }
 
-                weeks.forEach(function (item) {
-
-                  console.log('item: ', item, '-' + start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() + '-' + weeks.length);
-                });
-                
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
                 if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday()) {
                   weeks.find(findLast);
@@ -109,6 +103,12 @@
             var now = new Date();
             now.setDate(now.getDate() + (6 + (7 - now.getDay())) % 7);
             return now.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
+          }
+
+          function getDaySaturday() {
+            var now = new Date();
+            now.setDate(now.getDate() + (6 + (7 - now.getDay())) % 7);
+            return now.toLocaleDateString(attrs.locale, optionsDay);
           }
 
           function findNext(element, index, array) {
@@ -171,12 +171,10 @@
 
           function getWeekDays() {
             var dt = new Date();
-            var diff = {};
+            dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday());
             var weekList = [];
-            for (var index = 0; index < 7; index++) {
-              var day = dt.getDay();
-              diff = dt.getDate() - day + (day === 0 ? -6 : index);
-              dt.setDate(diff);
+            for (var index = 1; index <= 7; index++) {
+              dt.setDate(index);
               weekList.push(dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter());
             }
             return weekList;
@@ -205,9 +203,9 @@
             console.log('quantity ', between.length);
           }
 
-          scope.chooseDay = function (data) {
-            date = data.date;
-            changeDate(date);
+          scope.chooseDay = function (dt) {
+            console.log('chosen: ', dt);
+              changeDate(dt.date);
           };
 
           scope.allWeeks = getWeekDays(new Date());
