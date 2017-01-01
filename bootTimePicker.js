@@ -50,14 +50,15 @@
             return t;
           };
 
-          var getRangeDate = function (currentDate, endDate, array) {
+          var getRangeDate = function (currentDate, endDate) {
+            var tempArray = [];
             currentDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
-              var dt = currentDate;
-              array.push(currentDate);
+              tempArray.push(new Date(currentDate));
               currentDate.setDate(currentDate.getDate() + 1);
             }
+            return tempArray;
           };
 
           var changeDate = function (date) {
@@ -192,8 +193,7 @@
 
           function setRangeDate() {
             var currentDate = new Date(scope.startDate.getTime());
-            getRangeDate(currentDate,scope.endDate, between);
-
+            between  = getRangeDate(currentDate, scope.endDate).splice(0);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
@@ -239,9 +239,7 @@
             var today = new Date();
             today.setMonth(today.getMonth() - 12);
             scope.startDate = today;
-            console.log('scope.startDate: ', scope.startDate);
             scope.endDate = new Date();
-            console.log('scope.endDate: ', scope.endDate);
             between = [];
             setRangeDate();
           };
