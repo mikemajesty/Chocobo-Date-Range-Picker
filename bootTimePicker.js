@@ -247,8 +247,8 @@
           scope.selectSemester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 6);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            scope.endDate = new Date();
             between = [];
             setRangeDate();
           };
@@ -256,8 +256,8 @@
           scope.selectTrimester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 3);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            scope.endDate = new Date();
             between = [];
             setRangeDate();
           };
@@ -265,8 +265,8 @@
           scope.selectMonth = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 1);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            scope.endDate = new Date();
             between = [];
             setRangeDate();
           };
@@ -274,8 +274,8 @@
           scope.selectWeek = function () {
             var today = new Date();
             today.setDate(today.getDate() - 7);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            scope.endDate = new Date();
             between = [];
             setRangeDate();
           };
@@ -283,15 +283,15 @@
           scope.selectLastDay = function () {
             var today = new Date();
             today.setDate(today.getDate() - 1);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            scope.endDate = today;
             between = [];
             setRangeDate();
           };
 
           scope.selectToday = function () {
-            scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = new Date();
+            scope.endDate = new Date();
             between = [];
             setRangeDate();
           };
