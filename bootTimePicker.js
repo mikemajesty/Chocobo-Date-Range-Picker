@@ -66,22 +66,23 @@
             scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
 
             function setRangeDay(date) {
+
               var start = new Date(date.getFullYear(), date.getMonth(), 1);
               var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
               var weeks = [];
+
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
                   var week = {};
-
                   if (index === 1) {
+
                     for (var cont = 0; cont < 7; cont++) {
                       var dt = getLastSunday(new Date());
                       week[getWeekDays(dt)[cont]] = {};
                       dt.setDate(dt.getDate() + cont);
                     }
                   }
-
                   weeks.push(week);
                 }
 
