@@ -71,7 +71,7 @@
               var weeks = [];
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() ==  getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
+                if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
                   var week = {};
 
                   if (index === 1) {
@@ -105,9 +105,8 @@
             return now.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
           }
 
-          function getDaySaturday() {
-            var now = new Date();
-            now.setDate(now.getDate() + (6 + (7 - now.getDay())) % 7);
+          function getDaySaturday(now) {
+            now.setDate(now.getDate() + (7 + (7 - now.getDay())) % 7);
             return now.toLocaleDateString(attrs.locale, optionsDay);
           }
 
@@ -171,11 +170,12 @@
 
           function getWeekDays() {
             var dt = new Date();
-            dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday());
+            dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday(dt));
             var weekList = [];
-            for (var index = 1; index <= 7; index++) {
-              dt.setDate(index);
-              weekList.push(dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter());
+            for (var index = 0; index < 7; index++) {
+              var day = parseInt(getDaySaturday(dt)) + index;
+              var dtTemp = new Date(dt.getFullYear(), dt.getMonth(), day);
+              weekList.push(dtTemp.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter());
             }
             return weekList;
           }
@@ -205,7 +205,7 @@
 
           scope.chooseDay = function (dt) {
             console.log('chosen: ', dt);
-              changeDate(dt.date);
+            changeDate(dt.date);
           };
 
           scope.allWeeks = getWeekDays(new Date());
