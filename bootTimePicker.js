@@ -55,7 +55,7 @@
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
               var dt = currentDate;
-              array.push(dt);
+              array.push(currentDate);
               currentDate.setDate(currentDate.getDate() + 1);
             }
           };
@@ -191,13 +191,8 @@
           }
 
           function setRangeDate() {
-            var start = scope.startDate;
-            start = new Date().reverseFormat(start);
-            var end = scope.endDate;
-            end = new Date().reverseFormat(end);
-            var currentDate = new Date(start.getTime());
-
-            getRangeDate(currentDate, end, between);
+            var currentDate = new Date(scope.startDate.getTime());
+            getRangeDate(currentDate,scope.endDate, between);
 
             ngModel.$setViewValue(between);
             ngModel.$render();
@@ -243,8 +238,10 @@
           scope.selectYear = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 12);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.startDate = today;
+            console.log('scope.startDate: ', scope.startDate);
+            scope.endDate = new Date();
+            console.log('scope.endDate: ', scope.endDate);
             between = [];
             setRangeDate();
           };
@@ -289,9 +286,7 @@
             var today = new Date();
             today.setDate(today.getDate() - 1);
             scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            console.log('scope.startDate: ', scope.startDate);
             scope.endDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
-            console.log('scope.endDate: ', scope.endDate);
             between = [];
             setRangeDate();
           };

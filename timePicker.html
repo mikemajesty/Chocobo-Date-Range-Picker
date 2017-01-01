@@ -7,30 +7,33 @@
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 <br> {{options.txtDateInit}}:
 <br>
-<input type="text" ng-model="startDate" class="form-control" name="startDate">
- {{options.txtDateEnd}}
+<input type="text" ng-model="startDate" class="form-control" name="startDate"> {{options.txtDateEnd}}
 <input type="text" class="form-control" ng-model="endDate" name="endDate">
 <div>
+    <span style="white-space:nowrap;  display: inline-block;"> 
     <input type="button" value="<" ng-click="lastMonth()">
     <span> {{ dateMap.month }} - {{ dateMap.year }}</span>
-    <input type="button" value=">" ng-click="nextMonth()">
+    <input type="button" value=">" style="float:right" ng-click="nextMonth()">
     <table border="1">
         <tr>
-            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek}}</td>
+            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
         </tr>
         <tr ng-repeat="week in dateMap.result">
             <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
         </tr>
     </table>
+    </span>
+    <span style="white-space:nowrap;  display: inline-block;">
     <input type="button" value="<" ng-click="lastMonth()">
     <span> {{ dateMap.month }} - {{ dateMap.year }}</span>
-    <input type="button" value=">" ng-click="nextMonth()">
+    <input type="button" value=">" style="float:right" ng-click="nextMonth()">
     <table border="1">
         <tr>
-            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek}}</td>
+            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
         </tr>
         <tr ng-repeat="week in dateMap.result">
             <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
         </tr>
     </table>
+    </span>
 </div>
