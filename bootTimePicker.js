@@ -204,10 +204,6 @@
             console.log('quantity ', between.length);
           }
 
-          function formatDateWithTwoDigits(date) {
-            return new Date(date.getFullYear(),("0" + (date.getMonth() + 1)).slice(-2) , ("0" + date.getDate()).slice(-2)).toLocaleDateString(attrs.locale, optionsAlmostComplete);
-          }
-
           scope.chooseDay = function (dt) {
             console.log('chosen: ', dt);
             changeDate(dt.date);
