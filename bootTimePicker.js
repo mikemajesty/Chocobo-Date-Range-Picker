@@ -86,7 +86,7 @@
                 }
 
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
-                if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday()) {
+                if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                   weeks.find(findLast);
                 }
 
@@ -94,7 +94,6 @@
                   weeks.find(findNext);
                 }
               }
-              console.log('weeks: ', weeks);
               return weeks;
             }
           };
