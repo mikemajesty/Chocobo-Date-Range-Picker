@@ -8,9 +8,12 @@
       };
 
       Date.prototype.reverseFormat = function (date, format) {
-        var formatDate = date.split("/");
+        if (format === 'dd/MM/yyyy') {
+          var formatDate = date.split("/");
+          return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
+        }
+        return new Date(date);
         //year//month//day -> this is used when the format was dd/MM/yyyy
-        return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
       };
 
       return {
@@ -18,7 +21,6 @@
         restrict: "AE",
         scope: {
           locale: '@',
-          format: '@',
           options: '='
         },
         link: function (scope, elem, attrs, ngModel) {
@@ -28,12 +30,11 @@
           var optionsMonth = { month: 'long' };
           var optionsYear = { year: 'numeric' };
           var optionsDay = { day: 'numeric' };
-          var optionsAlmostComplete = { day: 'numeric', month: 'numeric', year: 'numeric' };
+          var optionsAlmostComplete = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
           //attr format that it was arrived form directive
-          scope.startDate = getFormatDate(date.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-          scope.endDate = getFormatDate(date.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-
+          scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+          scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           scope.dateMap = {};
 
           function getFirstDayOfWeek() {
@@ -53,7 +54,7 @@
             currentDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
-              var dt = getFormatDate(currentDate, attrs.format);
+              var dt = currentDate;
               array.push(dt);
               currentDate.setDate(currentDate.getDate() + 1);
             }
@@ -145,8 +146,8 @@
             nextSadurday.setHours(0, 0, 0, 0);
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
-              var tempDate = getFormatDate(lastDay, attrs.format);
-              element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo' };
+              var tempDate = lastDay;
+              element[new Date().reverseFormat(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo' };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -159,8 +160,8 @@
               lastSunday.setHours(0, 0, 0, 0);
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
-                var tempDate = getFormatDate(lastSunday, attrs.format);
-                element[new Date().reverseFormat(tempDate, attrs.format).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo' };
+                var tempDate = lastSunday;
+                element[new Date().reverseFormat(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo' };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
@@ -191,9 +192,9 @@
 
           function setRangeDate() {
             var start = scope.startDate;
-            start = new Date().reverseFormat(start, attrs.format);
+            start = new Date().reverseFormat(start);
             var end = scope.endDate;
-            end = new Date().reverseFormat(end, attrs.format);
+            end = new Date().reverseFormat(end);
             var currentDate = new Date(start.getTime());
 
             getRangeDate(currentDate, end, between);
@@ -201,6 +202,10 @@
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
+          }
+
+          function formatDateWithTwoDigits(date) {
+            return new Date(date.getFullYear(),("0" + (date.getMonth() + 1)).slice(-2) , ("0" + date.getDate()).slice(-2)).toLocaleDateString(attrs.locale, optionsAlmostComplete);
           }
 
           scope.chooseDay = function (dt) {
@@ -211,7 +216,8 @@
           scope.allWeeks = getWeekDays(new Date());
 
           scope.nextMonth = function () {
-            if (date.getMonth() == 11) {
+            var DECEMBER = 11;
+            if (date.getMonth() == DECEMBER) {
               date = new Date(date.getFullYear() + 1, 0, 1);
             } else {
               date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
@@ -220,7 +226,8 @@
           };
 
           scope.lastMonth = function () {
-            if (date.getMonth() === 0) {
+            var JANUARY = 0;
+            if (date.getMonth() === JANUARY) {
               date = new Date(date.getFullYear() - 1, 11, 1);
             } else {
               date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
@@ -229,7 +236,7 @@
           };
 
           var between = [];
-          between.push(getFormatDate(new Date(), attrs.format));
+          between.push(getFormatDate(new Date()));
           ngModel.$setViewValue(between);
 
           angular.element(elem).on('change', function (event) {
@@ -240,8 +247,8 @@
           scope.selectYear = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 12);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
@@ -249,8 +256,8 @@
           scope.selectSemester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 6);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
@@ -258,8 +265,8 @@
           scope.selectTrimester = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 3);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
@@ -267,8 +274,8 @@
           scope.selectMonth = function () {
             var today = new Date();
             today.setMonth(today.getMonth() - 1);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
@@ -276,8 +283,8 @@
           scope.selectWeek = function () {
             var today = new Date();
             today.setDate(today.getDate() - 7);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
@@ -285,15 +292,17 @@
           scope.selectLastDay = function () {
             var today = new Date();
             today.setDate(today.getDate() - 1);
-            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            console.log('scope.startDate: ', scope.startDate);
+            scope.endDate = getFormatDate(today.toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            console.log('scope.endDate: ', scope.endDate);
             between = [];
             setRangeDate();
           };
 
           scope.selectToday = function () {
-            scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
-            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.format);
+            scope.startDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
+            scope.endDate = getFormatDate(new Date().toLocaleDateString(attrs.locale, optionsAlmostComplete));
             between = [];
             setRangeDate();
           };
