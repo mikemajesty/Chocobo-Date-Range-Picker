@@ -12,13 +12,13 @@
 <div>
     <span style="white-space:nowrap;  display: inline-block;"> 
     <input type="button" value="<" ng-click="lastMonth()">
-    <span> {{ dateMap.month }} - {{ dateMap.year }}</span>
+    <span> {{ dateInitialMap.month }} - {{ dateInitialMap.year }}</span>
     <input type="button" value=">" style="float:right" ng-click="nextMonth()">
     <table border="1">
         <tr>
             <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
         </tr>
-        <tr ng-repeat="week in dateMap.result">
+        <tr ng-repeat="week in dateInitialMap.result">
             <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
         </tr>
     </table>

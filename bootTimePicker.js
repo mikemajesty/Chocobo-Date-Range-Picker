@@ -64,12 +64,14 @@
 
           
 
-          var changeDate = function (tDate) {
+          var changeDate = function (tDate, isInital) {
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
-
-            scope.dateMap = { month: month, year: year, result: setRangeDay(tDate) };
-
+            
+            if (isInital) {
+               scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate) };
+            }
+            
             function setRangeDay(tDate) {
 
               var start = new Date(tDate.getFullYear(), tDate.getMonth(), 1);
@@ -171,7 +173,7 @@
             }
           }
 
-          changeDate(date);
+          changeDate(date, true);
 
           function getWeekDays() {
             var dt = new Date();
@@ -206,7 +208,7 @@
           scope.chooseInitalDay = function (dt) {
             date = dt.date;
             scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-            changeDate(dt.date);
+            changeDate(dt.date, true);
           };
 
           scope.chooseFinalDay = function (dt) {
