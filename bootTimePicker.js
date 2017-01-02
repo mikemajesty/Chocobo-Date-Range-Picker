@@ -62,16 +62,18 @@
             return tempArray;
           };
 
-          var changeDate = function (date) {
-            var month = date.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
-            var year = date.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
+          
 
-            scope.dateMap = { month: month, year: year, result: setRangeDay(date) };
+          var changeDate = function (tDate) {
+            var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
+            var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
-            function setRangeDay(date) {
+            scope.dateMap = { month: month, year: year, result: setRangeDay(tDate) };
 
-              var start = new Date(date.getFullYear(), date.getMonth(), 1);
-              var end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+            function setRangeDay(tDate) {
+
+              var start = new Date(tDate.getFullYear(), tDate.getMonth(), 1);
+              var end = new Date(tDate.getFullYear(), tDate.getMonth() + 1, 0);
               var weeks = [];
               var tDay = getLastSunday(new Date());
               for (var index = start.getDate(); index <= end.getDate(); index++) {
@@ -94,7 +96,7 @@
                   weeks.find(findLast);
                 }
 
-                if (index == getLastDayOfMonth(date) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
+                if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                   weeks.find(findNext);
                 }
               }
