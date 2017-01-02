@@ -62,16 +62,22 @@
             return tempArray;
           };
 
-          
+
 
           var changeDate = function (tDate, isInital) {
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
-            
+
             if (isInital) {
-               scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate) };
+              scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate) };
+              if (!scope.dateFinalMap) {
+                scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate) };
+              }
             }
-            
+            else {
+              scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate) };
+            }
+
             function setRangeDay(tDate) {
 
               var start = new Date(tDate.getFullYear(), tDate.getMonth(), 1);
@@ -179,7 +185,7 @@
             var dt = new Date();
             dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday(dt));
             var weekList = [];
-            var tDay =  parseInt(getDaySaturday(dt));
+            var tDay = parseInt(getDaySaturday(dt));
             for (var index = 0; index < 7; index++) {
               var day = (tDay + index);
               var dtTemp = new Date(dt.getFullYear(), dt.getMonth(), day);
@@ -214,29 +220,41 @@
           scope.chooseFinalDay = function (dt) {
             date = dt.date;
             scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            changeDate(dt.date);
           };
 
           scope.allWeeks = getWeekDays(new Date());
 
-          scope.nextMonth = function () {
+          scope.nextInitialMonth = function (isInital) {
             var DECEMBER = 11;
             if (date.getMonth() == DECEMBER) {
               date = new Date(date.getFullYear() + 1, 0, 1);
             } else {
               date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
             }
-            changeDate(date);
+            if (isInital) {
+              changeDate(date, true);
+            }
+            else {
+              changeDate(date);
+            }
           };
 
-          scope.lastMonth = function () {
+          scope.lastInitialMonth = function (isInital) {
             var JANUARY = 0;
             if (date.getMonth() === JANUARY) {
               date = new Date(date.getFullYear() - 1, 11, 1);
             } else {
               date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
             }
-            changeDate(date);
+            if (isInital) {
+              changeDate(date, true);
+            }
+            else {
+              changeDate(date);
+            }
           };
+
 
           var between = [];
           between.push(getFormatDate(new Date()));
