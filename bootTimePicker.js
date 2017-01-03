@@ -7,12 +7,12 @@
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
 
-      Date.prototype.reverseFormat = function (date, format) {
+      Date.prototype.reverseFormat = function (tDate, format) {
         if (format === 'dd/MM/yyyy') {
-          var formatDate = date.split("/");
+          var formatDate = tDate.split("/");
           return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
         }
-        return new Date(date);
+        return new Date(tDate);
         //year//month//day -> this is used when the format was dd/MM/yyyy
       };
 
@@ -194,12 +194,12 @@
             return weekList;
           }
 
-          function getFormatDate(date, format) {
-            return $filter('date')(date, format);
+          function getFormatDate(tDate, format) {
+            return $filter('date')(tDate, format);
           }
 
-          function getLastDayOfMonth(date) {
-            var dt = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
+          function getLastDayOfMonth(tDate) {
+            var dt = new Date(tDate.getUTCFullYear(), tDate.getUTCMonth() + 1, 0);
             return dt.toLocaleDateString(attrs.locale, optionsDay);
           }
 
@@ -233,9 +233,11 @@
               date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
             }
             if (isInital) {
+              scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
               changeDate(date, true);
             }
             else {
+              scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
               changeDate(date);
             }
           };
@@ -248,9 +250,11 @@
               date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
             }
             if (isInital) {
+              scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
               changeDate(date, true);
             }
             else {
+              scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
               changeDate(date);
             }
           };
