@@ -25,7 +25,7 @@
         },
         link: function (scope, elem, attrs, ngModel) {
 
-          var dateInitial = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+          var dateInitial = new Date();
           var dateFinal = new Date();
           var optionsWeek = { weekday: "long" };
           var optionsMonth = { month: 'long' };
@@ -33,7 +33,6 @@
           var optionsDay = { day: 'numeric' };
           var optionsAlmostComplete = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
-          //attr format that it was arrived form directive
           scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           scope.dateMap = {};
@@ -62,8 +61,6 @@
             }
             return tempArray;
           };
-
-
 
           var changeDate = function (tDate, isInital) {
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
@@ -163,7 +160,7 @@
           }
 
           function findSecondCalendarNext(element, index, array) {
-             if (array.length === index + 1) {
+            if (array.length === index + 1) {
               var dt = new Date(dateFinal);
               dt.setDate(getLastDayOfMonth(dt));
               setNextDaysOfNextMonth(element, dt);
@@ -300,7 +297,6 @@
             }
           };
 
-
           var between = [];
           between.push(getFormatDate(new Date()));
           ngModel.$setViewValue(between);
@@ -370,7 +366,6 @@
             between = [];
             setRangeDate();
           };
-
         },
         templateUrl: '/timePicker.html'
       };
