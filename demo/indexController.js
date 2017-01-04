@@ -7,8 +7,7 @@
       $scope.demo = { searchDate: null };
       
       $scope.options = {
-        txtDateInit: 'Demo: Start Date',
-        txtDateEnd: 'Demo: End Date',
+        txtDateInit: 'Demo: Date',
         buttons:
         {
           btnMonth: { txt: 'Demo: Month' },
