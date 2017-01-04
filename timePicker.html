@@ -7,8 +7,7 @@
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 <br> {{options.txtDateInit}}:
 <br>
-<input type="text" ng-model="startDate" class="form-control" name="startDate"> {{options.txtDateEnd}}
-<input type="text" class="form-control" ng-model="endDate" name="endDate">
+<input type="text" ng-model="dateInput" class="form-control" name="dateMap">
 <div>
     <span style="white-space:nowrap;  display: inline-block;"> 
     <input type="button" value="<" ng-click="lastInitialMonth(true)">

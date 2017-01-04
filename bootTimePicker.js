@@ -37,6 +37,14 @@
           scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           scope.dateMap = {};
 
+          scope.$watch('startDate', function (newValue, oldValue) {
+            scope.dateInput = scope.startDate + ' - ' + scope.endDate;
+          });
+
+          scope.$watch('endDate', function (newValue, oldValue) {
+            scope.dateInput = scope.startDate + ' - ' + scope.endDate;
+          });
+
           function getFirstDayOfWeek() {
             var dt = new Date();
             var day = dt.getDay();
