@@ -8,7 +8,7 @@
 <br> {{options.txtDateInit}}:
 <br>
 <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="form-control" name="dateMap">
-<div ng-show="isOpen">
+<div ng-show="!isOpen">
     <span style="white-space:nowrap;  display: inline-block;"> 
     <input type="button" value="<" ng-click="lastInitialMonth(true)">
     <span> {{ dateInitialMap.month }} - {{ dateInitialMap.year }}</span>

@@ -7,8 +7,8 @@
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
 
-      Date.prototype.reverseFormat = function (tDate, format) {
-        if (format === 'dd/MM/yyyy') {
+      Date.prototype.reverseFormat = function (tDate, locale) {
+        if (locale === 'pt-BR') {
           var formatDate = tDate.split("/");
           return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
         }
@@ -33,16 +33,20 @@
           var optionsDay = { day: 'numeric' };
           var optionsAlmostComplete = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
-          scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-          scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+          scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
+          scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale)
           scope.dateMap = {};
 
           scope.$watch('startDate', function (newValue, oldValue) {
-            scope.dateInput = scope.startDate + ' - ' + scope.endDate;
+            var tInitialDate = scope.startDate;
+            var tEndDate = scope.endDate;
+            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           });
 
           scope.$watch('endDate', function (newValue, oldValue) {
-            scope.dateInput = scope.startDate + ' - ' + scope.endDate;
+            var tInitialDate = scope.startDate;
+            var tEndDate = scope.endDate;
+            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           });
 
           function getFirstDayOfWeek() {
@@ -59,12 +63,14 @@
           };
 
           var getRangeDate = function (currentDate, endDate) {
+            console.log('start: ', currentDate)
+            console.log('end: ', endDate)
             var tempArray = [];
             endDate = new Date(endDate);
             currentDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
-              tempArray.push(new Date(currentDate));
+              tempArray.push(new Date(currentDate).toLocaleDateString(attrs.locale).capitalizeFirstLetter());
               currentDate.setDate(currentDate.getDate() + 1);
             }
             return tempArray;
@@ -240,8 +246,8 @@
           }
 
           function setRangeDate() {
-            var currentDate = new Date(scope.startDate);
-            between = getRangeDate(currentDate, scope.endDate).splice(0);
+            var currentDate = scope.startDate.reverseFormat(scope.startDate.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
+            between = getRangeDate(currentDate, new Date(scope.endDate)).splice(0);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
@@ -253,14 +259,16 @@
 
           scope.chooseInitalDay = function (dt) {
             dateInitial = dt.date;
-            scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, true);
+            setRangeDate();
           };
 
           scope.chooseFinalDay = function (dt) {
             dateFinal = dt.date;
-            scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date);
+            setRangeDate();
           };
 
           scope.allWeeks = getWeekDays(new Date());
@@ -273,7 +281,7 @@
               } else {
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() + 1, 1);
               }
-              scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateInitial, true);
             }
             else {
@@ -282,9 +290,10 @@
               } else {
                 dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() + 1, 1);
               }
-              scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateFinal);
             }
+            setRangeDate();
           };
 
           scope.lastInitialMonth = function (isInital) {
@@ -295,7 +304,7 @@
               } else {
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() - 1, 1);
               }
-              scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateInitial, true);
             }
             else {
@@ -304,9 +313,10 @@
               } else {
                 dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() - 1, 1);
               }
-              scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateFinal);
             }
+            setRangeDate();
           };
 
           var between = [];
