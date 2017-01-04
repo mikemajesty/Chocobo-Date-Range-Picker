@@ -247,6 +247,10 @@
             console.log('quantity ', between.length);
           }
 
+          scope.openModal = function () {
+            scope.isOpen = !scope.isOpen;
+          }
+
           scope.chooseInitalDay = function (dt) {
             dateInitial = dt.date;
             scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
