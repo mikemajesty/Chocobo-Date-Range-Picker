@@ -109,7 +109,7 @@
                   weeks.push(week);
                 }
 
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao', select: (start >= scope.startDate && start <= scope.endDate) };
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao', select: compareDate(start) };
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
@@ -199,7 +199,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
-              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo', select: (tempDate >= scope.startDate && tempDate <= scope.endDate) };
+              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo', select: compareDate(tempDate) };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -213,7 +213,7 @@
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo', select: (tempDate >= scope.startDate && tempDate <= scope.endDate) };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo', select: compareDate(tempDate) };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
@@ -251,6 +251,10 @@
             console.log('quantity ', between.length);
           }
 
+          function compareDate(tDate) {
+            return (tDate >= scope.startDate && tDate <= scope.endDate) 
+          }
+
           scope.openModal = function () {
             scope.isOpen = !scope.isOpen;
           };
@@ -283,6 +287,7 @@
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateInitial, true);
+              changeDate(scope.endDate);
             }
             else {
               if (dateFinal.getMonth() == DECEMBER) {
@@ -292,6 +297,7 @@
               }
               scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
               changeDate(dateFinal);
+              changeDate(scope.startDate, true);
             }
             setRangeDate();
           };
