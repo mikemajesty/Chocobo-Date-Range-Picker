@@ -68,7 +68,7 @@
             currentDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
-              tempArray.push(new Date(currentDate).toLocaleDateString(attrs.locale).capitalizeFirstLetter());
+              tempArray.push(new Date(currentDate));
               currentDate.setDate(currentDate.getDate() + 1);
             }
             return tempArray;
