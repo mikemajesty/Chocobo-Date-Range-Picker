@@ -1,5 +1,7 @@
-((angular) => {
-  'use strict'
+(angular);
+(function (angular) {
+  'use strict';
   angular.module('BotPicker', []);
+})(window.angular);
 
-})(angular);
+
