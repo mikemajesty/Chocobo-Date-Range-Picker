@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mikemajesty/BootTimePicker#readme",
   "dependencies": {
     "angular": "^1.6.1",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "serve-favicon": "^2.3.2"
   }
 }
