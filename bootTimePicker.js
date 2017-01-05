@@ -109,7 +109,7 @@
                   weeks.push(week);
                 }
 
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao', select: false };
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao', select: (start >= scope.startDate && start <= scope.endDate) };
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
@@ -199,7 +199,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
-              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo', select: false };
+              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo', select: (tempDate >= scope.startDate && tempDate <= scope.endDate) };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -213,7 +213,7 @@
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo', select: false };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo', select: (tempDate >= scope.startDate && tempDate <= scope.endDate) };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
@@ -259,6 +259,7 @@
             dateInitial = dt.date;
             scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, true);
+            changeDate(scope.endDate);//this is to put select in td
             setRangeDate();
           };
 
@@ -266,6 +267,7 @@
             dateFinal = dt.date;
             scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date);
+            changeDate(scope.startDate, true);//this is to put select in td
             setRangeDate();
           };
 
