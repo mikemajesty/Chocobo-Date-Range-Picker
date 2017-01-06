@@ -9,30 +9,45 @@
 <br>
 <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="form-control" name="dateMap">
 <div ng-show="!isOpen">
-    <span style="white-space:nowrap;  display: inline-block;"> 
-    <input type="button" value="<" ng-click="lastInitialMonth(true)">
-    <span> {{ dateInitialMap.month }} - {{ dateInitialMap.year }}</span>
-    <input type="button" value=">" style="float:right" ng-click="nextInitialMonth(true)">
-    <table border="1">
-        <tr>
-            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
-        </tr>
-        <tr ng-repeat="week in dateInitialMap.result">
-            <td ng-repeat="dayOfWeek in allWeeks" name="{{week[dayOfWeek].select}}"  class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
-        </tr>
-    </table>
-    </span>
-    <span style="white-space:nowrap;  display: inline-block;">
-    <input type="button" value="<" ng-click="lastInitialMonth()">
-    <span> {{ dateFinalMap.month }} - {{ dateFinalMap.year }}</span>
-    <input type="button" value=">" style="float:right" ng-click="nextInitialMonth()">
-    <table border="1">
-        <tr>
-            <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
-        </tr>
-        <tr ng-repeat="week in dateFinalMap.result">
-            <td ng-repeat="dayOfWeek in allWeeks" name="{{week[dayOfWeek].select}}" class="{{week[dayOfWeek].class}}" ng-click="chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
-        </tr>
-    </table>
-    </span>
+    <div class="container">
+        <div class="calendar">
+            <header>
+                <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2>
+                <a class="btn-prev fontawesome-angle-left" ng-click="lastInitialMonth(true)"></a>
+                <a class="btn-next fontawesome-angle-right" ng-click="nextInitialMonth(true)"></a>
+            </header>
+            <table>
+                <thead>
+                    <tr>
+                        <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="week in dateInitialMap.result">
+                        <td ng-repeat="dayOfWeek in allWeeks" name="{{week[dayOfWeek].select}}" class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="calendar">
+            <header>
+                <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2>
+                <a class="btn-prev fontawesome-angle-left" ng-click="lastInitialMonth()"></a>
+                <a class="btn-next fontawesome-angle-right" ng-click="nextInitialMonth()"></a>
+            </header>
+            <table>
+                <thead>
+                    <tr>
+                        <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="week in dateFinalMap.result">
+                        <td ng-repeat="dayOfWeek in allWeeks" name="{{week[dayOfWeek].select}}" class="{{week[dayOfWeek].class}}" ng-click="chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<!--<td class="current-day event">23</td>-->

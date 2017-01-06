@@ -199,7 +199,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
-              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo', select: compareDate(tempDate) };
+              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'next-month', select: compareDate(tempDate) };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -213,7 +213,7 @@
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo', select: compareDate(tempDate) };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'prev-month', select: compareDate(tempDate) };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
