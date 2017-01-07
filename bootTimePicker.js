@@ -302,16 +302,16 @@
           function setRangeDate() {
             var currentDate = scope.startDate.reverseFormat(scope.startDate.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             between = getRangeDate(currentDate, new Date(scope.endDate)).splice(0);
-            changeDate(dateInitial, true);
-            changeDate(dateFinal);
+            changeDate(scope.startDate, true);
+            changeDate(scope.endDate);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
           }
 
           function compareDate(tDate) {
-            scope.startDate.setHours(0,0,0,0);
-            scope.endDate.setHours(0,0,0,0);
+            scope.startDate.setHours(0, 0, 0, 0);
+            scope.endDate.setHours(0, 0, 0, 0);
             return (tDate >= scope.startDate && tDate <= scope.endDate);
           }
 
