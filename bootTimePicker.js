@@ -114,10 +114,10 @@
                 }
 
                 if (isInital) {
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '', select: compareDate(start) };
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '', select: compareDate(start) ? 'hover-range-normal': ''};
                 }
                 else {
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '', select: compareDate(start) };
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '', select: compareDate(start) ? 'hover-range-normal': '' };
                 }                
 
                 if (isInital) {
