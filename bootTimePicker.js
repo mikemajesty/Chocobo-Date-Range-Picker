@@ -113,7 +113,13 @@
                   weeks.push(week);
                 }
 
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: new Date(start).getUTCDate() == cDate.getUTCDate() ? 'current-day' : '', select: compareDate(start) };
+                if (isInital) {
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '', select: compareDate(start) };
+                }
+                else {
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '', select: compareDate(start) };
+                }                
+
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);

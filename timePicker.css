@@ -78,7 +78,12 @@ table {
     border: 2px solid #cbd1d2;
 }
 
-.current-day {
+.current-day-first {
+    background: #00addf;
+    color: #f9f9f9;
+}
+
+.current-day-last {
     background: #00addf;
     color: #f9f9f9;
 }
