@@ -96,10 +96,6 @@
               var tDay = getLastSunday(new Date());
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
-                var cDate = {};
-                cDate = new Date();
-                cDate.setHours(0, 0, 0, 0);
-
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
                   var week = {};
 
