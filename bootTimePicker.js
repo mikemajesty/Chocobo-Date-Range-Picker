@@ -96,10 +96,14 @@
               var tDay = getLastSunday(new Date());
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
+                var cDate = {};
+                cDate = new Date();
+                cDate.setHours(0, 0, 0, 0);
+
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {
                   var week = {};
-                  if (index === 1) {
 
+                  if (index === 1) {
                     for (var cont = 0; cont < 7; cont++) {
                       var dt = tDay;
                       week[getWeekDays(dt)[cont]] = {};
@@ -109,7 +113,7 @@
                   weeks.push(week);
                 }
 
-                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao', select: compareDate(start) };
+                weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: new Date(start).getUTCDate() == cDate.getUTCDate() ? 'current-day' : '', select: compareDate(start) };
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
@@ -252,7 +256,7 @@
           }
 
           function compareDate(tDate) {
-            return (tDate >= scope.startDate && tDate <= scope.endDate) 
+            return (tDate >= scope.startDate && tDate <= scope.endDate);
           }
 
           scope.openModal = function () {
