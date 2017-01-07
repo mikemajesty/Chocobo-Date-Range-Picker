@@ -139,9 +139,5 @@ table {
 }
 
 .hover-range-normal {
-    border: 2px solid #00addf;
-}
-
-.hover-range-last-next {
-    border: 2px solid #cbd1d2;
+    border: 2px solid #cbd1d2 !important;
 }
