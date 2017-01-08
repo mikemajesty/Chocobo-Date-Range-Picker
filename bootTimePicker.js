@@ -79,13 +79,13 @@
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
             if (isInital) {
-              scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate, isInital) };
+              scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate, isInital), date: scope.startDate };
               if (!scope.dateFinalMap) {
-                scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate) };
+                scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
               }
             }
             else {
-              scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate) };
+              scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
             }
 
             function setRangeDay(tDate) {
@@ -112,7 +112,6 @@
                   }
                   weeks.push(week);
                 }
-
                 if (isInital) {
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
@@ -303,12 +302,16 @@
           function setRangeDate() {
             var currentDate = scope.startDate.reverseFormat(scope.startDate.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             between = getRangeDate(currentDate, new Date(scope.endDate)).splice(0);
+            changeDate(dateInitial, true);
+            changeDate(dateFinal);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
           }
 
           function compareDate(tDate) {
+            scope.startDate.setHours(0,0,0,0);
+            scope.endDate.setHours(0,0,0,0);
             return (tDate >= scope.startDate && tDate <= scope.endDate);
           }
 
