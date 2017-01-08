@@ -30,7 +30,6 @@ table {
     width: 20em;
 }
 
-
 /* ---------- CALENDAR ---------- */
 
 .calendar {
@@ -39,15 +38,6 @@ table {
 
 .calendar header {
     position: relative;
-}
-
-.calendar h2 {
-    text-transform: uppercase;
-}
-
-.calendar thead {
-    font-weight: 600;
-    text-transform: uppercase;
 }
 
 .calendar tbody {
@@ -139,5 +129,8 @@ table {
 }
 
 .hover-range-normal {
-    border: 2px solid #cbd1d2 !important;
+    -moz-box-shadow: inset 0 0 1em #cbd1dF !important;
+    -webkit-box-shadow: inset 0 0 1em #cbd1dF !important;
+    box-shadow: inset 0 0 1em #cbd1dF;
+    border: 1px solid #cbd1dF !important;
 }
