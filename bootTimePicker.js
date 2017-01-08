@@ -109,7 +109,7 @@
                   weeks.push(week);
                 }
                 if (isInital) {
-
+                  scope.startDate.setHours(0,0,0,0);
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
@@ -443,6 +443,7 @@
 
           scope.selectLastDay = function () {
             var today = new Date();
+            dateInitial = new Date();
             dateInitial.setDate(today.getDate() - 1);
             scope.startDate = dateInitial;
             scope.endDate = dateInitial;
@@ -451,6 +452,7 @@
           };
 
           scope.selectToday = function () {
+            dateInitial = new Date();
             scope.startDate = new Date();
             scope.endDate = new Date();
             between = [];
