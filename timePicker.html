@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="week in dateInitialMap.result">
-                        <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                        <td ng-repeat="dayOfWeek in allWeeks" ng-disabled="{{week[dayOfWeek].isReadyOnly}}" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="chooseInitalDay(week[dayOfWeek]);">{{week[dayOfWeek].date.getDate()}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,7 +43,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="week in dateFinalMap.result">
-                        <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                        <td ng-repeat="dayOfWeek in allWeeks" ng-disabled="{{week[dayOfWeek].isReadyOnly}}" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
                     </tr>
                 </tbody>
             </table>
