@@ -270,7 +270,7 @@
           }
 
           changeDate(dateInitial, true);
-          changeDate(dateFinal);
+          changeDate(dateFinal, false);
 
           function getWeekDays() {
             var dt = new Date();
@@ -298,7 +298,7 @@
             var currentDate = scope.startDate.reverseFormat(scope.startDate.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             between = getRangeDate(currentDate, new Date(scope.endDate)).splice(0);
             changeDate(scope.startDate, true);
-            changeDate(scope.endDate);
+            changeDate(scope.endDate, false);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
@@ -318,14 +318,14 @@
             dateInitial = dt.date;
             scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, true);
-            changeDate(scope.endDate);//this is to select td
+            changeDate(scope.endDate, false);//this is to select td
             setRangeDate();
           };
 
           scope.chooseFinalDay = function (dt) {
             dateFinal = dt.date;
             scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-            changeDate(dt.date);
+            changeDate(dt.date, false);
             changeDate(scope.startDate, true);//this is to select td
             setRangeDate();
           };
