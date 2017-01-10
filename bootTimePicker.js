@@ -119,7 +119,6 @@
                     };
                 }
                 else {
-
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
