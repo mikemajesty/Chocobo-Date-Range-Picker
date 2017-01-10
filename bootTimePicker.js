@@ -89,7 +89,6 @@
             }
 
             function setRangeDay(tDate) {
-
               var start = new Date(tDate.getFullYear(), tDate.getMonth(), 1);
               var end = new Date(tDate.getFullYear(), tDate.getMonth() + 1, 0);
               var weeks = [];
