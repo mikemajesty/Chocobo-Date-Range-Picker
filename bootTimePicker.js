@@ -108,7 +108,7 @@
                   weeks.push(week);
                 }
                 if (isInital) {
-                  scope.startDate.setHours(0,0,0,0);
+                  scope.startDate.setHours(0, 0, 0, 0);
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
@@ -341,8 +341,6 @@
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() + 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-              changeDate(dateInitial, true);
-              changeDate(scope.endDate);
             }
             else {
               if (dateFinal.getMonth() == DECEMBER) {
@@ -351,8 +349,6 @@
                 dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() + 1, 1);
               }
               scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-              changeDate(dateFinal);
-              changeDate(scope.startDate, true);
             }
             setRangeDate();
           };
@@ -366,7 +362,6 @@
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() - 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-              changeDate(dateInitial, true);
             }
             else {
               if (dateFinal.getMonth() === JANUARY) {
@@ -375,7 +370,6 @@
                 dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() - 1, 1);
               }
               scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-              changeDate(dateFinal);
             }
             setRangeDate();
           };
