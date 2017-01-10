@@ -75,7 +75,6 @@
           };
 
           var changeDate = function (tDate, isInital) {
-            console.log('mudou');
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
@@ -110,6 +109,7 @@
                   weeks.push(week);
                 }
                 if (isInital) {
+
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
@@ -119,6 +119,7 @@
                     };
                 }
                 else {
+
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
@@ -127,7 +128,6 @@
                       isReadyOnly: (new Date(start) < scope.startDate)
                     };
                 }
-
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
@@ -393,8 +393,9 @@
 
           scope.selectYear = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 12);
-            scope.startDate = today;
+            dateInitial = new Date();
+            dateInitial.setMonth(today.getMonth() - 12);
+            scope.startDate = dateInitial;
             scope.endDate = new Date();
             between = [];
             setRangeDate();
@@ -402,8 +403,9 @@
 
           scope.selectSemester = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 6);
-            scope.startDate = today;
+            dateInitial = new Date();
+            dateInitial.setMonth(today.getMonth() - 6);
+            scope.startDate = dateInitial;
             scope.endDate = new Date();
             between = [];
             setRangeDate();
@@ -411,8 +413,9 @@
 
           scope.selectTrimester = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 3);
-            scope.startDate = today;
+            dateInitial = new Date();
+            dateInitial.setMonth(today.getMonth() - 3);
+            scope.startDate = dateInitial;
             scope.endDate = new Date();
             between = [];
             setRangeDate();
@@ -420,8 +423,9 @@
 
           scope.selectMonth = function () {
             var today = new Date();
-            today.setMonth(today.getMonth() - 1);
-            scope.startDate = today;
+            dateInitial = new Date();
+            dateInitial.setMonth(today.getMonth() - 1);
+            scope.startDate = dateInitial;
             scope.endDate = new Date();
             between = [];
             setRangeDate();
@@ -429,8 +433,9 @@
 
           scope.selectWeek = function () {
             var today = new Date();
-            today.setDate(today.getDate() - 7);
-            scope.startDate = today;
+            dateInitial = new Date();
+            dateInitial.setDate(today.getDate() - 7);
+            scope.startDate = dateInitial;
             scope.endDate = new Date();
             between = [];
             setRangeDate();
@@ -438,9 +443,9 @@
 
           scope.selectLastDay = function () {
             var today = new Date();
-            today.setDate(today.getDate() - 1);
-            scope.startDate = today;
-            scope.endDate = today;
+            dateInitial.setDate(today.getDate() - 1);
+            scope.startDate = dateInitial;
+            scope.endDate = dateInitial;
             between = [];
             setRangeDate();
           };
