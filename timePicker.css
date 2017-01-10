@@ -46,13 +46,12 @@ table {
 }
 
 .calendar tbody td:hover {
-    border: 2px solid #00addf;
+    background:  #00addf;
+    color: white
 }
 
 .calendar td {
     border: 2px solid transparent;
-    border-radius: 50%;
-    display: inline-block;
     height: 2.3em;
     line-height: 2.3em;
     text-align: center;
@@ -66,7 +65,8 @@ table {
 
 .calendar .prev-month:hover,
 .calendar .next-month:hover {
-    border: 2px solid #cbd1d2;
+    background:  #cbd1d2;
+    color: white;
 }
 
 .current-day-first {

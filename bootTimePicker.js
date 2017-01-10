@@ -75,6 +75,7 @@
           };
 
           var changeDate = function (tDate, isInital) {
+            console.log('mudou');
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
