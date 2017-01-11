@@ -5,18 +5,18 @@
     .controller('BotPickerIndexCtrl', ['$scope', ($scope) => {
 
       $scope.demo = { searchDate: null };
-      
+
       $scope.options = {
         txtDateInit: 'Demo: Date',
         buttons:
         {
-          btnMonth: { txt: 'Demo: Month' },
-          btnYear: { txt: 'Demo: Year' },
-          btnSemester: { txt: 'Demo: Semester' },
-          btnTrimester: { txt: 'Demo: Trimester' },
-          btnLastDay: { txt: 'Demo: Last Day' },
-          btnToday: { txt: 'Demo: Today' },
-          btnWeek: { txt: 'Demo: Week' },
+          btnYear: { txt: 'Demo: Year', tooltip: "Choose Year" },
+          btnSemester: { txt: 'Demo: Semester', tooltip: "Choose Semester" },
+          btnTrimester: { txt: 'Demo: Trimester', tooltip: "Choose Trimester" },
+          btnMonth: { txt: 'Demo: Month', tooltip: "Choose Month" },
+          btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
+          btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
+          btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
         }
       };
 
