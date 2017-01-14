@@ -1,22 +1,22 @@
 {
-  "name": "bootpicker",
+  "name": "chocoborangepicker",
   "version": "1.0.0",
   "description": "",
-  "main": "bootTimePicker.js",
+  "main": "chocobo-range-picker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikemajesty/BootTimePicker.git"
+    "url": "git+https://github.com/mikemajesty/Chocobo-Date-Range-Picker.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mikemajesty/BootTimePicker/issues"
+    "url": "https://github.com/mikemajesty/Chocobo-Date-Range-Picker/issues"
   },
-  "homepage": "https://github.com/mikemajesty/BootTimePicker#readme",
+  "homepage": "https://github.com/mikemajesty/Chocobo-Date-Range-Picker#readme",
   "dependencies": {
     "angular": "^1.6.1",
     "express": "^4.14.0",
