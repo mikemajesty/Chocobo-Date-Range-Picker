@@ -8,10 +8,17 @@
     <script type="text/javascript" src="public/app.js"></script>
     <script type="text/javascript" src="bootTimePicker.js"></script>
     <script type="text/javascript" src="public/indexController.js"></script>
+    <style>
+      .button.btnFade.btnYear {
+      }
+      .current-day-last {
+        
+      }
+    </style>
 </head>
   <body ng-controller='BotPickerIndexCtrl'>
-    <!--ar-EG en-us-->
-        <bootpicker locale='pt-BR' options='options' ng-model="demo.searchDate"></bootpicker>
+    <!--pt-BR en-us ru-RU-->
+        <bootpicker locale='ru-RU' options='options' ng-model="demo.searchDate"></bootpicker>
         <br>
           {{demo.searchDate}}
   </body>

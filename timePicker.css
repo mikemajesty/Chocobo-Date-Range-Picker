@@ -30,7 +30,6 @@ table {
     width: 50em;
 }
 
-
 /* ---------- CALENDAR ---------- */
 
 .calendar {
@@ -52,10 +51,10 @@ table {
 
 .calendar td {
     border: 2px solid transparent;
-    height: 2.3em;
-    line-height: 2.3em;
+    height: 1.0em;
+    line-height: 1.7em;
     text-align: center;
-    width: 2.3em;
+    width: 2.0em;
 }
 
 .calendar .prev-month,
@@ -100,11 +99,11 @@ table {
 }
 
 .btn-prev {
-    left: 3.4em;
+    left: 2.0em;
 }
 
 .btn-next {
-    right: 3em;
+    right: 2em;
 }
 
 .hover-range-normal {
@@ -116,10 +115,10 @@ table {
 
 .input-text {
     display: block;
-    width: 16.7em;
+    width: 15.0em;
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
-    line-height: 1.25;
+    line-height: 1.0;
     color: #464a4c;
     background-color: #fff;
     background-image: none;
@@ -146,6 +145,7 @@ table {
 .padding-l {
     padding-left: 5px;
 }
+
 
 /* BUTTONS */
 
@@ -197,6 +197,7 @@ input.button {
 .btnToday {
     background: #808080;
 }
+
 
 /* BUTTON HOVER */
 
