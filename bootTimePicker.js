@@ -272,8 +272,8 @@
           changeDate(dateInitial, true);
           changeDate(dateFinal, false);
 
-          function getWeekDays() {
-            var dt = new Date();
+          function getWeekDays(tDate) {
+            var dt = new Date(tDate);
             dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday(dt));
             var weekList = [];
             var tDay = parseInt(getDaySaturday(dt));
