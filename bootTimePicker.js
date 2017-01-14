@@ -189,7 +189,7 @@
 
           function findSecondCalendarNext(element, index, array) {
             if (array.length === index + 1) {
-              var dt = new Date(dateFinal);
+              var dt = new Date(scope.endDate);
               dt.setDate(getLastDayOfMonth(dt));
               setNextDaysOfNextMonth(element, dt);
             }
@@ -445,6 +445,7 @@
 
           scope.selectToday = function () {
             dateInitial = new Date();
+            dateFinal = new Date();
             scope.startDate = new Date();
             scope.endDate = new Date();
             between = [];
