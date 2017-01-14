@@ -4,11 +4,11 @@ var babel = require('gulp-babel');
 var concat = require('gulp-concat');
 
 gulp.task('js', function () {
-	return gulp.src('bootTimePicker.js')
+	return gulp.src('chocobo-range-picker.js')
     .pipe(babel({
 			presets: ['es2015']
 		}))
 		.pipe(uglify({ mangle: false }))
-		.pipe(concat('all.js'))
+		.pipe(concat('chocobo-range-picker.min.js'))
 		.pipe(gulp.dest('dist/js/'));
 });
