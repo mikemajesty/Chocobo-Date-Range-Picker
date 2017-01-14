@@ -329,7 +329,7 @@
             changeDate(scope.startDate, true);
             setRangeDate();
           };
-          
+
           var tDateInitial = new Date();
           scope.allWeeks = getWeekDays(tDateInitial);
 
@@ -377,7 +377,7 @@
 
           var between = [];
           var loadDate = new Date();
-          loadDate.setHours(0,0,0,0);
+          loadDate.setHours(0, 0, 0, 0);
           between.push(loadDate);
           ngModel.$setViewValue(between);
 
