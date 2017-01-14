@@ -375,7 +375,9 @@
           };
 
           var between = [];
-          between.push(getFormatDate(new Date()));
+          var loadDate = new Date();
+          loadDate.setHours(0,0,0,0);
+          between.push(loadDate);
           ngModel.$setViewValue(between);
 
           angular.element(elem).on('change', function (event) {
