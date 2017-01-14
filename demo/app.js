@@ -1,1 +1,1 @@
-angular.module('BotPicker', []);
+angular.module('app', []);

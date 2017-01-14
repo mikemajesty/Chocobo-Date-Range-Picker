@@ -1,7 +1,7 @@
 (angular);
 (function (angular) {
   'use strict';
-  angular.module('BotPicker')
+  angular.module('app')
     .controller('ChocoboIndexCtrl', ['$scope', ($scope) => {
 
       $scope.demo = { searchDate: null };

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html ng-app='BotPicker'>
+<html ng-app='app'>
   <head>
     <meta charset="utf-8">
-    <title>BootPicker</title>
+    <title>Chocobo Range Picker</title>
     <link href="../chocobo-range-picker.css" rel="stylesheet">
     <script src="/node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="public/app.js"></script>
@@ -18,7 +18,7 @@
 </head>
   <body ng-controller='ChocoboIndexCtrl'>
     <!--pt-BR en-us-->
-        <bootpicker locale='pt-BR' options='options' ng-model="demo.searchDate"></bootpicker>
+        <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
         <br>
           {{demo.searchDate}}
   </body>

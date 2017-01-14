@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
-  angular.module('BotPicker', [])
-    .directive("bootpicker", ['$filter', function ($filter) {
+  angular.module('app', [])
+    .directive("chocoboRangePicker", ['$filter', function ($filter) {
 
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
