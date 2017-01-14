@@ -92,7 +92,8 @@
               var start = new Date(tDate.getFullYear(), tDate.getMonth(), 1);
               var end = new Date(tDate.getFullYear(), tDate.getMonth() + 1, 0);
               var weeks = [];
-              var tDay = getLastSunday(new Date());
+              var dateInitialOverload = new Date();
+              var tDay = getLastSunday(dateInitialOverload);
               for (var index = start.getDate(); index <= end.getDate(); index++) {
                 start.setDate(index);
                 if (start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() == getLastSunday(new Date()).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() || weeks.length === 0) {

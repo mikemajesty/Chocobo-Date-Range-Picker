@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html ng-app='app'>
-  <head>
-    <meta charset="utf-8">
-    <title>Chocobo Range Picker</title>
-    <link href="../chocobo-range-picker.css" rel="stylesheet">
-    <script src="/node_modules/angular/angular.js"></script>
-    <script type="text/javascript" src="public/app.js"></script>
-    <script type="text/javascript" src="chocobo-range-picker.js"></script>
-    <script type="text/javascript" src="public/indexController.js"></script>
-    <style>
-      .button.btnFade.btnYear {
-      }
-      .current-day-last {
-        
-      }
-    </style>
+
+<head>
+  <meta charset="utf-8">
+  <title>Chocobo Range Picker</title>
+  <link href="../chocobo-range-picker.css" rel="stylesheet">
+  <script src="/node_modules/angular/angular.js"></script>
+  <script type="text/javascript" src="public/app.js"></script>
+
+  <script type="text/javascript" src="chocobo-range-picker.js"></script>
+  <!--<script type="text/javascript" src="/dist/js/chocobo-range-picker.min.js"></script>-->
+
+  <script type="text/javascript" src="public/indexController.js"></script>
+  <style>
+    .button.btnFade.btnYear {}
+    
+    .current-day-last {}
+  </style>
 </head>
-  <body ng-controller='ChocoboIndexCtrl'>
-    <!--pt-BR en-us-->
-        <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
-        <br>
-          {{demo.searchDate}}
-  </body>
+
+<body ng-controller='ChocoboIndexCtrl'>
+  <!--pt-BR en-us-->
+  <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
+  <br> {{demo.searchDate}}
+</body>
+
 </html>
