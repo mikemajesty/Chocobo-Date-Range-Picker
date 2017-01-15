@@ -90,6 +90,7 @@ table {
     position: absolute;
     top: 50%;
     width: 2em;
+    background: #0FB0DF;
 }
 
 .btn-prev:hover,
@@ -170,60 +171,60 @@ input.button {
 }
 
 .btnYear {
-    background: #00AE68;
+    background: #0FB0DF;
 }
 
 .btnSemester {
-    background: #5DC8CD;
+    background: #0FB0DF;
 }
 
 .btnTrimester {
-    background: #FFAA40;
+    background: #0FB0DF;
 }
 
 .btnMonth {
-    background: #A74982;
+    background: #0FB0DF;
 }
 
 .btnColorWeek {
-    background: #0099CC;
+    background: #0FB0DF;
 }
 
 .btnLastDay {
-    background: #ff0040;
+    background: #0FB0DF;
 }
 
 .btnToday {
-    background: #808080;
+    background: #0FB0DF;
 }
 
 
 /* BUTTON HOVER */
 
 .btnFade.btnYear:hover {
-    background: #21825B;
+    background: #CBD1D2;
 }
 
 .btnFade.btnSemester:hover {
-    background: #01939A;
+    background: #CBD1D2;
 }
 
 .btnFade.btnTrimester:hover {
-    background: #FF8E00;
+    background: #CBD1D2;
 }
 
 .btnFade.btnMonth:hover {
-    background: #6D184B;
+    background: #CBD1D2;
 }
 
 .btnFade.btnColorWeek:hover {
-    background: #006699;
+    background: #CBD1D2;
 }
 
 .btnFade.btnLastDay:hover {
-    background: #ff0080;
+    background: #CBD1D2;
 }
 
 .btnFade.btnToday:hover {
-    background: #867979;
+    background: #CBD1D2;
 }
