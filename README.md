@@ -97,6 +97,7 @@ bower install chocoborangepicker
 ```
 
 ##### Button Hover
+
 ```
 .btnFade.btnYear:hover {
     yourCssProperty: yourValueCssproperty !important;
@@ -127,21 +128,24 @@ bower install chocoborangepicker
 }
 ```
 
-###### Input text
+##### Input text
+
 ```
 .input-text {
     yourCssProperty: yourValueCssproperty !important;
 }
 ```
 
-###### Current select day
+##### Current select day
+
 ```
 current-day-last {
     yourCssProperty: yourValueCssproperty !important;
 }
 ```
 
-###### Date interval
+##### Date interval
+
 ```
 .hover-range-normal {
     yourCssProperty: yourValueCssproperty !important;
@@ -149,6 +153,7 @@ current-day-last {
 ```
  
 ##### Arrows that changes the months.
+
 ```
 .btn-prev,.btn-next {
     yourCssProperty: yourValueCssproperty !important;
@@ -157,9 +162,6 @@ current-day-last {
    yourCssProperty: yourValueCssproperty !important;
 }
 ```
-
-###### 
- 
 #### Used versions
 
 ##### Angular
