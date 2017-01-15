@@ -1,7 +1,7 @@
 {
   "name": "chocoborangepicker",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Date Range Picker easier to use in angular.",
   "main": "chocobo-range-picker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/mikemajesty/Chocobo-Date-Range-Picker.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Mike Lima <mike.lima@tegra.me>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mikemajesty/Chocobo-Date-Range-Picker/issues"
   },
