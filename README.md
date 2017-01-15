@@ -50,6 +50,8 @@ bower install chocoborangepicker
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
+#### Attention only four locale were tested.: pt-BR - Brasil, en-US - United States, en-GB - Great Britain, de-DE - Germany
+
 ### $scope.options
 <ul>
 <li><b>txtDateInit</b> - Label of input text that will show the date interval. If you remove this property it will not shown.</li>
