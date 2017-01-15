@@ -1,6 +1,6 @@
 (function (angular) {
   'use strict';
-  angular.module('app', [])
+  angular.module('chocoboRangePicker', [])
     .directive("chocoboRangePicker", ['$filter', function ($filter) {
 
       String.prototype.capitalizeFirstLetter = function () {

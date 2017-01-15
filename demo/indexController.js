@@ -1,7 +1,7 @@
 (angular);
 (function (angular) {
   'use strict';
-  angular.module('app')
+  angular.module('chocoboRangePicker')
     .controller('ChocoboIndexCtrl', ['$scope', ($scope) => {
 
       $scope.demo = { searchDate: null };
