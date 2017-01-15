@@ -50,7 +50,7 @@ bower install chocoborangepicker
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
- ### $scope.options
+### $scope.options
 <ul>
 <li><b>txtDateInit</b> - Label of input text that will show the date interval. If you remove this property it will not shown.</li>
 <li><b>buttons</b> - Where you will configure a buttons properties.</li>
