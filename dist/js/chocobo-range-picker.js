@@ -1,6 +1,6 @@
 (function (angular) {
   'use strict';
-  angular.module('app', [])
+  angular.module('chocoboRangePicker', [])
     .directive("chocoboRangePicker", ['$filter', function ($filter) {
 
       String.prototype.capitalizeFirstLetter = function () {
@@ -8,15 +8,12 @@
       };
 
       Date.prototype.reverseFormat = function (tDate, locale) {
-        if (locale === 'pt-BR' || locale === 'en-GB') {
+        if (locale === 'pt-BR') {
           var formatDate = tDate.split("/");
           return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
         }
-        if (locale === 'de-DE') {
-          var parts = tDate.match(/(\d+)/g);
-          return new Date(parts[2], parts[1] - 1, parts[0]);
-        }
         return new Date(tDate);
+        //year//month//day -> this is used when the format was dd/MM/yyyy
       };
 
       return {
