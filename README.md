@@ -50,17 +50,20 @@ bower install chocoborangepicker
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
- 
- 
- 
- 
- 
+ ### $scope.options
+<ul>
+<li><b>txtDateInit</b> - Label of input text that will show the date interval. If you remove this property it will not shown.</li>
+<li><b>buttons</b> - Where you will configure a buttons properties.</li>
+<li><b>buttons: {btnYear}</b> - Where you will configure a each button properties. If you remove this property it will not shown.</li>
+<li><b>buttons: {btnYear.txt}</b> - Text that will apear in button.</li>
+<li><b>buttons: {btnYear.tooltip}</b> - Tooltip that will appear when user mouseover on button.</li>
+</ul>
  
  
 #### Used versions
 
 ##### Angular
-"angular": "^1.6.1"
+"version": "^1.6.1"
 <hr>
 ### License
 
