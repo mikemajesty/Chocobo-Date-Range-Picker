@@ -8,4 +8,12 @@ bower install chocoborangepicker
  <link href="/bower_components/chocoborangepicker/dist/css/chocobo-range-picker.min.css" rel="stylesheet">
  <script type="text/javascript" src="/bower_components/chocoborangepicker/dist/js/chocobo-range-picker.min.js"></script>
 
+#### Used versions
 
+##### Angular
+"angular": "^1.6.1"
+<hr>
+### License
+
+It is available under the MIT license.
+[License](https://opensource.org/licenses/mit-license.php)
