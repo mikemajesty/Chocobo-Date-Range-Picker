@@ -5,4 +5,7 @@
 bower install chocoborangepicker
 ```
 
+ <link href="/bower_components/chocoborangepicker/dist/css/chocobo-range-picker.min.css" rel="stylesheet">
+ <script type="text/javascript" src="/bower_components/chocoborangepicker/dist/js/chocobo-range-picker.min.js"></script>
+
 
