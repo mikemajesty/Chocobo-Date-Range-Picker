@@ -58,7 +58,107 @@ bower install chocoborangepicker
 <li><b>buttons: {btnYear.txt}</b> - Text that will apear in button.</li>
 <li><b>buttons: {btnYear.tooltip}</b> - Tooltip that will appear when user mouseover on button.</li>
 </ul>
+
+#### Other features.
+
+#### You can override a css class like you prefer.
+
+##### Button Text
+
+```
+.btnYear {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnSemester {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnTrimester {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnMonth {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnColorWeek {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnLastDay {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnToday {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+```
+
+##### Button Hover
+```
+.btnFade.btnYear:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnSemester:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnTrimester:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnMonth:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnColorWeek:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnLastDay:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+
+.btnFade.btnToday:hover {
+    yourCssProperty: yourValueCssproperty !important;
+}
+```
+
+###### Input text
+```
+.input-text {
+    yourCssProperty: yourValueCssproperty !important;
+}
+```
+
+###### Current select day
+```
+current-day-last {
+    yourCssProperty: yourValueCssproperty !important;
+}
+```
+
+###### Date interval
+```
+.hover-range-normal {
+    yourCssProperty: yourValueCssproperty !important;
+} 
+```
  
+##### Arrows that changes the months.
+```
+.btn-prev,.btn-next {
+    yourCssProperty: yourValueCssproperty !important;
+}
+.btn-prev:hover, .btn-next:hover {
+   yourCssProperty: yourValueCssproperty !important;
+}
+```
+
+###### 
  
 #### Used versions
 
