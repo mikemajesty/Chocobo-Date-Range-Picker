@@ -15,16 +15,18 @@ bower install chocoborangepicker
 ```
  <link href="/bower_components/chocoborangepicker/dist/css/chocobo-range-picker.min.css" rel="stylesheet">
  <script type="text/javascript" src="/bower_components/chocoborangepicker/dist/js/chocobo-range-picker.min.js"></script>
- ```
+```
  
  Then refer to your module
 ```
  angular.module('yourModule', ['chocoboRangePicker']);
 ```
  
- ##### In your controller use the code below
+
+##### In your controller use the code below
  
- ```
+ 
+```
    $scope.demo = { searchDate: null };  Here is your property that you want to be populated with date range.
    
    $scope.options = {
@@ -40,10 +42,9 @@ bower install chocoborangepicker
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
         }
       };
-
- ```
+```
  
- ##### In your page use
+##### In your page use
 
 ```
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
