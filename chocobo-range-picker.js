@@ -302,7 +302,7 @@
             changeDate(scope.endDate, false);
             ngModel.$setViewValue(between);
             ngModel.$render();
-            console.log('quantity ', between.length);
+            // console.log('quantity ', between.length);
           }
 
           function compareDate(tDate) {
