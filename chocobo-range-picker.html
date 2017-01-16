@@ -1,6 +1,6 @@
 <div class='container'>
-    <label ng-show='options.txtDateInit'>{{options.txtDateInit}}</label>
-    <br/>
+    <label ng-if='options.txtDateInit'>{{options.txtDateInit}}</label>
+    <br ng-if='options.txtDateInit'/>
     <span class="icon">
             <input type='text' ng-model='dateInput' ng-readonly='true' class='input-text' name='dateMap'>
             <img src='/public/calendar.ico' ng-click='openModal()'/>
