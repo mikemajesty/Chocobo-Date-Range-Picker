@@ -314,7 +314,6 @@
           }
 
           scope.openModal = function () {
-            console.log('nem clicou');
             scope.isOpen = !scope.isOpen;
           };
 
