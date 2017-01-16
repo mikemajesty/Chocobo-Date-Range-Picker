@@ -8,7 +8,7 @@
   <script src="/node_modules/angular/angular.js"></script>
   <script type="text/javascript" src="public/app.js"></script>
 
-  <script type="text/javascript" src="chocobo-range-picker.js"></script>
+  <script type="text/javascript" src="../chocobo-range-picker.js"></script>
   <!--<script type="text/javascript" src="/dist/js/chocobo-range-picker.min.js"></script>-->
 
   <script type="text/javascript" src="public/indexController.js"></script>
@@ -22,7 +22,9 @@
   <!--pt-BR en-US en-GB de-DE-->
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
   <br> 
-  {{demo.searchDate}}
+  <div style="padding-top: 20em;">
+    {{demo.searchDate}}
+  </div>
 </body>
 
 </html>

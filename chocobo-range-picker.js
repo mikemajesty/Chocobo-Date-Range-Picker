@@ -116,8 +116,8 @@
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
-                      class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '',
-                      select: compareDate(start) ? 'hover-range-normal' : '',
+                      class: start.getTime() == scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
+                      select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
                       isReadyOnly: (new Date(start) > scope.endDate)
                     };
                 }
@@ -125,8 +125,8 @@
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
                     {
                       date: new Date(start),
-                      class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '',
-                      select: compareDate(start) ? 'hover-range-normal' : '',
+                      class: start.getTime() == scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
+                      select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
                       isReadyOnly: (new Date(start) < scope.startDate)
                     };
                 }
@@ -224,7 +224,7 @@
                   {
                     date: new Date(lastDay),
                     class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
                     isReadyOnly: (lastDay > scope.endDate)
                   };
               }
@@ -233,7 +233,7 @@
                   {
                     date: new Date(lastDay),
                     class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
                     isReadyOnly: false
                   };
               }
@@ -255,7 +255,7 @@
                     {
                       date: new Date(lastSunday),
                       class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                      select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
                       isReadyOnly: false
                     };
                 }
@@ -264,7 +264,7 @@
                     {
                       date: new Date(lastSunday),
                       class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                      select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
                       isReadyOnly: (lastSunday < scope.startDate)
                     };
                 }
@@ -305,7 +305,6 @@
             changeDate(scope.endDate, false);
             ngModel.$setViewValue(between);
             ngModel.$render();
-            // console.log('quantity ', between.length);
           }
 
           function compareDate(tDate) {
@@ -315,8 +314,11 @@
           }
 
           scope.openModal = function () {
+            console.log('nem clicou');
             scope.isOpen = !scope.isOpen;
           };
+
+          scope.isOpen = !scope.isOpen;
 
           scope.chooseInitalDay = function (dt) {
             dateInitial = dt.date;
@@ -459,7 +461,7 @@
             setRangeDate();
           };
         },
-        template: "<div class='container'> <span class='span' ng-show='options.txtDateInit'>{{options.txtDateInit}}</span> <input type='text' ng-model='dateInput' ng-click='openModal()' ng-readonly='true' class='input-text' name='dateMap'> <div ng-show='!isOpen' class='line'> <div class='calendar column'> <header> <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2> <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth(true)'>&#x2770</a> <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth(true)'>&#x2771</a> </header> <table> <thead> <tr> <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td> </tr> </thead> <tbody> <tr ng-repeat='week in dateInitialMap.result'> <td ng-repeat='dayOfWeek in allWeeks' class='{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])'>{{week[dayOfWeek].date.getDate()}}</td> </tr> </tbody> </table> </div> <div class='calendar column padding-l'> <header> <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2> <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth()'>&#x2770;</a> <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth()'>&#x2771;</a> </header> <table> <thead> <tr> <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td> </tr> </thead> <tbody> <tr ng-repeat='week in dateFinalMap.result'> <td ng-repeat='dayOfWeek in allWeeks' class='{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])'>{{week[dayOfWeek].date.getDate()}}</td> </tr> </tbody> </table> </div> <div class='column padding-l'> <input type='button' ng-show='options.buttons.btnYear.txt' value='{{options.buttons.btnYear.txt}}' title='{{options.buttons.btnYear.tooltip}}' class='button btnFade btnYear' ng-click='selectYear();'> <br> <input type='button' ng-show='options.buttons.btnSemester.txt' value='{{options.buttons.btnSemester.txt}}' title='{{options.buttons.btnSemester.tooltip}}' class='button btnFade btnSemester' ng-click='selectSemester();'> <br> <input type='button' ng-show='options.buttons.btnTrimester.txt' value='{{options.buttons.btnTrimester.txt}}' title='{{options.buttons.btnTrimester.tooltip}}' class='button btnFade btnTrimester' ng-click='selectTrimester();'> <br> <input type='button' ng-show='options.buttons.btnMonth.txt' name='btnMes' value='{{ options.buttons.btnMonth.txt }}' title='{{options.buttons.btnMonth.tooltip}}' class='button btnFade btnMonth' ng-click='selectMonth();'> <br> <input type='button' ng-show='options.buttons.btnWeek.txt' value='{{options.buttons.btnWeek.txt}}' title='{{options.buttons.btnWeek.tooltip}}' class='button btnFade btnColorWeek' ng-click='selectWeek();'> <br> <input type='button' ng-show='options.buttons.btnLastDay.txt' value='{{options.buttons.btnLastDay.txt}}' title='{{options.buttons.btnLastDay.tooltip}}' class='button btnFade btnLastDay' ng-click='selectLastDay();'> <br> <input type='button' ng-show='options.buttons.btnToday.txt' value='{{options.buttons.btnToday.txt}}' title='{{options.buttons.btnToday.tooltip}}' class='button btnFade btnToday' ng-click='selectToday();'> </div> </div> </div>"
+        templateUrl: 'chocobo-range-picker.html' 
       };
     }]);
 })(angular);
