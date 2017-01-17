@@ -1,0 +1,16 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "angular": true
+  },
+  "rules": {
+    "no-console": "off",
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "eqeqeq": "error",
+    "max-depth": ["error", { "max": 2 }],
+    "semi": "error"
+  }
+}
