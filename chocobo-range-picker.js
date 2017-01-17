@@ -1,13 +1,13 @@
-(function (angular) {
+(function(angular) {
   'use strict';
   angular.module('chocoboRangePicker', [])
-    .directive("chocoboRangePicker", ['$filter', function ($filter) {
+    .directive("chocoboRangePicker", ['$filter', function($filter) {
 
-      String.prototype.capitalizeFirstLetter = function () {
+      String.prototype.capitalizeFirstLetter = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
       };
 
-      Date.prototype.reverseFormat = function (tDate, locale) {
+      Date.prototype.reverseFormat = function(tDate, locale) {
         if (locale === 'pt-BR' || locale === 'en-GB') {
           var formatDate = tDate.split("/");
           return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
@@ -20,13 +20,13 @@
       };
 
       return {
-        require: 'ngModel',
+        require: "ngModel",
         restrict: "AE",
         scope: {
           locale: '@',
           options: '='
         },
-        link: function (scope, elem, attrs, ngModel) {
+        link: function(scope, elem, attrs, ngModel) {
 
           var dateInitial = new Date();
           var dateFinal = new Date();
@@ -40,13 +40,13 @@
           scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
           scope.dateMap = {};
 
-          scope.$watch('startDate', function (newValue, oldValue) {
+          scope.$watch('startDate', function(newValue, oldValue) {
             var tInitialDate = scope.startDate;
             var tEndDate = scope.endDate;
             scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           });
 
-          scope.$watch('endDate', function (newValue, oldValue) {
+          scope.$watch('endDate', function(newValue, oldValue) {
             var tInitialDate = scope.startDate;
             var tEndDate = scope.endDate;
             scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
@@ -59,13 +59,13 @@
             return dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
           }
 
-          var getLastSunday = function (d) {
+          var getLastSunday = function(d) {
             var t = new Date(d);
             t.setDate(t.getDate() - t.getDay());
             return t;
           };
 
-          var getRangeDate = function (currentDate, endDate) {
+          var getRangeDate = function(currentDate, endDate) {
             var tempArray = [];
             endDate = new Date(endDate);
             currentDate.setHours(0, 0, 0, 0);
@@ -77,7 +77,7 @@
             return tempArray;
           };
 
-          var changeDate = function (tDate, isInital) {
+          var changeDate = function(tDate, isInital) {
             var month = tDate.toLocaleDateString(attrs.locale, optionsMonth).capitalizeFirstLetter();
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
@@ -86,8 +86,7 @@
               if (!scope.dateFinalMap) {
                 scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
               }
-            }
-            else {
+            } else {
               scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
             }
 
@@ -113,29 +112,25 @@
                 }
                 if (isInital) {
                   scope.startDate.setHours(0, 0, 0, 0);
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(start),
-                      class: start.getTime() == scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
-                      select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
-                      isReadyOnly: (new Date(start) > scope.endDate)
-                    };
-                }
-                else {
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(start),
-                      class: start.getTime() == scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
-                      select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
-                      isReadyOnly: (new Date(start) < scope.startDate)
-                    };
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(start),
+                    class: start.getTime() == scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
+                    select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (new Date(start) > scope.endDate)
+                  };
+                } else {
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(start),
+                    class: start.getTime() == scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
+                    select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (new Date(start) < scope.startDate)
+                  };
                 }
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
                   }
-                }
-                else {
+                } else {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findSecondCalendarLast);
                   }
@@ -145,8 +140,7 @@
                   if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                     weeks.find(findFirstCalendarNext);
                   }
-                }
-                else {
+                } else {
                   if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                     weeks.find(findSecondCalendarNext);
                   }
@@ -220,22 +214,19 @@
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
               if (isInital) {
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                  {
-                    date: new Date(lastDay),
-                    class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
-                    isReadyOnly: (lastDay > scope.endDate)
-                  };
-              }
-              else {
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                  {
-                    date: new Date(lastDay),
-                    class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
-                    isReadyOnly: false
-                  };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                  date: new Date(lastDay),
+                  class: 'next-month',
+                  select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                  isReadyOnly: (lastDay > scope.endDate)
+                };
+              } else {
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                  date: new Date(lastDay),
+                  class: 'next-month',
+                  select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                  isReadyOnly: false
+                };
               }
               lastDay.setDate(lastDay.getDate() + 1);
             }
@@ -251,22 +242,19 @@
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
                 if (isInital) {
-                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(lastSunday),
-                      class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
-                      isReadyOnly: false
-                    };
-                }
-                else {
-                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(lastSunday),
-                      class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
-                      isReadyOnly: (lastSunday < scope.startDate)
-                    };
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(lastSunday),
+                    class: 'prev-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: false
+                  };
+                } else {
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(lastSunday),
+                    class: 'prev-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (lastSunday < scope.startDate)
+                  };
                 }
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
@@ -313,13 +301,13 @@
             return (tDate >= scope.startDate && tDate <= scope.endDate);
           }
 
-          scope.openModal = function () {
+          scope.openModal = function() {
             scope.isOpen = !scope.isOpen;
           };
 
           scope.isOpen = !scope.isOpen;
 
-          scope.chooseInitalDay = function (dt) {
+          scope.chooseInitalDay = function(dt) {
             dateInitial = dt.date;
             scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, true);
@@ -327,7 +315,7 @@
             setRangeDate();
           };
 
-          scope.chooseFinalDay = function (dt) {
+          scope.chooseFinalDay = function(dt) {
             dateFinal = dt.date;
             scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, false);
@@ -338,7 +326,7 @@
           var tDateInitial = new Date();
           scope.allWeeks = getWeekDays(tDateInitial);
 
-          scope.nextInitialMonth = function (isInital) {
+          scope.nextInitialMonth = function(isInital) {
             var DECEMBER = 11;
             if (isInital) {
               if (dateInitial.getMonth() == DECEMBER) {
@@ -347,8 +335,7 @@
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() + 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-            }
-            else {
+            } else {
               if (dateFinal.getMonth() == DECEMBER) {
                 dateFinal = new Date(dateFinal.getFullYear() + 1, 0, 1);
               } else {
@@ -359,7 +346,7 @@
             setRangeDate();
           };
 
-          scope.lastInitialMonth = function (isInital) {
+          scope.lastInitialMonth = function(isInital) {
             var JANUARY = 0;
             if (isInital) {
               if (dateInitial.getMonth() === JANUARY) {
@@ -368,8 +355,7 @@
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() - 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-            }
-            else {
+            } else {
               if (dateFinal.getMonth() === JANUARY) {
                 dateFinal = new Date(dateFinal.getFullYear() - 1, 11, 1);
               } else {
@@ -386,12 +372,12 @@
           between.push(loadDate);
           ngModel.$setViewValue(between);
 
-          angular.element(elem).on('change', function (event) {
+          angular.element(elem).on('change', function(event) {
             between = [];
             setRangeDate();
           });
 
-          scope.selectYear = function () {
+          scope.selectYear = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setMonth(today.getMonth() - 12);
@@ -401,7 +387,7 @@
             setRangeDate();
           };
 
-          scope.selectSemester = function () {
+          scope.selectSemester = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setMonth(today.getMonth() - 6);
@@ -411,7 +397,7 @@
             setRangeDate();
           };
 
-          scope.selectTrimester = function () {
+          scope.selectTrimester = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setMonth(today.getMonth() - 3);
@@ -421,7 +407,7 @@
             setRangeDate();
           };
 
-          scope.selectMonth = function () {
+          scope.selectMonth = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setMonth(today.getMonth() - 1);
@@ -431,7 +417,7 @@
             setRangeDate();
           };
 
-          scope.selectWeek = function () {
+          scope.selectWeek = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setDate(today.getDate() - 7);
@@ -441,7 +427,7 @@
             setRangeDate();
           };
 
-          scope.selectLastDay = function () {
+          scope.selectLastDay = function() {
             var today = new Date();
             dateInitial = new Date();
             dateInitial.setDate(today.getDate() - 1);
@@ -451,7 +437,7 @@
             setRangeDate();
           };
 
-          scope.selectToday = function () {
+          scope.selectToday = function() {
             dateInitial = new Date();
             dateFinal = new Date();
             scope.startDate = new Date();
@@ -460,7 +446,7 @@
             setRangeDate();
           };
         },
-        templateUrl: 'chocobo-range-picker.html' 
+        templateUrl: 'chocobo-range-picker.html'
       };
     }]);
 })(angular);
