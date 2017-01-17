@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
   angular.module('chocoboRangePicker', [])
-    .directive("chocoboRangePicker", ['$filter', function ($filter) {
+    .directive('chocoboRangePicker', [function () {
 
       String.prototype.capitalizeFirstLetter = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
@@ -9,7 +9,7 @@
 
       Date.prototype.reverseFormat = function (tDate, locale) {
         if (locale === 'pt-BR' || locale === 'en-GB') {
-          var formatDate = tDate.split("/");
+          var formatDate = tDate.split('/');
           return new Date(formatDate[2], formatDate[1] - 1, formatDate[0]);
         }
         if (locale === 'de-DE') {
@@ -21,7 +21,7 @@
 
       return {
         require: 'ngModel',
-        restrict: "AE",
+        restrict: 'AE',
         scope: {
           locale: '@',
           options: '='
@@ -30,7 +30,7 @@
 
           var dateInitial = new Date();
           var dateFinal = new Date();
-          var optionsWeek = { weekday: "long" };
+          var optionsWeek = { weekday: 'long' };
           var optionsMonth = { month: 'long' };
           var optionsYear = { year: 'numeric' };
           var optionsDay = { day: 'numeric' };
@@ -40,24 +40,17 @@
           scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
           scope.dateMap = {};
 
-          scope.$watch('startDate', function (newValue, oldValue) {
+          scope.$watch('startDate', function () {
             var tInitialDate = scope.startDate;
             var tEndDate = scope.endDate;
-            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + ' - ' + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           });
 
-          scope.$watch('endDate', function (newValue, oldValue) {
+          scope.$watch('endDate', function () {
             var tInitialDate = scope.startDate;
             var tEndDate = scope.endDate;
-            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + " - " + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            scope.dateInput = tInitialDate.toLocaleDateString(attrs.locale, optionsAlmostComplete) + ' - ' + tEndDate.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           });
-
-          function getFirstDayOfWeek() {
-            var dt = new Date();
-            var day = dt.getDay();
-            dt.setDate((dt.getDate() - day + (day === 0 ? -6 : 0)));
-            return dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
-          }
 
           var getLastSunday = function (d) {
             var t = new Date(d);
@@ -86,8 +79,7 @@
               if (!scope.dateFinalMap) {
                 scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
               }
-            }
-            else {
+            } else {
               scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate), date: scope.endDate };
             }
 
@@ -113,29 +105,25 @@
                 }
                 if (isInital) {
                   scope.startDate.setHours(0, 0, 0, 0);
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(start),
-                      class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '',
-                      select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (new Date(start) > scope.endDate)
-                    };
-                }
-                else {
-                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(start),
-                      class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '',
-                      select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (new Date(start) < scope.startDate)
-                    };
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(start),
+                    class: start.getTime() === scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
+                    select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (new Date(start) > scope.endDate)
+                  };
+                } else {
+                  weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(start),
+                    class: start.getTime() === scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
+                    select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (new Date(start) < scope.startDate)
+                  };
                 }
                 if (isInital) {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findFirstCalendarLast);
                   }
-                }
-                else {
+                } else {
                   if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
                     weeks.find(findSecondCalendarLast);
                   }
@@ -145,8 +133,7 @@
                   if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                     weeks.find(findFirstCalendarNext);
                   }
-                }
-                else {
+                } else {
                   if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                     weeks.find(findSecondCalendarNext);
                   }
@@ -175,7 +162,7 @@
             }
           }
 
-          function findFirstCalendarLast(element, index, array) {
+          function findFirstCalendarLast(element, index) {
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
               var td = new Date(dateInitial);
@@ -183,7 +170,7 @@
             }
           }
 
-          function findSecondCalendarLast(element, index, array) {
+          function findSecondCalendarLast(element, index) {
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
               var td = new Date(dateFinal);
@@ -220,22 +207,19 @@
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
               if (isInital) {
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                  {
-                    date: new Date(lastDay),
-                    class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    isReadyOnly: (lastDay > scope.endDate)
-                  };
-              }
-              else {
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                  {
-                    date: new Date(lastDay),
-                    class: 'next-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    isReadyOnly: false
-                  };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                  date: new Date(lastDay),
+                  class: 'next-month',
+                  select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                  isReadyOnly: (lastDay > scope.endDate)
+                };
+              } else {
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                  date: new Date(lastDay),
+                  class: 'next-month',
+                  select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                  isReadyOnly: false
+                };
               }
               lastDay.setDate(lastDay.getDate() + 1);
             }
@@ -251,22 +235,19 @@
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
                 if (isInital) {
-                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(lastSunday),
-                      class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                      isReadyOnly: false
-                    };
-                }
-                else {
-                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                    {
-                      date: new Date(lastSunday),
-                      class: 'prev-month',
-                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                      isReadyOnly: (lastSunday < scope.startDate)
-                    };
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(lastSunday),
+                    class: 'prev-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: false
+                  };
+                } else {
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
+                    date: new Date(lastSunday),
+                    class: 'prev-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal cursor' : 'cursor',
+                    isReadyOnly: (lastSunday < scope.startDate)
+                  };
                 }
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
@@ -289,10 +270,6 @@
             return weekList;
           }
 
-          function getFormatDate(tDate, format) {
-            return $filter('date')(tDate, format);
-          }
-
           function getLastDayOfMonth(tDate) {
             var dt = new Date(tDate.getUTCFullYear(), tDate.getUTCMonth() + 1, 0);
             return dt.toLocaleDateString(attrs.locale, optionsDay);
@@ -305,7 +282,6 @@
             changeDate(scope.endDate, false);
             ngModel.$setViewValue(between);
             ngModel.$render();
-            // console.log('quantity ', between.length);
           }
 
           function compareDate(tDate) {
@@ -317,6 +293,8 @@
           scope.openModal = function () {
             scope.isOpen = !scope.isOpen;
           };
+
+          scope.isOpen = !scope.isOpen;
 
           scope.chooseInitalDay = function (dt) {
             dateInitial = dt.date;
@@ -340,15 +318,14 @@
           scope.nextInitialMonth = function (isInital) {
             var DECEMBER = 11;
             if (isInital) {
-              if (dateInitial.getMonth() == DECEMBER) {
+              if (dateInitial.getMonth() === DECEMBER) {
                 dateInitial = new Date(dateInitial.getFullYear() + 1, 0, 1);
               } else {
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() + 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-            }
-            else {
-              if (dateFinal.getMonth() == DECEMBER) {
+            } else {
+              if (dateFinal.getMonth() === DECEMBER) {
                 dateFinal = new Date(dateFinal.getFullYear() + 1, 0, 1);
               } else {
                 dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() + 1, 1);
@@ -367,8 +344,7 @@
                 dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() - 1, 1);
               }
               scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
-            }
-            else {
+            } else {
               if (dateFinal.getMonth() === JANUARY) {
                 dateFinal = new Date(dateFinal.getFullYear() - 1, 11, 1);
               } else {
@@ -385,7 +361,7 @@
           between.push(loadDate);
           ngModel.$setViewValue(between);
 
-          angular.element(elem).on('change', function (event) {
+          angular.element(elem).on('change', function () {
             between = [];
             setRangeDate();
           });
@@ -459,7 +435,7 @@
             setRangeDate();
           };
         },
-        template: "<div class='container'> <span class='span' ng-show='options.txtDateInit'>{{options.txtDateInit}}</span> <input type='text' ng-model='dateInput' ng-click='openModal()' ng-readonly='true' class='input-text' name='dateMap'> <div ng-show='!isOpen' class='line'> <div class='calendar column'> <header> <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2> <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth(true)'>&#x2770</a> <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth(true)'>&#x2771</a> </header> <table> <thead> <tr> <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td> </tr> </thead> <tbody> <tr ng-repeat='week in dateInitialMap.result'> <td ng-repeat='dayOfWeek in allWeeks' class='{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])'>{{week[dayOfWeek].date.getDate()}}</td> </tr> </tbody> </table> </div> <div class='calendar column padding-l'> <header> <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2> <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth()'>&#x2770;</a> <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth()'>&#x2771;</a> </header> <table> <thead> <tr> <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td> </tr> </thead> <tbody> <tr ng-repeat='week in dateFinalMap.result'> <td ng-repeat='dayOfWeek in allWeeks' class='{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])'>{{week[dayOfWeek].date.getDate()}}</td> </tr> </tbody> </table> </div> <div class='column padding-l'> <input type='button' ng-show='options.buttons.btnYear.txt' value='{{options.buttons.btnYear.txt}}' title='{{options.buttons.btnYear.tooltip}}' class='button btnFade btnYear' ng-click='selectYear();'> <br> <input type='button' ng-show='options.buttons.btnSemester.txt' value='{{options.buttons.btnSemester.txt}}' title='{{options.buttons.btnSemester.tooltip}}' class='button btnFade btnSemester' ng-click='selectSemester();'> <br> <input type='button' ng-show='options.buttons.btnTrimester.txt' value='{{options.buttons.btnTrimester.txt}}' title='{{options.buttons.btnTrimester.tooltip}}' class='button btnFade btnTrimester' ng-click='selectTrimester();'> <br> <input type='button' ng-show='options.buttons.btnMonth.txt' name='btnMes' value='{{ options.buttons.btnMonth.txt }}' title='{{options.buttons.btnMonth.tooltip}}' class='button btnFade btnMonth' ng-click='selectMonth();'> <br> <input type='button' ng-show='options.buttons.btnWeek.txt' value='{{options.buttons.btnWeek.txt}}' title='{{options.buttons.btnWeek.tooltip}}' class='button btnFade btnColorWeek' ng-click='selectWeek();'> <br> <input type='button' ng-show='options.buttons.btnLastDay.txt' value='{{options.buttons.btnLastDay.txt}}' title='{{options.buttons.btnLastDay.tooltip}}' class='button btnFade btnLastDay' ng-click='selectLastDay();'> <br> <input type='button' ng-show='options.buttons.btnToday.txt' value='{{options.buttons.btnToday.txt}}' title='{{options.buttons.btnToday.tooltip}}' class='button btnFade btnToday' ng-click='selectToday();'> </div> </div> </div>"
+        templateUrl: 'chocobo-range-picker.html'
       };
     }]);
 })(angular);

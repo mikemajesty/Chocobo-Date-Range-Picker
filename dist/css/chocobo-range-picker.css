@@ -30,6 +30,7 @@ table {
     width: 50em;
 }
 
+
 /* ---------- CALENDAR ---------- */
 
 .calendar {
@@ -91,6 +92,11 @@ table {
     top: 50%;
     width: 2em;
     background: #0FB0DF;
+    cursor: pointer;
+}
+
+.cursor {
+    cursor: pointer;
 }
 
 .btn-prev:hover,
@@ -132,11 +138,14 @@ table {
     -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
-    text-align: center;
+    text-align: left;
+    padding-left: 2em;
 }
 
 .line {
     display: table;
+    padding-top: 2.5em;
+    position: absolute;
 }
 
 .column {
@@ -146,6 +155,7 @@ table {
 .padding-l {
     padding-left: 5px;
 }
+
 
 /* BUTTONS */
 
@@ -172,30 +182,37 @@ input.button {
 
 .btnYear {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnSemester {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnTrimester {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnMonth {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnColorWeek {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnLastDay {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 .btnToday {
     background: #0FB0DF;
+    cursor: pointer;
 }
 
 
@@ -227,4 +244,19 @@ input.button {
 
 .btnFade.btnToday:hover {
     background: #CBD1D2;
+}
+
+span.icon {
+    position: absolute;
+    height: 200px
+}
+
+span.icon img{
+    position: absolute;
+    display: block;
+    top: 0.1em;
+    right: 0.5em;
+    width: 2em;
+    height: 1.8em;
+    cursor: pointer;
 }
