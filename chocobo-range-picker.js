@@ -435,6 +435,7 @@
             setRangeDate();
           };
         },
+        replace: true,
         templateUrl: 'chocobo-range-picker.html'
       };
     }]);
