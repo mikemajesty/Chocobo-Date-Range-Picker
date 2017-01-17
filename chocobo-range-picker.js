@@ -107,14 +107,14 @@
                   scope.startDate.setHours(0, 0, 0, 0);
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
                     date: new Date(start),
-                    class: start.getTime() == scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
+                    class: start.getTime() === scope.startDate.getTime() ? 'current-day-first cursor' : 'cursor',
                     select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
                     isReadyOnly: (new Date(start) > scope.endDate)
                   };
                 } else {
                   weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = {
                     date: new Date(start),
-                    class: start.getTime() == scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
+                    class: start.getTime() === scope.endDate.getTime() ? 'current-day-last cursor' : 'cursor',
                     select: compareDate(start) ? 'hover-range-normal cursor' : 'cursor',
                     isReadyOnly: (new Date(start) < scope.startDate)
                   };
