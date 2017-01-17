@@ -143,9 +143,7 @@ table {
 }
 
 .line {
-    display: table;
     padding-top: 2.5em;
-    position: absolute;
 }
 
 .column {
