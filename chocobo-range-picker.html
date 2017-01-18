@@ -2,7 +2,7 @@
   <label ng-if='options.txtDateInit'>{{options.txtDateInit}}</label>
   <span class='icon'>
             <input type='text' ng-click='options.inputConfig.showIcon === false ? openModal() : undefined' ng-model='dateInput' ng-readonly='true' class='input-text' name='dateMap'>
-            <img  ng-if='options.inputConfig.showIcon' ng-src='{{options.inputConfig.iconPath ? options.inputConfig.iconPath : iconUrl}}' ng-click='openModal()'/>
+            <img  ng-if='options.inputConfig.showIcon || !options.inputConfig' ng-src='{{options.inputConfig.iconPath ? options.inputConfig.iconPath : iconUrl}}' ng-click='openModal()'/>
     </span>
   <div ng-show='!isOpen' class='line'>
     <div class='calendar column'>
