@@ -141,7 +141,8 @@ table {
 }
 
 .line {
-  padding-top: 2.5em;
+  position: absolute;
+  margin-top: 2.5em;
 }
 
 .column {
@@ -244,6 +245,7 @@ input.button {
 
 span.icon {
   position: absolute;
+  display:block;
 }
 
 span.icon img {
