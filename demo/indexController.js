@@ -20,7 +20,7 @@
         },
         inputConfig: 
         {
-          showIcon: false,
+          showIcon: true,
           iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
         }
       };
