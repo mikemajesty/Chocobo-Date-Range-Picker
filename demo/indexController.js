@@ -18,11 +18,11 @@
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
         },
-        inputConfig: 
-        {
-          showIcon: false,
-          iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
-        }
+        // inputConfig: 
+        // {
+        //   showIcon: true,
+        //   iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
+        // }
       };
 
     }]);
