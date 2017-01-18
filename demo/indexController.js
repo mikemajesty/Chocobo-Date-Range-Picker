@@ -8,7 +8,7 @@
 
       $scope.options = {
         txtDateInit: 'Demo: Date',
-        buttons:
+        buttons: 
         {
           btnYear: { txt: 'Demo: Year', tooltip: "Choose Year" },
           btnSemester: { txt: 'Demo: Semester', tooltip: "Choose Semester" },
@@ -17,6 +17,11 @@
           btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
+        },
+        inputConfig: 
+        {
+          showIcon: true,
+          iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
         }
       };
 

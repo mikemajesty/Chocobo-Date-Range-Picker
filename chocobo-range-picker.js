@@ -297,6 +297,8 @@
 
           scope.isOpen = !scope.isOpen;
 
+          scope.iconUrl = '/public/calendar.ico';
+
           scope.chooseInitalDay = function(dt) {
             dateInitial = dt.date;
             scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);

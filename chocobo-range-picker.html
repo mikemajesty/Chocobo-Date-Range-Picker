@@ -1,63 +1,63 @@
 <div class='container'>
-    <label ng-if='options.txtDateInit'>{{options.txtDateInit}}</label>
-    <br ng-if='options.txtDateInit'/>
-    <span class="icon">
-            <input type='text' ng-model='dateInput' ng-readonly='true' class='input-text' name='dateMap'>
-            <img src='/public/calendar.ico' ng-click='openModal()'/>
+  <label ng-if='options.txtDateInit'>{{options.txtDateInit}}</label>
+  <br ng-if='options.txtDateInit' />
+  <span class='icon'>
+            <input type='text' ng-click="options.inputConfig.showIcon === false ? openModal() : undefined" ng-model='dateInput' ng-readonly='true' class='input-text' name='dateMap'>
+            <img  ng-if='options.inputConfig.showIcon' ng-src='{{options.inputConfig.iconPath ? options.inputConfig.iconPath : iconUrl}}' ng-click='openModal()'/>
     </span>
-    <div ng-show='!isOpen' class='line'>
-        <div class='calendar column'>
-            <header>
-                <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2>
-                <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth(true)'>&#x2770</a>
-                <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth(true)'>&#x2771</a>
-            </header>
-            <table>
-                <thead>
-                    <tr>
-                        <td ng-repeat='dayOfWeek in allWeeks'>{{ dayOfWeek | limitTo: 3}}</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat='week in dateInitialMap.result'>
-                        <td ng-repeat='dayOfWeek in allWeeks' class='{{ week[dayOfWeek].class}} {{ week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])'>{{:: week[dayOfWeek].date.getDate()}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class='calendar column padding-l'>
-            <header>
-                <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2>
-                <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth()'>&#x2770;</a>
-                <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth()'>&#x2771;</a>
-            </header>
-            <table>
-                <thead>
-                    <tr>
-                        <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat='week in dateFinalMap.result'>
-                        <td ng-repeat='dayOfWeek in allWeeks' class='{{ week[dayOfWeek].class}} {{ week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])'>{{:: week[dayOfWeek].date.getDate()}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class='column padding-l'>
-            <input type='button' ng-show='options.buttons.btnYear.txt' value='{{options.buttons.btnYear.txt}}' title='{{options.buttons.btnYear.tooltip}}' class='button btnFade btnYear' ng-click='selectYear();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnSemester.txt' value='{{options.buttons.btnSemester.txt}}' title='{{options.buttons.btnSemester.tooltip}}' class='button btnFade btnSemester' ng-click='selectSemester();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnTrimester.txt' value='{{options.buttons.btnTrimester.txt}}' title='{{options.buttons.btnTrimester.tooltip}}' class='button btnFade btnTrimester' ng-click='selectTrimester();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnMonth.txt' name='btnMes' value='{{ options.buttons.btnMonth.txt }}' title='{{options.buttons.btnMonth.tooltip}}' class='button btnFade btnMonth' ng-click='selectMonth();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnWeek.txt' value='{{options.buttons.btnWeek.txt}}' title='{{options.buttons.btnWeek.tooltip}}' class='button btnFade btnColorWeek' ng-click='selectWeek();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnLastDay.txt' value='{{options.buttons.btnLastDay.txt}}' title='{{options.buttons.btnLastDay.tooltip}}' class='button btnFade btnLastDay' ng-click='selectLastDay();'>
-            <br>
-            <input type='button' ng-show='options.buttons.btnToday.txt' value='{{options.buttons.btnToday.txt}}' title='{{options.buttons.btnToday.tooltip}}' class='button btnFade btnToday' ng-click='selectToday();'>
-        </div>
+  <div ng-show='!isOpen' class='line'>
+    <div class='calendar column'>
+      <header>
+        <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2>
+        <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth(true)'>&#x2770</a>
+        <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth(true)'>&#x2771</a>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <td ng-repeat='dayOfWeek in allWeeks'>{{ dayOfWeek | limitTo: 3}}</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='week in dateInitialMap.result'>
+            <td ng-repeat='dayOfWeek in allWeeks' class='{{ week[dayOfWeek].class}} {{ week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])'>{{:: week[dayOfWeek].date.getDate()}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class='calendar column padding-l'>
+      <header>
+        <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2>
+        <a class='btn-prev fontawesome-angle-left' ng-click='lastInitialMonth()'>&#x2770;</a>
+        <a class='btn-next fontawesome-angle-right' ng-click='nextInitialMonth()'>&#x2771;</a>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <td ng-repeat='dayOfWeek in allWeeks'>{{dayOfWeek | limitTo: 3}}</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='week in dateFinalMap.result'>
+            <td ng-repeat='dayOfWeek in allWeeks' class='{{ week[dayOfWeek].class}} {{ week[dayOfWeek].select}}' ng-click='week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])'>{{:: week[dayOfWeek].date.getDate()}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='column padding-l'>
+      <input type='button' ng-show='options.buttons.btnYear.txt' value='{{options.buttons.btnYear.txt}}' title='{{options.buttons.btnYear.tooltip}}' class='button btnFade btnYear' ng-click='selectYear();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnSemester.txt' value='{{options.buttons.btnSemester.txt}}' title='{{options.buttons.btnSemester.tooltip}}' class='button btnFade btnSemester' ng-click='selectSemester();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnTrimester.txt' value='{{options.buttons.btnTrimester.txt}}' title='{{options.buttons.btnTrimester.tooltip}}' class='button btnFade btnTrimester' ng-click='selectTrimester();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnMonth.txt' name='btnMes' value='{{ options.buttons.btnMonth.txt }}' title='{{options.buttons.btnMonth.tooltip}}' class='button btnFade btnMonth' ng-click='selectMonth();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnWeek.txt' value='{{options.buttons.btnWeek.txt}}' title='{{options.buttons.btnWeek.tooltip}}' class='button btnFade btnColorWeek' ng-click='selectWeek();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnLastDay.txt' value='{{options.buttons.btnLastDay.txt}}' title='{{options.buttons.btnLastDay.tooltip}}' class='button btnFade btnLastDay' ng-click='selectLastDay();'>
+      <br>
+      <input type='button' ng-show='options.buttons.btnToday.txt' value='{{options.buttons.btnToday.txt}}' title='{{options.buttons.btnToday.tooltip}}' class='button btnFade btnToday' ng-click='selectToday();'>
+    </div>
+  </div>
 </div>
