@@ -23,7 +23,6 @@ bower install chocoborangepicker
 ```
  angular.module('yourModule', ['chocoboRangePicker']);
 ```
- 
 
 ##### In your controller use the code below
  
@@ -70,6 +69,9 @@ bower install chocoborangepicker
 <li><b>inputConfig: {showIcon}</b> - This property indicate if you want show icon. his property is required</li>
 <li><b>inputConfig: {iconPath}</b> - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon, if you remove this property the default icon it will be used.</li>
 </ul>
+
+
+# What did you think of the layout? If you liked do not waste your time reading the lines below.
 
 #### Other features.
 
