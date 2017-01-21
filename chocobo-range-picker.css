@@ -138,12 +138,11 @@ table {
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
-  text-align: left;
-  padding-left: 2em;
 }
 
 .line {
-  padding-top: 2.5em;
+  position: absolute;
+  margin-top: 2.5em;
 }
 
 .column {
@@ -246,6 +245,7 @@ input.button {
 
 span.icon {
   position: absolute;
+  display:block;
 }
 
 span.icon img {

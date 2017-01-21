@@ -23,7 +23,6 @@ bower install chocoborangepicker
 ```
  angular.module('yourModule', ['chocoboRangePicker']);
 ```
- 
 
 ##### In your controller use the code below
  
@@ -42,6 +41,11 @@ bower install chocoborangepicker
           btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
+        },
+        inputConfig: 
+        {
+          showIcon: true,
+          iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
         }
       };
 ```
@@ -56,12 +60,18 @@ bower install chocoborangepicker
 
 ### $scope.options
 <ul>
-<li><b>txtDateInit</b> - Label of input text that will show the date interval. If you remove this property it will not shown.</li>
-<li><b>buttons</b> - Where you will configure a buttons properties.</li>
-<li><b>buttons: {btnYear}</b> - Where you will configure a each button properties. If you remove this property it will not shown.</li>
-<li><b>buttons: {btnYear.txt}</b> - Text that will apear in button.</li>
-<li><b>buttons: {btnYear.tooltip}</b> - Tooltip that will appear when user mouseover on button.</li>
+<li><b>txtDateInit</b> - Label of input text that will show the date interval. If you remove this property it will not shown. This property is optional</li>
+<li><b>buttons</b> - Where you will configure a buttons properties. This property is required</li>
+<li><b>buttons: {btnYear}</b> - Where you will configure a each button properties. This property is optional,but if you do not use this property the related button will not be displayed.</li>
+<li><b>buttons: {btnYear.txt}</b> - Text that will apear in button. This property is optional</li>
+<li><b>buttons: {btnYear.tooltip}</b> - Tooltip that will appear when user mouseover on button. This property is optional</li>
+<li><b>inputConfig</b> - Input text settings. This property is required</li>
+<li><b>inputConfig: {showIcon}</b> - This property indicate if you want show icon. his property is required</li>
+<li><b>inputConfig: {iconPath}</b> - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon, if you remove this property the default icon it will be used.</li>
 </ul>
+
+
+# What did you think of the layout? If you liked do not waste your time reading the lines below.
 
 #### Other features.
 
