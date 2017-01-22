@@ -1,5 +1,5 @@
 (angular);
-(function (angular) {
+(function(angular) {
   'use strict';
   angular.module('chocoboRangePicker')
     .controller('ChocoboIndexCtrl', ['$scope', ($scope) => {
@@ -8,8 +8,7 @@
 
       $scope.options = {
         txtDateInit: 'Demo: Date',
-        buttons: 
-        {
+        buttons: {
           btnYear: { txt: 'Demo: Year', tooltip: "Choose Year" },
           btnSemester: { txt: 'Demo: Semester', tooltip: "Choose Semester" },
           btnTrimester: { txt: 'Demo: Trimester', tooltip: "Choose Trimester" },

@@ -14,6 +14,7 @@
   <script type="text/javascript" src="public/indexController.js"></script>
   <style>
     .button.btnFade.btnYear {}
+    
     .current-day-last {}
   </style>
 </head>
@@ -21,7 +22,7 @@
 <body ng-controller='ChocoboIndexCtrl'>
   <!--pt-BR en-US en-GB de-DE-->
   <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
-  <br> 
+  <br>
   <div style="padding-top: 18em;">
     {{demo.searchDate}}
   </div>
