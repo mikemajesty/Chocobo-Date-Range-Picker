@@ -179,7 +179,7 @@ current-day-last {
 #### Used versions
 
 ##### Angular
-"version": "^1.6.1"
+"version": "1.2.32"
 <hr>
 ### License
 
