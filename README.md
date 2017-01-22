@@ -65,9 +65,9 @@ bower install chocoborangepicker
 <li><b>buttons: {btnYear}</b> - Where you will configure a each button properties. This property is optional,but if you do not use this property the related button will not be displayed.</li>
 <li><b>buttons: {btnYear.txt}</b> - Text that will apear in button. This property is optional</li>
 <li><b>buttons: {btnYear.tooltip}</b> - Tooltip that will appear when user mouseover on button. This property is optional</li>
-<li><b>inputConfig</b> - Input text settings. This property is required</li>
-<li><b>inputConfig: {showIcon}</b> - This property indicate if you want show icon. his property is required</li>
-<li><b>inputConfig: {iconPath}</b> - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon, if you remove this property the default icon it will be used.</li>
+<li><b>inputConfig</b> - Input text settings. Optional. Without this property the default icon will be displayed.</li>
+<li><b>inputConfig: {showIcon}</b> - This property indicate if you want show icon. his property is required. If the property is false, the icon will not be displayed.</li>
+<li><b>inputConfig: {iconPath}</b> - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon.</li>
 </ul>
 
 
