@@ -22,15 +22,10 @@
         </thead>
         <tbody>
           <tr ng-repeat='week in leftCalendar.weeks'>
-                ng-class="{ 'cursor': isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate),
+            <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate),
                             'next-month': !dayOfWeek.calendarMonth,
                             'current-day-last': isEqualsDate(dayOfWeek.date, leftCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }"
-                ng-click="isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate) ? selectDate(leftCalendar, dayOfWeek.date) : true" >
-            <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': dayOfWeek.calendarMonth && isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate),
-                            'next-month': !dayOfWeek.calendarMonth,
-                            'current-day-last': isEqualsDate(dayOfWeek.date, leftCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="dayOfWeek.calendarMonth &&isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate) ? selectDate(leftCalendar, dayOfWeek.date) : true">
+                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate) ? selectDate(leftCalendar, dayOfWeek.date) : true">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
@@ -51,15 +46,10 @@
         </thead>
         <tbody>
           <tr ng-repeat='week in rightCalendar.weeks'>
-                ng-class="{ 'cursor': isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate),
+            <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate),
                             'next-month': !dayOfWeek.calendarMonth,
                             'current-day-last': isEqualsDate(dayOfWeek.date, rightCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }"
-                ng-click="isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate) ? selectDate(rightCalendar, dayOfWeek.date) : true">
-            <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': dayOfWeek.calendarMonth && isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate),
-                            'next-month': !dayOfWeek.calendarMonth,
-                            'current-day-last': isEqualsDate(dayOfWeek.date, rightCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="dayOfWeek.calendarMonth && isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate) ? selectDate(rightCalendar, dayOfWeek.date) : true">
+                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate) ? selectDate(rightCalendar, dayOfWeek.date) : true">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
