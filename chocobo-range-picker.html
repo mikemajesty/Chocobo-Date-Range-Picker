@@ -4,7 +4,7 @@
             <input type='text' ng-click='options.inputConfig.showIcon === false ? openModal() : undefined'
                    value="{{localeDate(leftCalendar.selectedDate)}} - {{localeDate(rightCalendar.selectedDate)}}"
                    ng-readonly='true' class='input-text' name='dateMap'>
-            <img  ng-if='options.inputConfig.showIcon || !options.inputConfig'
+            <img  ng-if='options.inputConfig.showIcon === true|| !options.inputConfig'
                   ng-src='{{options.inputConfig.iconPath ? options.inputConfig.iconPath : iconUrl}}' ng-click='openModal()'/>
     </span>
   <div ng-show='!isOpen' class='line'>
