@@ -101,12 +101,12 @@
             end.setDate(1);
             end.setMonth(end.getMonth() + 1);
             end.setDate(0);
-            end.setDate(end.getDate() + (6 - start.getDay()));
+            end.setDate(end.getDate() + (6 - end.getDay()));
 
             calendar.weeks = [];
 
             var week = {};
-            while(scope.isEqualsDate(start, end) === false) {
+            while(scope.isBeforeOrEqual(start, end)) {
               week[start.getDay()] = {
                 date: new Date(start.getTime()),
                 calendarMonth: start.getMonth() === calendarMonth,
