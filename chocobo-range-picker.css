@@ -21,6 +21,12 @@ body {
   margin: .33em 0;
 }
 
+.disabled {
+  pointer-events: none;
+  background: #cbd1d2 ! Important;
+  color: white !Important;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -245,7 +251,7 @@ input.button {
 
 span.icon {
   position: absolute;
-  display:block;
+  display: block;
 }
 
 span.icon img {

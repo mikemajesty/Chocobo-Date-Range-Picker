@@ -12,7 +12,7 @@
       <header>
         <h2>{{ localeMonth(leftCalendar.baseDate) }} - {{ localeYear(leftCalendar.baseDate) }}</h2>
         <a class='btn-prev fontawesome-angle-left' ng-click='previousMonth(leftCalendar)'>&#x2770;</a>
-        <a class='btn-next fontawesome-angle-right' ng-click='nextMonth(leftCalendar)'>&#x2771;</a>
+        <a class='btn-next fontawesome-angle-right' ng-click='nextMonth(leftCalendar)' ng-class="!(rightCalendar.baseDate > leftCalendar.baseDate) ? 'disabled' : ''">&#x2771;</a>
       </header>
       <table>
         <thead>
@@ -35,7 +35,7 @@
     <div class='calendar column padding-l'>
       <header>
         <h2>{{ localeMonth(rightCalendar.baseDate) }} - {{ localeYear(rightCalendar.baseDate) }}</h2>
-        <a class='btn-prev fontawesome-angle-left' ng-click='previousMonth(rightCalendar)'>&#x2770;</a>
+        <a class='btn-prev fontawesome-angle-left' ng-click='previousMonth(rightCalendar)' ng-class="!(leftCalendar.baseDate < rightCalendar.baseDate)  ? 'disabled' : ''">&#x2770;</a>
         <a class='btn-next fontawesome-angle-right' ng-click='nextMonth(rightCalendar)'>&#x2771;</a>
       </header>
       <table>
