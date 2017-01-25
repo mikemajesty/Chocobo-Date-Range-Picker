@@ -76,7 +76,7 @@ bower install chocoborangepicker
 <br> <b>true </b> = All date in the range will be assigned to the model.
 <br> <b>false </b>- The first and last date will be assigned to the template
 </li>
-<li><b>bindRange
+<li><b>locale
 </b>
 <br>Your country locale
 </li>
