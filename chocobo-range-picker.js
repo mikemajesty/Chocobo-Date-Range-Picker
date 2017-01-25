@@ -232,6 +232,8 @@
             ngModel.$render();
           }
 
+          updateModel();
+
           /**
            * PERIODS
            */
