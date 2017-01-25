@@ -49,14 +49,7 @@ bower install chocoborangepicker
         }
       };
 ```
- 
-##### In your page use
 
-```
-  <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
-```
-
-#### Attention only four locale were tested.: pt-BR - Brasil, en-US - United States, en-GB - Great Britain, de-DE - Germany
 
 ### $scope.options
 <ul>
@@ -69,6 +62,15 @@ bower install chocoborangepicker
 <li><b>inputConfig: {showIcon}</b> - This property indicate if you want show icon. his property is required. If the property is false, the icon will not be displayed.</li>
 <li><b>inputConfig: {iconPath}</b> - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon.</li>
 </ul>
+ 
+##### In your page use
+
+```
+  <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
+```
+
+#### Attention only four locale were tested.: pt-BR - Brasil, en-US - United States, en-GB - Great Britain, de-DE - Germany
+
 
 
 # What did you think of the layout? If you liked do not waste your time reading the lines below.
