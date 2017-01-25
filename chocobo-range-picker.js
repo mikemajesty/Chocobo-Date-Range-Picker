@@ -24,7 +24,6 @@
         restrict: 'AE',
         scope: {
           locale: '@',
-          options: '='
         },
         link: function(scope, elem, attrs, ngModel) {
 
@@ -106,7 +105,7 @@
             calendar.weeks = [];
 
             var week = {};
-            while(scope.isBeforeOrEqual(start, end)) {
+            while (scope.isBeforeOrEqual(start, end)) {
               week[start.getDay()] = {
                 date: new Date(start.getTime()),
                 calendarMonth: start.getMonth() === calendarMonth,
@@ -220,19 +219,32 @@
           // Method called to update ngModel for the parent controller
           function updateModel() {
             var start = new Date(scope.leftCalendar.selectedDate.getTime());
-            var end = dateOperation(scope.rightCalendar.selectedDate, 1, DATEOPERATION.DAY, true);
+            console.log('ue: ', attrs.bindrange)
 
             var days = [];
-            while(scope.isEqualsDate(start, end) === false) {
-              days.push(new Date(start.getTime()));
-              dateOperation(start, 1, DATEOPERATION.DAY);
+            var BIND_RANGE_DATE = 'true';
+
+            if (attrs.bindrange === BIND_RANGE_DATE) {
+              var end = dateOperation(scope.rightCalendar.selectedDate, 1, DATEOPERATION.DAY, true);
+              while (scope.isEqualsDate(start, end) === false) {
+                days.push(new Date(start.getTime()));
+                dateOperation(start, 1, DATEOPERATION.DAY);
+              }
+            } else {
+              days.push(start);
+              days.push(dateOperation(scope.rightCalendar.selectedDate, 0, DATEOPERATION.DAY, true));
             }
 
             ngModel.$setViewValue(days);
             ngModel.$render();
           }
 
-          updateModel();
+          var initiateCalendar = function() {
+            var dt = new Date();
+            dt.setHours(0, 0, 0, 0);
+            ngModel.$setViewValue([dt]);
+            ngModel.$render();
+          }();
 
           /**
            * PERIODS

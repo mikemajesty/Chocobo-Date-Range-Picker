@@ -13,6 +13,7 @@
 
   <script type="text/javascript" src="public/indexController.js"></script>
   <style>
+    /*HERE YOU CAN OVERRIDE A DIRECTIVE CSS*/
     .button.btnFade.btnYear {}
     
     .current-day-last {}
@@ -21,7 +22,7 @@
 
 <body ng-controller='ChocoboIndexCtrl'>
   <!--pt-BR en-US en-GB de-DE-->
-  <chocobo-Range-Picker locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
+  <chocobo-Range-Picker locale='pt-BR' bindRange='true' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
   <br>
   <div style="padding-top: 18em;">
     {{demo.searchDate}}

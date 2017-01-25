@@ -16,7 +16,8 @@
           btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
-        }
+        },
+        model: true
         // ,
         // inputConfig: 
         // {
