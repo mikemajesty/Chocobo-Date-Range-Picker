@@ -78,7 +78,35 @@ bower install chocoborangepicker
 </li>
 </ul>
 
-#### Attention only four locale were tested.: pt-BR - Brasil, en-US - United States, en-GB - Great Britain, de-DE - Germany
+#### Attention these locales have been tested.
+
+<ul>
+<li>
+<b>
+Spain
+</b> - es-ES
+</li>
+<li>
+<b>
+Brazil
+</b> - pt-BR
+</li>
+<li>
+<b>
+United States
+</b> - en-US
+</li>
+<li>
+<b>
+Great Britain
+</b> - en-GB
+</li>
+<li>
+<b>
+Germany
+</b> - de-DE
+</li>
+</ul>
 <hr>
 
 # What did you think of the layout? If you liked do not waste your time reading the lines below.
