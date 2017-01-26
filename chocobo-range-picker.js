@@ -239,10 +239,14 @@
             ngModel.$render();
           }
 
+          /*
+           INICIA O CALENDARIO JÁ SELECIONADO
+           */
+
           var initiateCalendar = function() {
             var dt = new Date();
             dt.setHours(0, 0, 0, 0);
-            ngModel.$setViewValue([dt]);
+            ngModel.$setViewValue([dt,dt]);
             ngModel.$render();
           }();
 
