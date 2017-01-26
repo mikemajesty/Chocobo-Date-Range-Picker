@@ -183,8 +183,7 @@
            * Variables - Initial configurations
            */
 
-          var currentDate = new Date();
-          currentDate.setHours(0, 0, 0, 0);
+          var currentDate = dateWithoutTime(new Date());
 
           scope.leftCalendar = {
             baseDate: new Date(currentDate.getTime()),
