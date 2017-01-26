@@ -111,25 +111,28 @@
                 calendarMonth: start.getMonth() === calendarMonth,
               };
 
-              // End of a week reached
-              if (start.getDay() === 6) {
+              // End of a week reached]
+              var SATURDAY = 6;
+              if (start.getDay() === SATURDAY) {
                 calendar.weeks.push(week);
                 week = {};
               }
-
-              dateOperation(start, 1, DATEOPERATION.DAY);
+              var ADD_ONE_DAY = 1;
+              dateOperation(start, ADD_ONE_DAY, DATEOPERATION.DAY);
             }
           }
 
           // Go to the next month
           scope.nextMonth = function(calendar) {
-            dateOperation(calendar.baseDate, 1, DATEOPERATION.MONTH);
+            var ADD_ONE_MONTH = 1;
+            dateOperation(calendar.baseDate, ADD_ONE_MONTH, DATEOPERATION.MONTH);
             updateCalendar(calendar);
           };
 
           // Go to the previous month
           scope.previousMonth = function(calendar) {
-            dateOperation(calendar.baseDate, -1, DATEOPERATION.MONTH);
+            var REMOVE_ONE_MONTH = -1;
+            dateOperation(calendar.baseDate, REMOVE_ONE_MONTH, DATEOPERATION.MONTH);
             updateCalendar(calendar);
           };
 
