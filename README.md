@@ -66,19 +66,15 @@ bower install chocoborangepicker
 ##### In your page use
 
 ```
-  <chocobo-Range-Picker bindRange='true' locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
+  <chocobo-Range-Picker bindRange='false' locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
 ### chocobo-Range-Picker
 <ul>
 <li><b>bindRange
 </b> 
-<br> <b>true </b> = All date in the range will be assigned to the model.
 <br> <b>false </b>- The first and last date will be assigned to the template
-</li>
-<li><b>locale
-</b>
-<br>Your country locale
+<br> <b>true </b> = All date in the range will be assigned to the model.
 </li>
 </ul>
 
