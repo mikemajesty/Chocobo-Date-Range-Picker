@@ -1,3 +1,4 @@
+/* jshint expr: true */
 (function(angular) {
   'use strict';
   angular.module('chocoboRangePicker', [])

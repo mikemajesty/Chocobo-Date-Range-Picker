@@ -1,8 +1,8 @@
 body{background:#f9f9f9;color:#0e171c;font:300 100%/1.5em 'Lato',sans-serif;margin:0}
 .container a{text-decoration:none}.container h2{font-size:1.2em;line-height:1.25em;margin:.25em 0}
-.container h3{font-size:1.5em;line-height:1em;margin:.33em 0}table{border-collapse:collapse;border-spacing:0}
-.container{width:50em}.calendar{text-align:center}.calendar header{position:relative}
-.calendar tbody{color:#7c8a95}.calendar tbody td:hover{background:#00addf;color:white}
+.container h3{font-size:1.5em;line-height:1em;margin:.33em 0}.disabled{pointer-events:none;background:#cbd1d2!Important;color:white!Important}
+table{border-collapse:collapse;border-spacing:0}.container{width:50em}.calendar{text-align:center}
+.calendar header{position:relative}.calendar tbody{color:#7c8a95}.calendar tbody td:hover{background:#00addf;color:white}
 .calendar td{border:2px solid transparent;height:1em;line-height:1.7em;text-align:center;width:2em}
 .calendar .prev-month,.calendar .next-month{color:#cbd1d2}.calendar .prev-month:hover,.calendar .next-month:hover{background:#cbd1d2;color:white}
 .current-day-first{background:#00addf;color:#f9f9f9}.current-day-last{background:#00addf;color:#f9f9f9}
@@ -10,8 +10,8 @@ body{background:#f9f9f9;color:#0e171c;font:300 100%/1.5em 'Lato',sans-serif;marg
 .cursor{cursor:pointer}.btn-prev:hover,.btn-next:hover{background:#cbd1d2;color:#f9f9f9}
 .btn-prev{left:2em}.btn-next{right:2em}.hover-range-normal{-moz-box-shadow:inset 0 0 1em #cbd1df !important;-webkit-box-shadow:inset 0 0 1em #cbd1df !important;box-shadow:inset 0 0 1em #cbd1df;border:1px solid #cbd1df !important}
 .input-text{display:block;width:15em;padding:.5rem .5rem;font-size:1rem;line-height:1;color:#464a4c;background-color:#fff;background-image:none;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid rgba(0,0,0,0.15);border-radius:.25rem;-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s}
-.line{padding-top:2.5em}.column{display:table-cell}.padding-l{padding-left:5px}input,input:visited{text-decoration:none;color:#00ae68}
-input.button{display:block;position:relative;float:left;width:10em;padding:0;margin:0 20px 10px 0;font-weight:500;text-align:center;line-height:2em;color:#FFF;border-radius:5px;transition:all .2s}
+.line{position:absolute;margin-top:2.5em}.column{display:table-cell}.padding-l{padding-left:5px}
+input,input:visited{text-decoration:none;color:#00ae68}input.button{display:block;position:relative;float:left;width:10em;padding:0;margin:0 20px 10px 0;font-weight:500;text-align:center;line-height:2em;color:#FFF;border-radius:5px;transition:all .2s}
 .btnYear{background:#0fb0df;cursor:pointer}.btnSemester{background:#0fb0df;cursor:pointer}
 .btnTrimester{background:#0fb0df;cursor:pointer}.btnMonth{background:#0fb0df;cursor:pointer}
 .btnColorWeek{background:#0fb0df;cursor:pointer}.btnLastDay{background:#0fb0df;cursor:pointer}
@@ -19,4 +19,4 @@ input.button{display:block;position:relative;float:left;width:10em;padding:0;mar
 .btnFade.btnSemester:hover{background:#cbd1d2}.btnFade.btnTrimester:hover{background:#cbd1d2}
 .btnFade.btnMonth:hover{background:#cbd1d2}.btnFade.btnColorWeek:hover{background:#cbd1d2}
 .btnFade.btnLastDay:hover{background:#cbd1d2}.btnFade.btnToday:hover{background:#cbd1d2}
-span.icon{position:absolute}span.icon img{position:absolute;display:block;top:.1em;right:.5em;width:2em;height:1.8em;cursor:pointer}
+span.icon{position:absolute;display:block}span.icon img{position:absolute;display:block;top:.1em;right:.5em;width:2em;height:1.8em;cursor:pointer}
