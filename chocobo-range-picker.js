@@ -211,7 +211,7 @@
             scope.isOpen = !scope.isOpen;
           };
 
-          scope.isOpen = !scope.isOpen;
+          scope.isOpen = false;
 
           scope.iconUrl = '/public/calendar.ico';
 
