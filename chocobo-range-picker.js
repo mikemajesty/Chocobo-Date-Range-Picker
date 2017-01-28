@@ -24,8 +24,7 @@
         require: 'ngModel',
         restrict: 'AE',
         scope: {
-          locale: '@',
-          options: '@'
+          options: '='
         },
         link: function(scope, elem, attrs, ngModel) {
 
@@ -215,7 +214,6 @@
           scope.isOpen = false;
 
           scope.iconUrl = '/public/calendar.ico';
-
           /**
            * Model
            */
@@ -223,8 +221,7 @@
           // Method called to update ngModel for the parent controller
           function updateModel() {
             var start = new Date(scope.leftCalendar.selectedDate.getTime());
-            console.log('ue: ', attrs.bindrange)
-
+          
             var days = [];
             var BIND_RANGE_DATE = 'true';
 
