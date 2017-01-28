@@ -7,7 +7,7 @@
             <img  ng-if='options.inputConfig.showIcon === true|| !options.inputConfig'
                   ng-src='{{options.inputConfig.iconPath ? options.inputConfig.iconPath : iconUrl}}' ng-click='openModal()'/>
     </span>
-  <div ng-show='!isOpen' class='line'>
+  <div class='modalClosed line' ng-class="{'modalOpen': isOpen}">
     <div class='calendar column padding-l'>
       <header>
         <h2>{{ localeMonth(leftCalendar.baseDate) }} - {{ localeYear(leftCalendar.baseDate) }}</h2>

@@ -263,3 +263,15 @@ span.icon img {
   height: 1.8em;
   cursor: pointer;
 }
+
+.modalOpen {
+  opacity: 1 !important;
+  height: auto !important;
+}
+
+.modalClosed {
+  transition: opacity 1s;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
