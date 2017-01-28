@@ -25,6 +25,7 @@
         restrict: 'AE',
         scope: {
           locale: '@',
+          options: '@'
         },
         link: function(scope, elem, attrs, ngModel) {
 
