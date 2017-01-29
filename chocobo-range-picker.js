@@ -27,10 +27,10 @@
           options: '='
         },
         link: function(scope, elem, attrs, ngModel) {
-
-          /**
-           * DATE MANIPULATION
-           */
+          console.log('weekday ', attrs.blockweekday)
+            /**
+             * DATE MANIPULATION
+             */
 
           // Date Operation Enumerator
           var DATEOPERATION = {
@@ -75,13 +75,18 @@
           };
 
           // Check if a date is before or equal
-          scope.isBeforeOrEqual = function(a, b) {
+          scope.isBeforeOrEqual = function(a, b, disableVerification) {
+            if (!disableVerification) {
+              var restrict = attrs.blockweekday ? attrs.blockweekday.split(',') : [];
+              return restrict.indexOf(String(dateWithoutTime(a).getDay())) === -1;
+            }
             return dateWithoutTime(a).getTime() <= dateWithoutTime(b).getTime();
           };
 
           // Check if a date is after or equal
           scope.isAfterOrEqual = function(a, b) {
-            return dateWithoutTime(a).getTime() >= dateWithoutTime(b).getTime();
+            var restrict = attrs.blockweekday ? attrs.blockweekday.split(',') : [];
+            return restrict.indexOf(String(dateWithoutTime(a).getDay())) === -1 && dateWithoutTime(a).getTime() >= dateWithoutTime(b).getTime();
           };
 
           /**
@@ -106,7 +111,7 @@
             calendar.weeks = [];
 
             var week = {};
-            while (scope.isBeforeOrEqual(start, end)) {
+            while (scope.isBeforeOrEqual(start, end, true)) {
               week[start.getDay()] = {
                 date: new Date(start.getTime()),
                 calendarMonth: start.getMonth() === calendarMonth,
@@ -221,7 +226,7 @@
           // Method called to update ngModel for the parent controller
           function updateModel() {
             var start = new Date(scope.leftCalendar.selectedDate.getTime());
-          
+
             var days = [];
             var BIND_RANGE_DATE = 'true';
 
@@ -247,7 +252,7 @@
           var initiateCalendar = function() {
             var dt = new Date();
             dt.setHours(0, 0, 0, 0);
-            ngModel.$setViewValue([dt,dt]);
+            ngModel.$setViewValue([dt, dt]);
             ngModel.$render();
           }();
 
