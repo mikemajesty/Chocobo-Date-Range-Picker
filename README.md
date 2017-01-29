@@ -78,8 +78,7 @@ bower install chocoborangepicker
 <br> <b>true </b> = All date in the range will be assigned to the model.
 </li>
 
-<li><b>bindRange
-</b> 
+<li>
 <br> <b>blockWeekDay </b>- Property that represent a weekday to be blocked, examle blockWeekDay='0,6'. var blockWeekDay = {
   "Sunday": 0
   "Monday": 1,
