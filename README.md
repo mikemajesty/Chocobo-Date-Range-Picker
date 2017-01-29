@@ -69,12 +69,26 @@ bower install chocoborangepicker
   <chocobo-Range-Picker bindRange='false' locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
+
 ### chocobo-Range-Picker
 <ul>
 <li><b>bindRange
 </b> 
 <br> <b>false </b>- The first and last date will be assigned to the template
 <br> <b>true </b> = All date in the range will be assigned to the model.
+</li>
+
+<li><b>bindRange
+</b> 
+<br> <b>blockWeekDay </b>- Array that represent a weekday to be blocked, examle blockWeekDay='0,6' var blockWeekDay = {
+  "Sunday": 0
+  "Monday": 1,
+  "Tuesday": 2,
+  "Wednesday": 3,
+  "Thursday": 4,
+  "Friday": 5,
+  "Saturday": 6,
+}, This property is optional.
 </li>
 </ul>
 
