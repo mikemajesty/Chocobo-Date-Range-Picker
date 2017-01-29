@@ -80,7 +80,7 @@ bower install chocoborangepicker
 
 <li><b>bindRange
 </b> 
-<br> <b>blockWeekDay </b>- Array that represent a weekday to be blocked, examle blockWeekDay='0,6' var blockWeekDay = {
+<br> <b>blockWeekDay </b>- Property that represent a weekday to be blocked, examle blockWeekDay='0,6'. var blockWeekDay = {
   "Sunday": 0
   "Monday": 1,
   "Tuesday": 2,
