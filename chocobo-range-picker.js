@@ -27,10 +27,9 @@
           options: '='
         },
         link: function(scope, elem, attrs, ngModel) {
-          console.log('weekday ', attrs.blockweekday)
-            /**
-             * DATE MANIPULATION
-             */
+          /**
+           * DATE MANIPULATION
+           */
 
           // Date Operation Enumerator
           var DATEOPERATION = {

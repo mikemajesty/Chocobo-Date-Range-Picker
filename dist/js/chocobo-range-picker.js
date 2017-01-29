@@ -222,8 +222,6 @@
           // Method called to update ngModel for the parent controller
           function updateModel() {
             var start = new Date(scope.leftCalendar.selectedDate.getTime());
-            console.log('ue: ', attrs.bindrange)
-
             var days = [];
             var BIND_RANGE_DATE = 'true';
 

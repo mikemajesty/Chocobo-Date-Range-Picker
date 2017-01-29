@@ -20,3 +20,4 @@ input,input:visited{text-decoration:none;color:#00ae68}input.button{display:bloc
 .btnFade.btnMonth:hover{background:#cbd1d2}.btnFade.btnColorWeek:hover{background:#cbd1d2}
 .btnFade.btnLastDay:hover{background:#cbd1d2}.btnFade.btnToday:hover{background:#cbd1d2}
 span.icon{position:absolute;display:block}span.icon img{position:absolute;display:block;top:.1em;right:.5em;width:2em;height:1.8em;cursor:pointer}
+.modalOpen{opacity:1 !important;height:auto !important}.modalClosed{transition:opacity 1s;opacity:0;height:0;overflow:hidden}
