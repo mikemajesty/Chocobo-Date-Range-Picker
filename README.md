@@ -26,7 +26,6 @@ bower install chocoborangepicker
 
 ##### In your controller use the code below
  
- 
 ```
    $scope.demo = { searchDate: null };  Here is your property that you want to be populated with date range.
    
