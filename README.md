@@ -121,7 +121,7 @@ bower install chocoborangepicker
   </li>
 </ul>
 <hr>
-```
+
 #### Used versions
 
 ##### Angular
