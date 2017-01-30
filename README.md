@@ -79,7 +79,7 @@ bower install chocoborangepicker
 </li>
 
 <li>
-<br> <b>blockWeekDay </b>- Property that represent a weekday to be blocked, examle blockWeekDay='0,6'. var blockWeekDay = {
+<br> <b>blockWeekDay </b>- Property that represent a weekday to be blocked, example blockWeekDay='0,6'. var blockWeekDay = {
   "Sunday": 0
   "Monday": 1,
   "Tuesday": 2,
@@ -121,111 +121,6 @@ bower install chocoborangepicker
   </li>
 </ul>
 <hr>
-
-# What did you think of the layout? If you liked do not waste your time reading the lines below.
-
-#### Other features.
-
-#### You can override a css class like you prefer.
-
-##### Button Text
-
-```
-.btnYear {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnSemester {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnTrimester {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnMonth {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnColorWeek {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnLastDay {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnToday {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-```
-
-##### Button Hover
-
-```
-.btnFade.btnYear:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnSemester:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnTrimester:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnMonth:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnColorWeek:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnLastDay:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-
-.btnFade.btnToday:hover {
-    yourCssProperty: yourValueCssproperty !important;
-}
-```
-
-##### Input text
-
-```
-.input-text {
-    yourCssProperty: yourValueCssproperty !important;
-}
-```
-
-##### Current select day
-
-```
-current-day-last {
-    yourCssProperty: yourValueCssproperty !important;
-}
-```
-
-##### Date interval
-
-```
-.hover-range-normal {
-    yourCssProperty: yourValueCssproperty !important;
-} 
-```
- 
-##### Arrows that changes the months.
-
-```
-.btn-prev,.btn-next {
-    yourCssProperty: yourValueCssproperty !important;
-}
-.btn-prev:hover, .btn-next:hover {
-   yourCssProperty: yourValueCssproperty !important;
-}
 ```
 #### Used versions
 
