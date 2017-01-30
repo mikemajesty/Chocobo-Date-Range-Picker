@@ -66,7 +66,7 @@ bower install chocoborangepicker
 ##### In your page use
 
 ```
-  <chocobo-Range-Picker bindRange='false' locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
+  <chocobo-Range-Picker bindRange='false' blockWeekDay='0,6' locale='pt-BR' options='options' ng-model="demo.searchDate"></chocobo-Range-Picker>
 ```
 
 
