@@ -79,7 +79,7 @@
                       var dt = getLastSunday(new Date());
                       week[getWeekDays(dt)[cont]] = {};
                       dt.setDate(dt.getDate() + cont);
-                      console.log('cont: ', cont + ' - '+ dt + '-week: ', week);
+                      console.log('cont: ', cont + ' - ' + dt + '-week: ', week);
                     }
                   }
 
@@ -87,15 +87,16 @@
                 }
 
                 weeks.forEach(function (item) {
-                  
-                  console.log('item: ',item , '-' +start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() + '-' + weeks.length);
+
+                  console.log('item: ', item, '-' + start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() + '-' + weeks.length);
                 });
+                
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
-                if (index === 1) {
+                if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday()) {
                   weeks.find(findLast);
                 }
 
-                if (index == getLastDayOfMonth(date)) {
+                if (index == getLastDayOfMonth(date) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
                   weeks.find(findNext);
                 }
               }
@@ -103,6 +104,12 @@
               return weeks;
             }
           };
+
+          function getNextSaturday() {
+            var now = new Date();
+            now.setDate(now.getDate() + (6 + (7 - now.getDay())) % 7);
+            return now.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter();
+          }
 
           function findNext(element, index, array) {
             if (array.length === index + 1) {
