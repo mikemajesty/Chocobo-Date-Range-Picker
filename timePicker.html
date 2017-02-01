@@ -32,7 +32,7 @@
             <td ng-repeat="dayOfWeek in allWeeks">{{dayOfWeek | limitTo: 3}}</td>
         </tr>
         <tr ng-repeat="week in dateMap.result">
-            <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}}" ng-click="chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+            <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}}" ng-click="chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
         </tr>
     </table>
     </span>

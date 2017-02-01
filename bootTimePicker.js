@@ -52,6 +52,7 @@
 
           var getRangeDate = function (currentDate, endDate) {
             var tempArray = [];
+            endDate = new Date(endDate);
             currentDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
             while (currentDate <= endDate) {
@@ -148,7 +149,7 @@
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
               var tempDate = lastDay;
-              element[new Date().reverseFormat(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo' };
+              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastDay), class: 'proximo' };
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
@@ -162,7 +163,7 @@
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
-                element[new Date().reverseFormat(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo' };
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(lastSunday), class: 'ultimo' };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
@@ -192,8 +193,8 @@
           }
 
           function setRangeDate() {
-            var currentDate = new Date(scope.startDate.getTime());
-            between  = getRangeDate(currentDate, scope.endDate).splice(0);
+            var currentDate = new Date(scope.startDate);
+            between = getRangeDate(currentDate, scope.endDate).splice(0);
             ngModel.$setViewValue(between);
             ngModel.$render();
             console.log('quantity ', between.length);
@@ -201,7 +202,13 @@
 
           scope.chooseInitalDay = function (dt) {
             date = dt.date;
-            changeDate(dt.date);
+            scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            //changeDate(dt.date);
+          };
+
+          scope.chooseFinalDay = function (dt) {
+            date = dt.date;
+            scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           };
 
           scope.allWeeks = getWeekDays(new Date());
