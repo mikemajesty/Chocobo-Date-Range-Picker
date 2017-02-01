@@ -75,15 +75,21 @@
                   var week = {};
 
                   if (index === 1) {
-                    for (var cont = 0; cont < 7; cont++) {
+                    for (var cont = 1; cont <= 7; cont++) {
                       var dt = getLastSunday(new Date());
                       week[getWeekDays(dt)[cont]] = {};
                       dt.setDate(dt.getDate() + cont);
+                      console.log('cont: ', cont + ' - '+ dt + '-week: ', week);
                     }
                   }
 
                   weeks.push(week);
                 }
+
+                weeks.forEach(function (item) {
+                  
+                  console.log('item: ',item , '-' +start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() + '-' + weeks.length);
+                });
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
                 if (index === 1) {
                   weeks.find(findLast);
