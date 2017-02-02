@@ -175,8 +175,9 @@
             var dt = new Date();
             dt = new Date(dt.getFullYear(), dt.getMonth(), getDaySaturday(dt));
             var weekList = [];
+            var tDay =  parseInt(getDaySaturday(dt));
             for (var index = 0; index < 7; index++) {
-              var day = parseInt(getDaySaturday(dt)) + index;
+              var day = (tDay + index);
               var dtTemp = new Date(dt.getFullYear(), dt.getMonth(), day);
               weekList.push(dtTemp.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter());
             }
@@ -203,7 +204,7 @@
           scope.chooseInitalDay = function (dt) {
             date = dt.date;
             scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-            //changeDate(dt.date);
+            changeDate(dt.date);
           };
 
           scope.chooseFinalDay = function (dt) {
