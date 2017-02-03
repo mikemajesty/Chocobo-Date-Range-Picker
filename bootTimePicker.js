@@ -25,7 +25,8 @@
         },
         link: function (scope, elem, attrs, ngModel) {
 
-          var date = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+          var dateInitial = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+          var dateFinal = new Date();
           var optionsWeek = { weekday: "long" };
           var optionsMonth = { month: 'long' };
           var optionsYear = { year: 'numeric' };
@@ -33,8 +34,8 @@
           var optionsAlmostComplete = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
           //attr format that it was arrived form directive
-          scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-          scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+          scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+          scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
           scope.dateMap = {};
 
           function getFirstDayOfWeek() {
@@ -69,7 +70,7 @@
             var year = tDate.toLocaleDateString(attrs.locale, optionsYear).capitalizeFirstLetter();
 
             if (isInital) {
-              scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate) };
+              scope.dateInitialMap = { month: month, year: year, result: setRangeDay(tDate, isInital) };
               if (!scope.dateFinalMap) {
                 scope.dateFinalMap = { month: month, year: year, result: setRangeDay(tDate) };
               }
@@ -100,12 +101,26 @@
                 }
 
                 weeks[weeks.length - 1][start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] = { date: new Date(start), class: 'padrao' };
-                if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
-                  weeks.find(findLast);
+                if (isInital) {
+                  if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
+                    weeks.find(findFirstCalendarLast);
+                  }
+                }
+                else {
+                  if (index === 1 && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getLastSunday(start).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
+                    weeks.find(findSecondCalendarLast);
+                  }
                 }
 
-                if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
-                  weeks.find(findNext);
+                if (isInital) {
+                  if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
+                    weeks.find(findFirstCalendarNext);
+                  }
+                }
+                else {
+                  if (index == getLastDayOfMonth(tDate) && start.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter() !== getNextSaturday()) {
+                    weeks.find(findSecondCalendarNext);
+                  }
                 }
               }
               return weeks;
@@ -123,19 +138,35 @@
             return now.toLocaleDateString(attrs.locale, optionsDay);
           }
 
-          function findNext(element, index, array) {
+          function findFirstCalendarNext(element, index, array) {
             if (array.length === index + 1) {
-              var dt = new Date(date);
+              var dt = new Date(dateInitial);
               dt.setDate(getLastDayOfMonth(dt));
               setNextDaysOfNextMonth(element, dt);
             }
           }
 
-          function findLast(element, index, array) {
+          function findFirstCalendarLast(element, index, array) {
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
-              var td = date;
+              var td = new Date(dateInitial);
               setLastDaysOfLastMonth(element, td);
+            }
+          }
+
+          function findSecondCalendarLast(element, index, array) {
+            var FIRST_WEEK = 0;
+            if (index === FIRST_WEEK) {
+              var td = new Date(dateFinal);
+              setLastDaysOfLastMonth(element, td);
+            }
+          }
+
+          function findSecondCalendarNext(element, index, array) {
+             if (array.length === index + 1) {
+              var dt = new Date(dateFinal);
+              dt.setDate(getLastDayOfMonth(dt));
+              setNextDaysOfNextMonth(element, dt);
             }
           }
 
@@ -179,7 +210,7 @@
             }
           }
 
-          changeDate(date, true);
+          changeDate(dateInitial, true);
 
           function getWeekDays() {
             var dt = new Date();
@@ -212,14 +243,14 @@
           }
 
           scope.chooseInitalDay = function (dt) {
-            date = dt.date;
-            scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            dateInitial = dt.date;
+            scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
             changeDate(dt.date, true);
           };
 
           scope.chooseFinalDay = function (dt) {
-            date = dt.date;
-            scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+            dateFinal = dt.date;
+            scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
             changeDate(dt.date);
           };
 
@@ -227,35 +258,45 @@
 
           scope.nextInitialMonth = function (isInital) {
             var DECEMBER = 11;
-            if (date.getMonth() == DECEMBER) {
-              date = new Date(date.getFullYear() + 1, 0, 1);
-            } else {
-              date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-            }
             if (isInital) {
-              scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-              changeDate(date, true);
+              if (dateInitial.getMonth() == DECEMBER) {
+                dateInitial = new Date(dateInitial.getFullYear() + 1, 0, 1);
+              } else {
+                dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() + 1, 1);
+              }
+              scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              changeDate(dateInitial, true);
             }
             else {
-              scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-              changeDate(date);
+              if (dateFinal.getMonth() == DECEMBER) {
+                dateFinal = new Date(dateFinal.getFullYear() + 1, 0, 1);
+              } else {
+                dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() + 1, 1);
+              }
+              scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              changeDate(dateFinal);
             }
           };
 
           scope.lastInitialMonth = function (isInital) {
             var JANUARY = 0;
-            if (date.getMonth() === JANUARY) {
-              date = new Date(date.getFullYear() - 1, 11, 1);
-            } else {
-              date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-            }
             if (isInital) {
-              scope.startDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-              changeDate(date, true);
+              if (dateInitial.getMonth() === JANUARY) {
+                dateInitial = new Date(dateInitial.getFullYear() - 1, 11, 1);
+              } else {
+                dateInitial = new Date(dateInitial.getFullYear(), dateInitial.getMonth() - 1, 1);
+              }
+              scope.startDate = dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              changeDate(dateInitial, true);
             }
             else {
-              scope.endDate = date.toLocaleDateString(attrs.locale, optionsAlmostComplete);
-              changeDate(date);
+              if (dateFinal.getMonth() === JANUARY) {
+                dateFinal = new Date(dateFinal.getFullYear() - 1, 11, 1);
+              } else {
+                dateFinal = new Date(dateFinal.getFullYear(), dateFinal.getMonth() - 1, 1);
+              }
+              scope.endDate = dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete);
+              changeDate(dateFinal);
             }
           };
 
