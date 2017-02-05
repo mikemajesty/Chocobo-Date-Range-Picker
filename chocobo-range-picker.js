@@ -172,19 +172,19 @@
            */
 
           scope.localeMonth = function(date) {
-            return date.toLocaleDateString(attrs.locale, { month: 'long' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { month: 'long' }).capitalizeFirstLetter();
           };
 
           scope.localeYear = function(date) {
-            return date.toLocaleDateString(attrs.locale, { year: 'numeric' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { year: 'numeric' }).capitalizeFirstLetter();
           };
 
           scope.localeWeekday = function(date) {
-            return date.toLocaleDateString(attrs.locale, { weekday: 'long' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { weekday: 'long' }).capitalizeFirstLetter();
           };
 
           scope.localeDate = function(date) {
-            return date.toLocaleDateString(attrs.locale, { day: '2-digit', month: '2-digit', year: 'numeric' });
+            return date.toLocaleDateString(attrs.locale || navigator.language, { day: '2-digit', month: '2-digit', year: 'numeric' });
           };
 
           /**

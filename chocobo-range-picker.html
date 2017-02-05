@@ -23,9 +23,9 @@
         <tbody>
           <tr ng-repeat='week in leftCalendar.weeks'>
             <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate),
-                            'next-month': !dayOfWeek.calendarMonth,
+                            'next-month': !dayOfWeek.calendarMonth || !isBetweenDate(dayOfWeek.date, options.minDate, options.maxDate),
                             'current-day-last': isEqualsDate(dayOfWeek.date, leftCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate) ? selectDate(leftCalendar, dayOfWeek.date) : true">
+                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isBeforeOrEqual(dayOfWeek.date, rightCalendar.selectedDate) && isBetweenDate(dayOfWeek.date, options.minDate, options.maxDate) && selectDate(leftCalendar, dayOfWeek.date)">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
@@ -47,9 +47,9 @@
         <tbody>
           <tr ng-repeat='week in rightCalendar.weeks'>
             <td ng-repeat='dayOfWeek in week' ng-class="{ 'cursor': isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate),
-                            'next-month': !dayOfWeek.calendarMonth,
+                            'next-month': !dayOfWeek.calendarMonth || !isBetweenDate(dayOfWeek.date, options.minDate, options.maxDate),
                             'current-day-last': isEqualsDate(dayOfWeek.date, rightCalendar.selectedDate),
-                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate) ? selectDate(rightCalendar, dayOfWeek.date) : true">
+                            'hover-range-normal': isBetweenDate(dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate) }" ng-click="isAfterOrEqual(dayOfWeek.date, leftCalendar.selectedDate) && isBetweenDate(dayOfWeek.date, options.minDate, options.maxDate) && selectDate(rightCalendar, dayOfWeek.date)">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
