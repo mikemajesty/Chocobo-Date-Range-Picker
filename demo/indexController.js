@@ -17,9 +17,11 @@
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
         },
+        minDate: new Date(2017, 1, 1),
+        maxDate: new Date(2017, 1, 20),
         model: true
         // ,
-        // inputConfig: 
+        // inputConfig:
         // {
         //   showIcon: false,
         //   iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
