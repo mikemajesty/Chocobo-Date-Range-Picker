@@ -119,7 +119,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      // isReadyOnly: (new Date(start) > scope.endDate)
+                      isReadyOnly: (new Date(start) > scope.endDate)
                     };
                 }
                 else {
@@ -128,7 +128,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      // isReadyOnly: (new Date(start) < scope.startDate)
+                      isReadyOnly: (new Date(start) < scope.startDate)
                     };
                 }
 
@@ -277,6 +277,7 @@
           }
 
           changeDate(dateInitial, true);
+          changeDate(dateFinal);
 
           function getWeekDays() {
             var dt = new Date();
