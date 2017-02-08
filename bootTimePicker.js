@@ -119,7 +119,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (new Date(start) > scope.endDate)
+                      // isReadyOnly: (new Date(start) > scope.endDate)
                     };
                 }
                 else {
@@ -128,7 +128,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (new Date(start) < scope.startDate)
+                      // isReadyOnly: (new Date(start) < scope.startDate)
                     };
                 }
 
@@ -173,7 +173,7 @@
             if (array.length === index + 1) {
               var dt = new Date(dateInitial);
               dt.setDate(getLastDayOfMonth(dt));
-              setNextDaysOfNextMonth(element, dt);
+              setNextDaysOfNextMonth(element, dt, true);
             }
           }
 
@@ -181,7 +181,7 @@
             var FIRST_WEEK = 0;
             if (index === FIRST_WEEK) {
               var td = new Date(dateInitial);
-              setLastDaysOfLastMonth(element, td);
+              setLastDaysOfLastMonth(element, td, true);
             }
           }
 
@@ -213,26 +213,38 @@
             return dt;
           }
 
-          function setNextDaysOfNextMonth(element, dt) {
+          function setNextDaysOfNextMonth(element, dt, isInital) {
             var nextSadurday = getNextWeekLastDay(dt);
             var lastDay = dt;
             lastDay.setHours(0, 0, 0, 0);
             nextSadurday.setHours(0, 0, 0, 0);
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
+              console.log('proximos: ', lastDay + '=' + (lastDay < scope.endDate))
               var tempDate = lastDay;
-              element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                {
-                  date: new Date(lastDay),
-                  class: 'next-month',
-                  select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                  isReadyOnly: (dt >= scope.endDate)
-                };
+              if (isInital) {
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
+                  {
+                    date: new Date(lastDay),
+                    class: 'next-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                    // isReadyOnly: (lastDay > scope.endDate)
+                  };
+              }
+              else {
+                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
+                  {
+                    date: new Date(lastDay),
+                    class: 'next-month',
+                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                    // isReadyOnly: (lastDay > scope.startDate)
+                  };
+              }
               lastDay.setDate(lastDay.getDate() + 1);
             }
           }
 
-          function setLastDaysOfLastMonth(element, dt) {
+          function setLastDaysOfLastMonth(element, dt, isInital) {
             dt.setDate(1);
             if (getLastDayOfWeek(7) != dt.toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()) {
               var lastSunday = getLastSunday(dt);
@@ -241,13 +253,24 @@
               lastDayOfMonth.setHours(0, 0, 0, 0);
               while (lastSunday <= lastDayOfMonth) {
                 var tempDate = lastSunday;
-                element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
-                  {
-                    date: new Date(lastSunday),
-                    class: 'prev-month',
-                    select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    isReadyOnly: (dt <= scope.startDate)
-                  };
+                if (isInital) {
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
+                    {
+                      date: new Date(lastSunday),
+                      class: 'prev-month',
+                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                      // isReadyOnly: false
+                    };
+                }
+                else {
+                  element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
+                    {
+                      date: new Date(lastSunday),
+                      class: 'prev-month',
+                      select: compareDate(tempDate) ? 'hover-range-normal' : '',
+                      // isReadyOnly: (lastSunday < scope.startDate)
+                    };
+                }
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
             }
@@ -297,7 +320,7 @@
             dateInitial = dt.date;
             scope.startDate = dateInitial.reverseFormat(dateInitial.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date, true);
-            changeDate(scope.endDate);//this is to put select in td
+            changeDate(scope.endDate);//this is to select td
             setRangeDate();
           };
 
@@ -305,7 +328,7 @@
             dateFinal = dt.date;
             scope.endDate = dateFinal.reverseFormat(dateFinal.toLocaleDateString(attrs.locale, optionsAlmostComplete), attrs.locale);
             changeDate(dt.date);
-            changeDate(scope.startDate, true);//this is to put select in td
+            changeDate(scope.startDate, true);//this is to select td
             setRangeDate();
           };
 
