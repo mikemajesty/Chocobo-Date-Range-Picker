@@ -30,6 +30,7 @@ table {
     width: 20em;
 }
 
+
 /* ---------- CALENDAR ---------- */
 
 .calendar {
@@ -133,4 +134,25 @@ table {
     -webkit-box-shadow: inset 0 0 1em #cbd1dF !important;
     box-shadow: inset 0 0 1em #cbd1dF;
     border: 1px solid #cbd1dF !important;
+}
+
+.input-text {
+    display: block;
+    width: 16.7em;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    text-align: center;
 }

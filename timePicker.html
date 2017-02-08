@@ -7,9 +7,10 @@
 <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
 <br> {{options.txtDateInit}}:
 <br>
-<input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="form-control" name="dateMap">
-<div ng-show="!isOpen">
-    <div class="container">
+<div class="container">
+    <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="input-text" name="dateMap">
+    <div ng-show="!isOpen">
+
         <div class="calendar">
             <header>
                 <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2>
@@ -24,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="week in dateInitialMap.result">
-                        <td ng-repeat="dayOfWeek in allWeeks"  class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                        <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseInitalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,8 +44,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="week in dateFinalMap.result">
-                        <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" 
-                         ng-click="week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
+                        <td ng-repeat="dayOfWeek in allWeeks" class="{{week[dayOfWeek].class}} {{week[dayOfWeek].select}}" ng-click="week[dayOfWeek].isReadyOnly ? $event.stopPropagation() : chooseFinalDay(week[dayOfWeek])">{{week[dayOfWeek].date.getDate()}}</td>
                     </tr>
                 </tbody>
             </table>
