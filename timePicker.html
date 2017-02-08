@@ -9,9 +9,8 @@
 <br>
 <div class="container">
     <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="input-text" name="dateMap">
-    <div ng-show="!isOpen">
-
-        <div class="calendar">
+    <div ng-show="!isOpen" class="line">
+        <div class="calendar column">
             <header>
                 <h2>{{ dateInitialMap.month }} - {{ dateInitialMap.year }}</h2>
                 <a class="btn-prev fontawesome-angle-left" ng-click="lastInitialMonth(true)">&#x2770</a>
@@ -30,7 +29,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="calendar">
+        <div class="calendar column">
             <header>
                 <h2>{{ dateFinalMap.month }} - {{ dateFinalMap.year }}</h2>
                 <a class="btn-prev fontawesome-angle-left" ng-click="lastInitialMonth()">&#x2770;</a>

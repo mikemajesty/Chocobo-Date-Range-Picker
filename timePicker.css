@@ -27,7 +27,7 @@ table {
 }
 
 .container {
-    width: 20em;
+    width: 40em;
 }
 
 
@@ -122,7 +122,7 @@ table {
 }
 
 .btn-prev {
-    left: 1em;
+    left: 3.4em;
 }
 
 .btn-next {
@@ -155,4 +155,12 @@ table {
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
     text-align: center;
+}
+
+.line {
+    display: table;
+}
+
+.column {
+    display: table-cell;
 }
