@@ -220,7 +220,6 @@
             nextSadurday.setHours(0, 0, 0, 0);
             lastDay.setDate(lastDay.getDate() + 1);
             while (lastDay <= nextSadurday) {
-              console.log('proximos: ', lastDay + '=' + (lastDay < scope.endDate))
               var tempDate = lastDay;
               if (isInital) {
                 element[new Date(tempDate).toLocaleDateString(attrs.locale, optionsWeek).capitalizeFirstLetter()] =
@@ -228,7 +227,7 @@
                     date: new Date(lastDay),
                     class: 'next-month',
                     select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    // isReadyOnly: (lastDay > scope.endDate)
+                    isReadyOnly: (lastDay > scope.endDate)
                   };
               }
               else {
@@ -237,7 +236,7 @@
                     date: new Date(lastDay),
                     class: 'next-month',
                     select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    // isReadyOnly: (lastDay > scope.startDate)
+                    isReadyOnly: false
                   };
               }
               lastDay.setDate(lastDay.getDate() + 1);
@@ -259,7 +258,7 @@
                       date: new Date(lastSunday),
                       class: 'prev-month',
                       select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                      // isReadyOnly: false
+                      isReadyOnly: false
                     };
                 }
                 else {
@@ -268,7 +267,7 @@
                       date: new Date(lastSunday),
                       class: 'prev-month',
                       select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                      // isReadyOnly: (lastSunday < scope.startDate)
+                      isReadyOnly: (lastSunday < scope.startDate)
                     };
                 }
                 lastSunday.setDate(lastSunday.getDate() + 1);
