@@ -80,20 +80,14 @@ bower install chocoborangepicker
   * *true*: All date in the range will be assigned to the model;
   * *false*: The first and last date will be assigned to the template.
 
-* **blockWeekDay**\*: Property that represent a weekday to be blocked, example:
-  * *blockWeekDay*: `0-6`
-```javascript
-let blockWeekDay = {
-  "Sunday": 0
-  "Monday": 1,
-  "Tuesday": 2,
-  "Wednesday": 3,
-  "Thursday": 4,
-  "Friday": 5,
-  "Saturday": 6,
-};
-```
- \*This property is optional.
+* **blockWeekDay**(optional)\*: Property that represent a weekday to be blocked (`0-6`), where:
+  * "Sunday": 0;
+  * "Monday": 1;
+  * "Tuesday": 2;
+  * "Wednesday": 3;
+  * "Thursday": 4;
+  * "Friday": 5;
+  * "Saturday": 6.
 
 #### Attention these locales have been tested.
 
