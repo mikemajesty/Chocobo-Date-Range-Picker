@@ -27,7 +27,7 @@
                             'next-month': !dayOfWeek.calendarMonth,
                             'current-day-last': isEqualsDate( dayOfWeek.date, leftCalendar.selectedDate),
                             'hover-range-normal': isBetweenDate( dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate ) }"
-                            ng-click="isBeforeOrEqual( dayOfWeek.date, rightCalendar.selectedDate, true ) ? selectDate( leftCalendar, dayOfWeek.date ) : true">
+                             ng-click="isBeforeOrEqual( dayOfWeek.date, rightCalendar.selectedDate, true ) ? selectDate( leftCalendar, dayOfWeek.date ) : true">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
@@ -52,7 +52,7 @@
                             'next-month': !dayOfWeek.calendarMonth,
                             'current-day-last': isEqualsDate( dayOfWeek.date, rightCalendar.selectedDate ),
                             'hover-range-normal': isBetweenDate( dayOfWeek.date, leftCalendar.selectedDate, rightCalendar.selectedDate ) }"
-                            ng-click="isAfterOrEqual( dayOfWeek.date, leftCalendar.selectedDate ) ? selectDate( rightCalendar, dayOfWeek.date ) : true">
+                             ng-click="isAfterOrEqual( dayOfWeek.date, leftCalendar.selectedDate ) ? selectDate( rightCalendar, dayOfWeek.date ) : true">
               {{dayOfWeek.date.getDate()}}
             </td>
           </tr>
