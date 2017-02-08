@@ -1,13 +1,5 @@
-<input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
-<input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
-<input type="button" ng-show='options.buttons.btnTrimester.txt' value="{{options.buttons.btnTrimester.txt}}" ng-click='selectTrimester();'>
-<input type="button" ng-show='options.buttons.btnMonth.txt' name="btnMes" value="{{ options.buttons.btnMonth.txt }}" ng-click='selectMonth();'>
-<input type="button" ng-show='options.buttons.btnWeek.txt' value="{{options.buttons.btnWeek.txt}}" ng-click='selectWeek();'>
-<input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
-<input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
-<br> {{options.txtDateInit}}:
-<br>
 <div class="container">
+    {{options.txtDateInit}}:
     <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="input-text" name="dateMap">
     <div ng-show="!isOpen" class="line">
         <div class="calendar column">
@@ -47,6 +39,21 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="column">
+            <input type="button" ng-show='options.buttons.btnYear.txt' value="{{options.buttons.btnYear.txt}}" ng-click='selectYear();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnSemester.txt' value="{{options.buttons.btnSemester.txt}}" ng-click='selectSemester();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnTrimester.txt' value="{{options.buttons.btnTrimester.txt}}" ng-click='selectTrimester();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnMonth.txt' name="btnMes" value="{{ options.buttons.btnMonth.txt }}" ng-click='selectMonth();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnWeek.txt' value="{{options.buttons.btnWeek.txt}}" ng-click='selectWeek();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnLastDay.txt' value="{{options.buttons.btnLastDay.txt}}" ng-click='selectLastDay();'>
+            <br>
+            <input type="button" ng-show='options.buttons.btnToday.txt' value="{{options.buttons.btnToday.txt}}" ng-click='selectToday();'>
         </div>
     </div>
 </div>
