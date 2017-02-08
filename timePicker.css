@@ -5,17 +5,17 @@ body {
     margin: 0;
 }
 
-a {
+.container a {
     text-decoration: none;
 }
 
-h2 {
+.container h2 {
     font-size: 1.2em;
     line-height: 1.25em;
     margin: .25em 0;
 }
 
-h3 {
+.container h3 {
     font-size: 1.5em;
     line-height: 1em;
     margin: .33em 0;
