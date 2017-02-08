@@ -119,7 +119,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.startDate.getTime() ? 'current-day-first' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (scope.startDate <= scope.endDate)
+                      isReadyOnly: (new Date(start) > scope.endDate)
                     };
                 }
                 else {
@@ -128,7 +128,7 @@
                       date: new Date(start),
                       class: start.getTime() == scope.endDate.getTime() ? 'current-day-last' : '',
                       select: compareDate(start) ? 'hover-range-normal' : '',
-                      isReadyOnly: (scope.startDate <= scope.endDate)
+                      isReadyOnly: (new Date(start) < scope.startDate)
                     };
                 }
 
@@ -226,7 +226,7 @@
                   date: new Date(lastDay),
                   class: 'next-month',
                   select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                  isReadyOnly: (scope.startDate <= scope.endDate)
+                  isReadyOnly: (dt >= scope.endDate)
                 };
               lastDay.setDate(lastDay.getDate() + 1);
             }
@@ -246,7 +246,7 @@
                     date: new Date(lastSunday),
                     class: 'prev-month',
                     select: compareDate(tempDate) ? 'hover-range-normal' : '',
-                    isReadyOnly: (scope.startDate <= scope.endDate)
+                    isReadyOnly: (dt <= scope.startDate)
                   };
                 lastSunday.setDate(lastSunday.getDate() + 1);
               }
