@@ -101,7 +101,7 @@
             return restrict.indexOf(String(dateWithoutTime(a).getDay())) === -1 && dateWithoutTime(a).getTime() >= dateWithoutTime(b).getTime();
           };
 
-          /**
+          /*
            * CALENDAR
            */
 
@@ -180,10 +180,9 @@
             updateModel();
           };
 
-          /**
+          /*
            * Locale
            */
-
           scope.localeMonth = function(date) {
             return date.toLocaleDateString(attrs.locale || navigator.language, { month: 'long' }).capitalizeFirstLetter();
           };
@@ -200,7 +199,7 @@
             return date.toLocaleDateString(attrs.locale || navigator.language, { day: '2-digit', month: '2-digit', year: 'numeric' });
           };
 
-          /**
+          /*
            * Variables - Initial configurations
            */
 
@@ -220,18 +219,17 @@
           };
           updateCalendar(scope.rightCalendar);
 
-          /**
+          /*
            * Modal
            */
-
           scope.openModal = function() {
             scope.isOpen = !scope.isOpen;
           };
 
           scope.isOpen = false;
-
           scope.iconUrl = '/public/calendar.ico';
-          /**
+
+          /*
            * Model
            */
 
@@ -252,7 +250,6 @@
               days.push(start);
               days.push(dateOperation(scope.rightCalendar.selectedDate, 0, DATEOPERATION.DAY, true));
             }
-
             ngModel.$setViewValue(days);
             ngModel.$render();
           }
@@ -268,10 +265,9 @@
             ngModel.$render();
           }();
 
-          /**
+          /*
            * PERIODS
            */
-
           // Set a period of dates
           scope.setPeriod = function(start, end) {
             scope.leftCalendar.baseDate = new Date(start.getTime());
