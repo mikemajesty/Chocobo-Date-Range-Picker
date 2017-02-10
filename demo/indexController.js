@@ -17,8 +17,8 @@
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
         },
-        minDate: new Date(2017, 1, 1),
-        maxDate: new Date(2017, 1, 20),
+        minDate: new Date(2017, 1, 3),
+        maxDate: new Date(2017, 3, 12),
         model: true
         // ,
         // inputConfig:

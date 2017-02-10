@@ -73,6 +73,19 @@
             return dateWithoutTime(date).getTime() >= dateWithoutTime(a).getTime() && dateWithoutTime(date).getTime() <= dateWithoutTime(b).getTime();
           };
 
+          scope.betweenMinMax = function(date) {
+            if(scope.options.minDate && scope.options.maxDate) {
+              return scope.isBetweenDate(date, scope.options.minDate, scope.options.maxDate);
+            }
+            if(scope.options.minDate) {
+              return scope.isAfterOrEqual(date, scope.options.minDate);
+            }
+            if(scope.options.maxDate) {
+              return scope.isBeforeOrEqual(date, scope.options.maxDate, true);
+            }
+            return true;
+          };
+
           // Check if a date is before or equal
           scope.isBeforeOrEqual = function(a, b, disableVerification) {
             if (!disableVerification) {
