@@ -24,10 +24,9 @@
         require: 'ngModel',
         restrict: 'AE',
         scope: {
-          locale: '@',
+          options: '='
         },
         link: function(scope, elem, attrs, ngModel) {
-
           /**
            * DATE MANIPULATION
            */
@@ -74,17 +73,35 @@
             return dateWithoutTime(date).getTime() >= dateWithoutTime(a).getTime() && dateWithoutTime(date).getTime() <= dateWithoutTime(b).getTime();
           };
 
+          scope.betweenMinMax = function(date) {
+            if(scope.options.minDate && scope.options.maxDate) {
+              return scope.isBetweenDate(date, scope.options.minDate, scope.options.maxDate);
+            }
+            if(scope.options.minDate) {
+              return scope.isAfterOrEqual(date, scope.options.minDate);
+            }
+            if(scope.options.maxDate) {
+              return scope.isBeforeOrEqual(date, scope.options.maxDate, true);
+            }
+            return true;
+          };
+
           // Check if a date is before or equal
-          scope.isBeforeOrEqual = function(a, b) {
+          scope.isBeforeOrEqual = function(a, b, disableVerification) {
+            if (!disableVerification) {
+              var restrict = attrs.blockweekday ? attrs.blockweekday.split(',') : [];
+              return restrict.indexOf(String(dateWithoutTime(a).getDay())) === -1;
+            }
             return dateWithoutTime(a).getTime() <= dateWithoutTime(b).getTime();
           };
 
           // Check if a date is after or equal
           scope.isAfterOrEqual = function(a, b) {
-            return dateWithoutTime(a).getTime() >= dateWithoutTime(b).getTime();
+            var restrict = attrs.blockweekday ? attrs.blockweekday.split(',') : [];
+            return restrict.indexOf(String(dateWithoutTime(a).getDay())) === -1 && dateWithoutTime(a).getTime() >= dateWithoutTime(b).getTime();
           };
 
-          /**
+          /*
            * CALENDAR
            */
 
@@ -106,7 +123,7 @@
             calendar.weeks = [];
 
             var week = {};
-            while (scope.isBeforeOrEqual(start, end)) {
+            while (scope.isBeforeOrEqual(start, end, true)) {
               week[start.getDay()] = {
                 date: new Date(start.getTime()),
                 calendarMonth: start.getMonth() === calendarMonth,
@@ -163,27 +180,26 @@
             updateModel();
           };
 
-          /**
+          /*
            * Locale
            */
-
           scope.localeMonth = function(date) {
-            return date.toLocaleDateString(attrs.locale, { month: 'long' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { month: 'long' }).capitalizeFirstLetter();
           };
 
           scope.localeYear = function(date) {
-            return date.toLocaleDateString(attrs.locale, { year: 'numeric' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { year: 'numeric' }).capitalizeFirstLetter();
           };
 
           scope.localeWeekday = function(date) {
-            return date.toLocaleDateString(attrs.locale, { weekday: 'long' }).capitalizeFirstLetter();
+            return date.toLocaleDateString(attrs.locale || navigator.language, { weekday: 'long' }).capitalizeFirstLetter();
           };
 
           scope.localeDate = function(date) {
-            return date.toLocaleDateString(attrs.locale, { day: '2-digit', month: '2-digit', year: 'numeric' });
+            return date.toLocaleDateString(attrs.locale || navigator.language, { day: '2-digit', month: '2-digit', year: 'numeric' });
           };
 
-          /**
+          /*
            * Variables - Initial configurations
            */
 
@@ -203,25 +219,24 @@
           };
           updateCalendar(scope.rightCalendar);
 
-          /**
+          /*
            * Modal
            */
-
           scope.openModal = function() {
             scope.isOpen = !scope.isOpen;
           };
 
-          scope.isOpen = !scope.isOpen;
-
+          scope.isOpen = false;
           scope.iconUrl = '/public/calendar.ico';
 
-          /**
+          /*
            * Model
            */
 
           // Method called to update ngModel for the parent controller
           function updateModel() {
             var start = new Date(scope.leftCalendar.selectedDate.getTime());
+
             var days = [];
             var BIND_RANGE_DATE = 'true';
 
@@ -235,7 +250,6 @@
               days.push(start);
               days.push(dateOperation(scope.rightCalendar.selectedDate, 0, DATEOPERATION.DAY, true));
             }
-
             ngModel.$setViewValue(days);
             ngModel.$render();
           }
@@ -247,14 +261,13 @@
           var initiateCalendar = function() {
             var dt = new Date();
             dt.setHours(0, 0, 0, 0);
-            ngModel.$setViewValue([dt,dt]);
+            ngModel.$setViewValue([dt, dt]);
             ngModel.$render();
           }();
 
-          /**
+          /*
            * PERIODS
            */
-
           // Set a period of dates
           scope.setPeriod = function(start, end) {
             scope.leftCalendar.baseDate = new Date(start.getTime());
