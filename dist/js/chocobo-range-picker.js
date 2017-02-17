@@ -227,7 +227,7 @@
           };
 
           scope.isOpen = false;
-          scope.iconUrl = '/public/calendar.ico';
+          scope.iconUrl = 'bower_components/chocoborangepicker/public/calendar.ico';
 
           /*
            * Model
@@ -310,7 +310,7 @@
           };
         },
         replace: true,
-        templateUrl: 'chocobo-range-picker.html'
+        templateUrl: 'bower_components/chocoborangepicker/chocobo-range-picker.html'
       };
     }]);
 })(angular);
