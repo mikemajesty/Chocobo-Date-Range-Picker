@@ -115,8 +115,8 @@ It is available under the MIT license.
 
 * [mikemajesty](https://github.com/mikemajesty) - 
 **Mike Lima** &lt;mikee_2008@hotmail.com&gt;
-* [celso-wo](https://github.com/celso-wo) - Special thank you.
-**Celso Wo** &lt;celsowo@gmail.com&gt;
+* [celso-wo](https://github.com/celso-wo) -
+**Celso Wo** &lt;celsowo@gmail.com&gt; Special thank you.
 * [jeanvitor06](https://github.com/jeanvitor06) -
 **Jean Vitor** &lt;jeanvitor06@gmail.com&gt;
 * [danieloprado](https://github.com/danieloprado) -
