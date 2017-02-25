@@ -44,7 +44,9 @@ bower install chocoborangepicker
     inputConfig: {
       showIcon: true,
       iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
-    }
+    } ,
+    minDate: new Date(2017, 1, 3),
+    maxDate: new Date(2017, 3, 12)
   };
 ```
 
@@ -125,6 +127,4 @@ It is available under the MIT license.
 **Gabriel Jacquier** &lt;gabrieljacquierme@gmail.com&gt;
 * [Mateus-Oli](https://github.com/Mateus-Oli) -
 **Mateus Oli** &lt;mateus.oli.car@gmail.com&gt;
-
-
 
