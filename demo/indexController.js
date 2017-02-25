@@ -19,7 +19,6 @@
         },
         minDate: new Date(2017, 1, 3),
         maxDate: new Date(2017, 3, 12),
-        model: true
         // ,
         // inputConfig:
         // {
