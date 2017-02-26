@@ -1,5 +1,6 @@
 # Chocobo Date Range Picker - The Date Range Picker easier to use in angular.  [![chocobo2.png](https://s23.postimg.org/9ihipgoej/chocobo2.png "Chocobo Icon")](https://postimg.org/image/k5bbuvwjr)
 
+
 [![ezgif.com-video-to-gif.gif](https://s13.postimg.org/d7riugr93/ezgif_com_video_to_gif.gif)](https://postimg.org/image/h44uqgc8j/)
 
 ## Try it yourself.
