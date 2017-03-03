@@ -128,4 +128,3 @@ It is available under the MIT license.
 **Gabriel Jacquier** &lt;gabrieljacquierme@gmail.com&gt;
 * [Mateus-Oli](https://github.com/Mateus-Oli) -
 **Mateus Oli** &lt;mateus.oli.car@gmail.com&gt;
-
