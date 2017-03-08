@@ -1,5 +1,5 @@
 <div class='container'>
-  <label ng-if='options.txtDateInit'>{{ options.txtDateInit }}</label>
+  <label ng-if='options.txtDateInit' style="display: block;">{{ options.txtDateInit }}</label>
   <span class='icon'>
             <input type='text' ng-click='options.inputConfig.showIcon === false ? openModal() : undefined'
                    value="{{ localeDate(leftCalendar.selectedDate) }} - {{ localeDate(rightCalendar.selectedDate) }}"

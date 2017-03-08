@@ -16,10 +16,10 @@
           btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
           btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
           btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
-        },
-        minDate: new Date(2017, 1, 3),
-        maxDate: new Date(2017, 3, 12),
-        model: true
+        }
+        // ,
+        // minDate: new Date(2017, 1, 3),
+        // maxDate: new Date(2017, 3, 12)
         // ,
         // inputConfig:
         // {
