@@ -1,6 +1,7 @@
 # Chocobo Date Range Picker - The Date Range Picker easier to use in angular.  [![chocobo2.png](https://s23.postimg.org/9ihipgoej/chocobo2.png "Chocobo Icon")](https://postimg.org/image/k5bbuvwjr)
 
-[![dtChocobo.gif](https://s30.postimg.org/qkccdu5xt/dt_Chocobo.gif "Using Date Range Picker GIF")](https://postimg.org/image/607ifcq6l/)
+
+[![ezgif.com-video-to-gif.gif](https://s13.postimg.org/d7riugr93/ezgif_com_video_to_gif.gif)](https://postimg.org/image/h44uqgc8j/)
 
 ## Try it yourself.
 [click here](https://chocobo-date-range-picker.herokuapp.com/)
@@ -44,7 +45,9 @@ bower install chocoborangepicker
     inputConfig: {
       showIcon: true,
       iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
-    }
+    } ,
+    minDate: new Date(2017, 1, 3),
+    maxDate: new Date(2017, 3, 12)
   };
 ```
 
@@ -65,12 +68,12 @@ bower install chocoborangepicker
 ##### In your page use
 
 ```html
-  <chocobo-Range-Picker bindRange='false'
+  <chocobo-range-picker bindRange='false'
                         blockWeekDay='0,6'
                         locale='pt-BR'
                         options='options'
                         ng-model="demo.searchDate">
-  </chocobo-Range-Picker>
+  </chocobo-range-picker>
 ```
 
 
@@ -108,3 +111,20 @@ bower install chocoborangepicker
 
 It is available under the MIT license.
 [License](https://opensource.org/licenses/mit-license.php)
+
+<hr>
+
+### Collaborators
+
+* [mikemajesty](https://github.com/mikemajesty) - 
+**Mike Lima** &lt;mikee_2008@hotmail.com&gt;
+* [celso-wo](https://github.com/celso-wo) -
+**Celso Wo** &lt;celsowo@gmail.com&gt; Special thank you.
+* [jeanvitor06](https://github.com/jeanvitor06) -
+**Jean Vitor** &lt;jeanvitor06@gmail.com&gt;
+* [danieloprado](https://github.com/danieloprado) -
+**Daniel Prado** &lt;danielprado.ad@gmail.com&gt;
+* [GabrielJacquier](https://github.com/GabrielJacquier) -
+**Gabriel Jacquier** &lt;gabrieljacquierme@gmail.com&gt;
+* [Mateus-Oli](https://github.com/Mateus-Oli) -
+**Mateus Oli** &lt;mateus.oli.car@gmail.com&gt;
