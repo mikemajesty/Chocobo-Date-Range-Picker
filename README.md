@@ -80,7 +80,7 @@ bower install chocoborangepicker
 
 ### chocobo-Range-Picker
 
-* **bindRange**
+* **bindRange**(required)
   * *true*: All date in the range will be assigned to the model;
   * *false*: The first and last date will be assigned to the model.
 
