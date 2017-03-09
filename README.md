@@ -81,7 +81,7 @@ bower install chocoborangepicker
 
 * **bindRange**
   * *true*: All date in the range will be assigned to the model;
-  * *false*: The first and last date will be assigned to the template.
+  * *false*: The first and last date will be assigned to the model.
 
 * **blockWeekDay**(optional)\*: Property that represent a weekday to be blocked (`0-6`), where:
   * "Sunday": 0;
