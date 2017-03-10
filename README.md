@@ -41,27 +41,28 @@ bower install chocoborangepicker
       btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
       btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
       btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
-    },
+    }
+    /*,
     inputConfig: {
       showIcon: true,
       iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
     } ,
     minDate: new Date(2017, 1, 3),
-    maxDate: new Date(2017, 3, 12)
+    maxDate: new Date(2017, 3, 12)*/
   };
 ```
 
 
 ### $scope.options
 
-* **txtDateInit** - Label of input text that will show the date interval. If you remove this property it will not shown. This property is optional;
-* **buttons** - Where you will configure a buttons properties. This property is required;
-* **buttons: {btnYear}** - Where you will configure a each button properties. This property is optional,but if you do not use this property the related button will not be displayed;
-* **buttons: {btnYear.txt}** - Text that will apear in button. This property is optional;
-* **buttons: {btnYear.tooltip}** - Tooltip that will appear when user mouseover on button. This property is optional;
-* **inputConfig** - Input text settings. Optional. Without this property the default icon will be displayed;
-* **inputConfig: {showIcon}** - This property indicate if you want show icon. his property is required. If the property is false, the icon will not be displayed;
-* **inputConfig: {iconPath}** - This property indicate if you want show icon. This property is optional, This property indicate the path to his own icon;
+* **txtDateInit**(optional): Label of input text that will show the date interval. If you remove this property it will not shown.;
+* **buttons**(required): Where you will configure a buttons properties.;
+* **buttons: {btnYear}**(optional): Where you will configure a each button properties. If you do not use this property the related button will not be displayed;
+* **buttons: {btnYear.txt}**(optional): Text that will apear in button;
+* **buttons: {btnYear.tooltip}**(optional): Tooltip that will appear when user mouseover on button.;
+* **inputConfig**(optional): Without this property the default icon will be displayed;
+* **inputConfig: {showIcon}**(required): This property indicate if you want show icon. If the property is false, the icon will not be displayed;
+* **inputConfig: {iconPath}**(optional): This property indicate if you want show icon. This property indicate the path to his own icon;
 * **minDate**(optional): Indicates the minimun possible date for a user to select;
 * **maxDate**(optional): Indicates the maximum possible date for a user to select.
 
@@ -79,9 +80,9 @@ bower install chocoborangepicker
 
 ### chocobo-Range-Picker
 
-* **bindRange**
+* **bindRange**(required)
   * *true*: All date in the range will be assigned to the model;
-  * *false*: The first and last date will be assigned to the template.
+  * *false*: The first and last date will be assigned to the model.
 
 * **blockWeekDay**(optional)\*: Property that represent a weekday to be blocked (`0-6`), where:
   * "Sunday": 0;
