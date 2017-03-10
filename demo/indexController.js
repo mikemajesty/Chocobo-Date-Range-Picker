@@ -27,6 +27,5 @@
         //   iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
         // }
       };
-
     }]);
 })(window.angular);
