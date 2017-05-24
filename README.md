@@ -41,14 +41,13 @@ bower install chocoborangepicker
       btnWeek: { txt: 'Demo: Week', tooltip: "Choose Week" },
       btnToday: { txt: 'Demo: Today', tooltip: "Choose Today" },
       btnLastDay: { txt: 'Demo: Last Day', tooltip: "Choose Last Day" }
-    }
-    /*,
+    },
     inputConfig: {
       showIcon: true,
       iconPath: "http://www.racedepartment.com/images/rd_calext/calendar.png"
     } ,
     minDate: new Date(2017, 1, 3),
-    maxDate: new Date(2017, 3, 12)*/
+    maxDate: new Date(2017, 3, 12)
   };
 ```
 
