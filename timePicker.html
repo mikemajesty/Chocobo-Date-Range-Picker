@@ -1,5 +1,5 @@
 <div class="container">
-    {{options.txtDateInit}}:
+    <span class="span" ng-show="options.txtDateInit">{{options.txtDateInit}}</span>
     <input type="text" ng-model="dateInput" ng-click="openModal()" ng-readonly="true" class="input-text" name="dateMap">
     <div ng-show="!isOpen" class="line">
         <div class="calendar column">

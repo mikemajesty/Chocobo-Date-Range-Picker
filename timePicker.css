@@ -116,7 +116,7 @@ table {
 .input-text {
     display: block;
     width: 15.0em;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.5rem;
     font-size: 1rem;
     line-height: 1.0;
     color: #464a4c;
@@ -145,7 +145,6 @@ table {
 .padding-l {
     padding-left: 5px;
 }
-
 
 /* BUTTONS */
 
