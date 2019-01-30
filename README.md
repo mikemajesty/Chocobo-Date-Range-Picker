@@ -1,7 +1,7 @@
-# Chocobo Date Range Picker - The Date Range Picker easier to use in angular.  [![chocobo2.png](https://s23.postimg.org/9ihipgoej/chocobo2.png "Chocobo Icon")](https://postimg.org/image/k5bbuvwjr)
+# Chocobo Date Range Picker - The Date Range Picker easier to use in angular
 
 
-[![video.gif](https://s13.postimg.org/d7riugr93/ezgif.com-video-to-gif.gif)](https://postimg.org/image/h44uqgc8j/)
+[![chocobo.png](https://i.postimg.cc/6prFpRSt/chocobo.png)](https://postimg.cc/MnG9scqF)
 
 ## Try it yourself.
 [click here](https://chocobo-date-range-picker.herokuapp.com/)
